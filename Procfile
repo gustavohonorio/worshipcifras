@@ -1,0 +1,1 @@
+web: gunicorn worshipcifras.wsgi --log-file -
