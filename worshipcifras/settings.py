@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # após criar uma nova aplicação (módulo) adicionar nesta lista
     'core',
     'wclogon',
+    'wcregister',
 
     'bootstrap4',
     'stdimage',
@@ -47,7 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # DESCOMENTAR QUANDO FOR PRA PROD
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',  # DESCOMENTAR QUANDO FOR PRA PROD
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
