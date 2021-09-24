@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # após criar uma nova aplicação (módulo) adicionar nesta lista
     'core',
+    'wclogon',
+
     'bootstrap4',
     'stdimage',
 ]
