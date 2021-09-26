@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     # após criar uma nova aplicação (módulo) adicionar nesta lista
     'core',
     'wclogon',
-    'wcregister',
 
     'bootstrap4',
     'stdimage',
