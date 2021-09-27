@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls'), name='index'),
     path('logon/', include('wclogon.urls'), name='logon'),
+    path('artista/', include('wcartista.urls')),
 ]
