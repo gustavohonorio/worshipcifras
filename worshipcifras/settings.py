@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',  # DESCOMENTAR QUANDO FOR PRA PROD
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # DESCOMENTAR QUANDO FOR PRA PROD
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
