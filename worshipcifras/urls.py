@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('core.urls'), name='index'),
     path('logon/', include('wclogon.urls'), name='logon'),
     path('artista/', include('wcartista.urls')),
+    path('cifras/', include('wccifras.urls')),
 ]

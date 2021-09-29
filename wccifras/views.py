@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def cifras(request):
+    return render(request, 'cifras.html')

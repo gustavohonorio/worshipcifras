@@ -1,0 +1,449 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+<head>
+    <!-- META, CSS -->
+    {% include 'utils/head.html' %}
+
+    <title>Worship Cifras | Morada</title>
+
+</head>
+
+<body>
+
+<!-- Preloader Start -->
+{% include 'utils/preloader.html' %}
+<!-- Menu Header Start -->
+{% include 'utils/menu.html' %}
+
+<main>
+    <br><br><br><br><br>
+
+    <!-- Cabeçalho da Cifra -->
+    <div class="have-project">
+        <div class="container">
+            <div class="haveAproject" data-background="{% static '/img/bg-destaque.png' %}">
+                <div class="row d-flex align-items-center">
+                    <div class="col-xl-7 col-lg-9 col-md-12">
+                        <div class="wantToWork-caption">
+                            <h2>
+                                Lugar Secreto
+                                <i class="fa fa-check-circle"
+                                   style="color: #22A545; font-size: 20px; vertical-align: top; margin-top: 12px"
+                                   aria-hidden="true"></i>
+                            </h2>
+                            <p>Gabriela Rocha</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-3 col-md-12">
+                        <!--<i class="fa fa-heart" style="color: #A52422; font-size: 40px; margin-left:130px; margin-top: 8px"
+                                   aria-hidden="true"></i>-->
+                        <div class="wantToWork-btn f-right">
+                            <a href="#" class="btn btn-ans">Ouvir agora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="container" style="margin-top: 15px; align: center;">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="row justify-content-start">
+
+                    <select style="display: none;">
+                        <option selected disabled>Alterar tom</option>
+                        <option value="1">A</option>
+                        <option value="1">Bb</option>
+                        <option value="1">B</option>
+                        <option value="1">C</option>
+                        <option value="1">Dd</option>
+                        <option value="1">D</option>
+                        <option value="1">Eb</option>
+                        <option value="1">E</option>
+                        <option value="1">F</option>
+                        <option value="1">F#</option>
+                        <option value="1">G</option>
+                        <option value="1">Ab</option>
+                    </select>
+
+                    <select style="margin-left: 10px">
+                        <option selected disabled>Capotraste</option>
+                        <option value="1">1º Casa</option>
+                        <option value="1">2º Casa</option>
+                        <option value="1">3º Casa</option>
+                    </select>
+
+                    <select style="margin-left: 10px">
+                        <option selected disabled>Modo</option>
+                        <option value="1">Cifra</option>
+                        <option value="1">Letra</option>
+                        <option value="1">Ao vivo</option>
+                    </select>
+
+                    <button class="genric-btn primary radius" style="margin-left: 10px"><i class="fa fa-download"
+                                                                                           aria-hidden="true"></i>
+                        Download
+                    </button>
+                    <button class="genric-btn primary radius" style="margin-left: 10px"><i class="fa fa-plus"
+                                                                                           aria-hidden="true"></i>
+                        Adicionar ao culto
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>-->
+
+
+    <section class="blog_area single-post-area section-padding" style="margin-top: -100px">
+        <div class="container">
+            <div class="row">
+                <!-- Features -->
+                <div class="col-lg-3">
+                    <h3 class="mb-30">Features</h3>
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <div class="default-select">
+                                <select>
+                                    <option selected disabled>Alterar tom</option>
+                                    <option value="1">A</option>
+                                    <option value="1">Bb</option>
+                                    <option value="1">B</option>
+                                    <option value="1">C</option>
+                                    <option value="1">Dd</option>
+                                    <option value="1">D</option>
+                                    <option value="1">Eb</option>
+                                    <option value="1">E</option>
+                                    <option value="1">F</option>
+                                    <option value="1">F#</option>
+                                    <option value="1">G</option>
+                                    <option value="1">Ab</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <div class="default-select">
+                                <select>
+                                    <option value="0" selected>Sem capotraste</option>
+                                    <option value="1">1º Casa</option>
+                                    <option value="1">2º Casa</option>
+                                    <option value="1">3º Casa</option>
+                                    <option value="1">4º Casa</option>
+                                    <option value="1">5º Casa</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <div class="default-select">
+                                <select>
+                                    <option selected disabled>Modo</option>
+                                    <option value="1">Cifra</option>
+                                    <option value="1">Letra</option>
+                                    <option value="1">Ao vivo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <button class="genric-btn primary radius" style=""><i class="fa fa-download"
+                                                                                  aria-hidden="true"></i>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <button class="genric-btn primary radius" style=""><i class="fa fa-plus"
+                                                                                  aria-hidden="true"></i>
+                                Adicionar ao culto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- cifra -->
+                <div class="col-lg-5 posts-list">
+                    <div class="single-post">
+                        <div class="blog_details">
+
+                            <ul class="blog-info-link mt-3 mb-4">
+                                <li><a href="#"><i class="fa fa-heart"></i> 243k de curtidas</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 47 Comentários</a></li>
+                                <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> 17 Set 2021</a></li>
+                            </ul>
+                            <p class="excert">
+                                <br>[Intro] G Em7 D C9
+                                <br>
+                                <br>[Primeira Parte]
+                                <br>
+                                <br>G Em7
+                                <br>Pra onde iremos nós?
+                                <br>Bm7 C9
+                                <br>Só Tu tens a vida eterna
+                                <br>G Em7
+                                <br>Pra onde iremos nós?
+                                <br>Bm7 C9
+                                <br>Só Tu tens a vida eterna
+                                <br>
+                                <br>[Pré-Refrão]
+                                <br>
+                                <br>Am7 Am7/G D/F#
+                                <br>Tu és o pão que desceu do céu
+                                <br>Am7 G/B D
+                                <br>Fonte de vida, Emanuel
+                                <br>
+                                <br>[Refrão]
+                                <br>
+                                <br>G Bm7
+                                <br>Com Tua glória sobre mim
+                                <br>Em7 C9
+                                <br>Enche-me de Ti até transbordar
+                                <br>G/B Bm7
+                                <br>Eu nunca vou me saciar
+                                <br>Em7 C9
+                                <br>Enche-me de Ti até transbordar
+                                <br>
+                                <br>[Pré-Refrão]
+                                <br>
+                                <br>Am7 Am7/G D/F#
+                                <br>Tu és o pão que desceu do céu
+                                <br>Am7 G/B D
+                                <br>Fonte de vida, Emanuel
+                                <br>
+                                <br>[Refrão]
+                                <br>
+                                <br>G Bm7
+                                <br>Com Tua glória sobre mim
+                                <br>Em7 C9
+                                <br>Enche-me de Ti até transbordar
+                                <br>G/B Bm7
+                                <br>Eu nunca vou me saciar
+                                <br>Em7 C9
+                                <br>Enche-me de Ti até transbordar
+                                <br>
+                                <br>[Terceira Parte]
+                                <br>
+                                <br>G Bm7 Em7
+                                <br>Pra onde iremos nós?
+                                <br>C9 G/B D/F# Em7
+                                <br>Só Tu tens a palavra de vi__da eterna
+                                <br>C9
+                                <br>Pra onde iremos nós?
+                                <br>
+                                <br>[Ponte]
+                                <br>
+                                <br>G D
+                                <br>Tu és o pão do céu, o Deus Emanuel
+                                <br>Em7 C9
+                                <br>Enche-me, enche-me até transbordar
+                                <br>G/B D/F#
+                                <br>Tu és o pão do céu, o Deus Emanuel
+                                <br>Em7 C9
+                                <br>Enche-me
+                                <br>
+                                <br>G D/F#
+                                <br>Tu és o pão do céu, o Deus Emanuel
+                                <br>Em7 C9
+                                <br>Enche-me, enche-me até transbordar
+                                <br>G/B D/F#
+                                <br>Tu és o pão do céu, o Deus Emanuel
+                                <br>Em7 D C9
+                                <br>Enche-me, enche-me até transbordar
+                                <br>
+                                <br>[Refrão]
+                                <br>
+                                <br>G Bm7
+                                <br>Com Tua glória sobre mim
+                                <br>Em7 C9
+                                <br>Enche-me de Ti até transbordar
+                                <br>G/B Bm7
+                                <br>Eu nunca vou me saciar
+                                <br>Em7 C9
+                                <br>Enche-me de Ti até transbordar
+                                <br>
+                                <br>[Terceira Parte]
+                                <br>
+                                <br>G Bm7 Em7
+                                <br>Pra onde iremos nós?
+                                <br>C9 G/B D/F# Em7
+                                <br>Só Tu tens a palavra de vi__da eterna
+                                <br>C9
+                                <br>Pra onde iremos nós?
+                                <br>
+                                <br>[Final] G Bm7 Em7 C9
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="navigation-top">
+
+                        <div class="comments-area">
+                            <h4>03 Comentários</h4>
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="{% static '/img/comment/comment_1.png' %}" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="comment">
+                                                Multiply sea night grass fourth day sea lesser rule open subdue female
+                                                fill which them
+                                                Blessed, give fill lesser bearing multiply sea night grass fourth day
+                                                sea lesser
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        <a href="#">Oclinho</a>
+                                                    </h5>
+                                                    <p class="date">17 Set 2021 14h40</p>
+                                                </div>
+                                                <div class="reply-btn">
+                                                    <!--<a href="#" class="btn-reply text-uppercase">reply</a>-->
+                                                    <p class="like-info"><span class="align-middle"><i
+                                                            class="fa fa-heart"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="{% static '/img/comment/comment_2.png' %}" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="comment">
+                                                Multiply sea night grass fourth day sea lesser rule open subdue female
+                                                fill which them
+                                                Blessed, give fill lesser bearing multiply sea night grass fourth day
+                                                sea lesser
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        <a href="#">Sorriso</a>
+                                                    </h5>
+                                                    <p class="date">17 Set 2021 14h40</p>
+                                                </div>
+                                                <div class="reply-btn">
+                                                    <!--<a href="#" class="btn-reply text-uppercase">reply</a>-->
+                                                    <p class="like-info"><span class="align-middle"><i
+                                                            class="fa fa-heart"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="{% static '/img/comment/comment_3.png' %}" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="comment">
+                                                Multiply sea night grass fourth day sea lesser rule open subdue female
+                                                fill which them
+                                                Blessed, give fill lesser bearing multiply sea night grass fourth day
+                                                sea lesser
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        <a href="#">Barba</a>
+                                                    </h5>
+                                                    <p class="date">17 Set 2021 14h40</p>
+                                                </div>
+                                                <div class="reply-btn">
+                                                    <!--<a href="#" class="btn-reply text-uppercase">reply</a>-->
+                                                    <p class="like-info"><span class="align-middle"><i
+                                                            class="fa fa-heart"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <h4>Deixe um comentário</h4>
+                            <form class="form-contact comment_form" action="#" id="commentForm">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                                        placeholder="Escreva seu comentário"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   placeholder="Fulano (User Logado)">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input class="form-control" name="email" id="email" type="email"
+                                                   placeholder="fula@gmail.com (User Logado)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="button button-contactForm btn_1 boxed-btn">Enviar
+                                        comentário
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- detalhes da cifra -->
+                <div class="col-lg-4">
+                    <div class="col-lg-12" align="center">
+                        <iframe width="auto" height="auto" src="https://www.youtube.com/embed/YnrN0o0lubM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="quote-wrapper">
+                            <div class="quotes">
+                                Artista(s): Gabriela Rocha <br>
+                                Compositor(es): Daniela Araújo, Felipe Valente <br>
+                                Produtor(es): Hananniel <br>
+                                Músico(s): Cilano "Guitarra", Fulano "Baixo", Beltrano "Violão" <br>
+                                <br>
+                                Tom original: G "Sol" <br>
+                                Bpm (Tempo): 128 <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Artista Area end =================-->
+</main>
+<footer>
+    <!-- Footer -->
+    {% include 'utils/footer.html' %}
+</footer>
+
+<!-- Javascript -->
+{% include 'utils/js.html' %}
+
+</body>
+</html>
