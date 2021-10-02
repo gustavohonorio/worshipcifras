@@ -1,5 +1,6 @@
+{% load static %}
 <!-- Footer Start-->
-<div class="footer-main" data-background="../static/img/shape/footer_bg.png">
+<div class="footer-main" data-background="{% static 'img/shape/footer_bg.png' %}">
     <div class="footer-area footer-padding">
         <div class="container">
             <div class="row d-flex justify-content-between">
@@ -8,7 +9,7 @@
                         <div class="single-footer-caption mb-30">
                             <!-- logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="../static/img/logo/logo2_footer.png" alt=""></a>
+                                <a href="index.html"><img src="{% static 'img/logo/logo2_footer.png' %}" alt=""></a>
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">

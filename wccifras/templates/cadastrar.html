@@ -1,0 +1,229 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+<head>
+    <!-- META, CSS -->
+    {% include 'utils/head.html' %}
+
+    <title>Worship Cifras | Envie a sua cifra</title>
+
+</head>
+
+<body>
+
+<!-- Preloader Start -->
+{% include 'utils/preloader.html' %}
+<!-- Menu Header Start -->
+{% include 'utils/menu.html' %}
+
+<main>
+    <br><br><br><br><br>
+
+    <!-- Titulo -->
+    <div class="have-project">
+        <div class="container">
+            <div class="haveAproject"
+                 style="background: rgb(173,186,164); background: linear-gradient(0deg, rgba(173,186,164,1) 0%, rgba(164,186,183,1) 100%);">
+                <div class="row d-flex align-items-center">
+                    <div class="col-xl-7 col-lg-9 col-md-12">
+                        <div class="wantToWork-caption">
+                            <h2>Envie a sua cifra</h2>
+                            <p>Contribua com a comunidade e concorra a super prêmios.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-3 col-md-12">
+                        <div class="wantToWork-btn f-right">
+                            <a href="#" class="btn btn-ans">Tutorial</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="blog_area single-post-area section-padding" style="margin-top: -100px">
+        <div class="container">
+            <div class="row">
+                <!-- Opções -->
+                <div class="col-lg-3">
+                    <h3 class="mb-30">Opções</h3>
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <div class="default-select">
+                                <select>
+                                    <option selected disabled>Selecionar tom</option>
+                                    <option value="1">A</option>
+                                    <option value="1">Bb</option>
+                                    <option value="1">B</option>
+                                    <option value="1">C</option>
+                                    <option value="1">Dd</option>
+                                    <option value="1">D</option>
+                                    <option value="1">Eb</option>
+                                    <option value="1">E</option>
+                                    <option value="1">F</option>
+                                    <option value="1">F#</option>
+                                    <option value="1">G</option>
+                                    <option value="1">Ab</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <div class="default-select">
+                                <select>
+                                    <option value="0" selected disabled>Selecionar capotraste</option>
+                                    <option value="1">Sem capotraste</option>
+                                    <option value="1">1º Casa</option>
+                                    <option value="1">2º Casa</option>
+                                    <option value="1">3º Casa</option>
+                                    <option value="1">4º Casa</option>
+                                    <option value="1">5º Casa</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <div class="default-select">
+                                <select>
+                                    <option selected disabled>Afinação</option>
+                                    <option value="1">E A D G B E</option>
+                                    <option value="1">Eb Ab Db Gb Bb Eb</option>
+                                    <option value="1">D G C F A D</option>
+                                    <option value="1">Db Gb Cb Fb Ab Db</option>
+                                    <option value="1">C F Bb Eb G C</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <div class="default-select">
+                                <select>
+                                    <option selected disabled>Versão</option>
+                                    <option value="1">Ao vivo</option>
+                                    <option value="1">Completa</option>
+                                    <option value="1">Simplificada</option>
+                                    <option value="1">Acústico</option>
+                                    <option value="1">Padrão</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <button class="genric-btn primary radius" style=""><i class="fa fa-info-circle"
+                                                                                  aria-hidden="true"></i>
+                                Ajuda
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CIFRA -->
+                <div class="col-lg-5 posts-list">
+                    <div class="single-post">
+                        <div class="blog_details">
+
+                            <!-- REGRAS DE ENVIO -->
+                            <ul class="blog-info-link mt-3 mb-4">
+                                <li><a href="#"><i class="fa fa-bookmark"></i> Leia as nossas regras para a publicação
+                                    de cifras.</a></li>
+                            </ul>
+
+                            <!-- FORMULARIO DE ENVIO -->
+                            <form action="#">
+                                <div class="mt-10">
+                                    <input type="text" name="last_name" placeholder="Artista*"
+                                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Artista*'"
+                                           required
+                                           class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="first_name" placeholder="Nome da música*"
+                                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nome da música*'"
+                                           required
+                                           class="single-input">
+                                </div>
+
+                                <div class="input-group-icon mt-10">
+                                    <div class="icon"><i class="fa fa-music" aria-hidden="true"></i></div>
+                                    <div class="form-select" id="default-select">
+                                        <select>
+                                            <option value="0" selected disabled>Gênero principal</option>
+                                            <option value="1">Worship</option>
+                                            <option value="1">Clássicos</option>
+                                            <option value="1">Poprock</option>
+                                            <option value="1">Rock</option>
+                                            <option value="1">Reggae</option>
+                                            <option value="1">Samba / Pagode</option>
+                                            <option value="1">Rap</option>
+                                            <option value="1">Outro</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mt-10">
+								<textarea style="width: 100%; border: none; outline: none; background: #f9f9ff; height: 500px;" placeholder="Transcrição da cifra*" onfocus="this.placeholder = ''"
+                                          onblur="this.placeholder = 'Transcrição da cifra*'" required></textarea>
+                                </div>
+
+                                <div class="mt-10">
+								<textarea class="single-textarea" placeholder="Deseja informar algum detalhe adicional para a nossa equipe? (Opcional)" onfocus="this.placeholder = ''"
+                                          onblur="this.placeholder = 'Deseja informar algum detalhe adicional para a nossa equipe? (Opcional)'"></textarea>
+                                </div>
+
+                                <div class="button-group-area mt-40">
+                                    <a href="#" class="genric-btn primary e-large">Enviar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <br><br>
+                        <a href="#" style="color: #080F0F">Encontrou algum problema? Nos mande uma
+                            mensagem.</a>
+                    </div>
+
+                </div>
+
+                <!-- ULTIMOS ENVIOS / RANKING DE USUÁRIOS -->
+                <div class="col-lg-4">
+                    <div class="col-lg-12">
+                        <h5>Cifras adicionadas recentemente</h5><br>
+                        <a href="#"><div>
+                            <h6>Só Tú és Santo</h6>
+                            <p>Morada</p>
+                        </div></a>
+
+                        <a href="#"><div>
+                            <h6>A alegria</h6>
+                            <p>Comunidade Nilópolis</p>
+                        </div></a>
+
+                        <a href="#"><div>
+                            <h6>Eu navegarei</h6>
+                            <p>Batista Zona Sul</p>
+                        </div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Artista Area end =================-->
+</main>
+<footer>
+    <!-- Footer -->
+    {% include 'utils/footer.html' %}
+</footer>
+
+<!-- Javascript -->
+{% include 'utils/js.html' %}
+
+</body>
+</html>

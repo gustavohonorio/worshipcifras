@@ -5295,8 +5295,8 @@ del {
     outline: none;
     background: #f9f9ff;
     padding: 0 20px;
-    height: 100px;
-    resize: none;
+    height: 500px;
+    resize: vertical;
 }
 .single-textarea:focus {
     outline: none;
