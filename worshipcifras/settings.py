@@ -31,13 +31,15 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # após criar uma nova aplicação (módulo) adicionar nesta lista
+
+    # local apps
     'core',
     'wclogon',
     'wcartista',
@@ -49,7 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # DESCOMENTAR QUANDO FOR PRA PROD
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',  # DESCOMENTAR QUANDO FOR PRA PROD
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -137,3 +139,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#User Model
+
+AUTH_USER_MODEL = 'wclogon.Usuario'
