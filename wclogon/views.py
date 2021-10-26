@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from django.contrib import messages
 
 
 def login(request):
@@ -6,4 +8,4 @@ def login(request):
 
 
 def register(request):
-    return render(request, 'register.html')
+    return render(request=request, template_name='register.html')

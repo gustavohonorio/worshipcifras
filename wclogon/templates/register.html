@@ -32,11 +32,12 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-            <form class="login100-form validate-form">
+            <form class="login100-form validate-form" method="post">
+                {% csrf_token %}
                 <span class="login100-form-title p-b-55">Cadastre-se, é grátis</span>
                 <!-- Nome -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu nome.">
-                    <input class="input100" type="text" name="nome" placeholder="Nome">
+                    <input class="input100" type="text" name="nome_n" id="nome" placeholder="Nome">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-user"></span>
@@ -44,7 +45,7 @@
                 </div>
                 <!-- Sobrenome -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu sobrenome.">
-                    <input class="input100" type="text" name="sobrenome" placeholder="Sobrenome">
+                    <input class="input100" type="text" name="sobrenome_n" id="sobrenome" placeholder="Sobrenome">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-user"></span>
@@ -52,7 +53,7 @@
                 </div>
                 <!-- Nascimento -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Selecione a data do seu nascimento.">
-                    <input class="input100 js-datepicker" type="text" name="nascimento" placeholder="Nascimento">
+                    <input class="input100 js-datepicker" type="text" name="nascimento_n" id="nascimento" placeholder="Nascimento">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-calendar-full"></span>
@@ -60,7 +61,7 @@
                 </div>
                 <!-- Celular -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu celular.">
-                    <input class="input100" type="text" name="celular" placeholder="Celular">
+                    <input class="input100" type="text" name="celular_n" id="celular" placeholder="Celular">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-smartphone"></span>
@@ -68,7 +69,7 @@
                 </div>
                 <!-- Email -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Email inválido. Ex: wc@exemplo.com">
-                    <input class="input100" type="text" name="email" placeholder="Email">
+                    <input class="input100" type="text" name="email_n" id="email" placeholder="Email">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-envelope"></span>
@@ -76,7 +77,7 @@
                 </div>
                 <!-- Senha -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Digite a sua senha.">
-                    <input class="input100" type="password" name="senha" placeholder="Senha">
+                    <input class="input100" type="password" name="senha_n" id="senha" placeholder="Senha">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
@@ -84,15 +85,16 @@
                 </div>
                 <!-- Confirmar Senha -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Digite a sua senha.">
-                    <input class="input100" type="password" name="confirmarsenha" placeholder="Confirme a sua senha">
+                    <input class="input100" type="password" name="confirmarsenha_n" id="confirmarsenha" placeholder="Confirme a sua senha">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
 						</span>
                 </div>
 
+                <!-- botão submit -->
                 <div class="container-login100-form-btn p-t-25">
-                    <button class="login100-form-btn">
+                    <button class="login100-form-btn" type="submit">
                         Virar membro
                     </button>
                 </div>

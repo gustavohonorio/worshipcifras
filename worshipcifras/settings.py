@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # allauth configs
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
 
     # local apps
     'core',
@@ -73,10 +78,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Sem isso o allauth não funciona!
+                'django.template.context_processors.request',
             ],
         },
     },
 ]
+# allauth configs
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
+]
+# allauth configs
+# SITE_ID = 1
 
 WSGI_APPLICATION = 'worshipcifras.wsgi.application'
 

@@ -14,6 +14,9 @@ class Perfil(models.Model):
     op_tipo = models.TextField(default='I', null=True)
     op_data = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.perfil
+
 
 class Usuario(AbstractUser):
     nascimento = models.DateTimeField(auto_now_add=True)
@@ -29,6 +32,9 @@ class Usuario(AbstractUser):
     op_tipo = models.TextField(default='I', null=True)
     op_data = models.DateTimeField(auto_now_add=True)
     wc_perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, default=2)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
 
 class Vigencia(models.Model):

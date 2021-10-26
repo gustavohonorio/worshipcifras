@@ -22,4 +22,6 @@ urlpatterns = [
     path('logon/', include('wclogon.urls'), name='logon'),
     path('artista/', include('wcartista.urls')),
     path('cifras/', include('wccifras.urls')),
+    # allauth configs
+    # path('accounts/', include('allauth.urls')),
 ]
