@@ -42,7 +42,7 @@
     </div>
 
     <section class="blog_area single-post-area section-padding" style="margin-top: -100px">
-        <form method="post">
+        <form action="." method="post">
             {% csrf_token %}
             <div class="container">
                 <div class="row">
@@ -52,21 +52,7 @@
                         <div class="col-lg-12">
                             <div class="single-element-widget mt-30">
                                 <div class="default-select">
-                                    <select id="tom" name="tom_n">
-                                        <option selected disabled>Selecionar tom</option>
-                                        <option value="1">A</option>
-                                        <option value="1">Bb</option>
-                                        <option value="1">B</option>
-                                        <option value="1">C</option>
-                                        <option value="1">Dd</option>
-                                        <option value="1">D</option>
-                                        <option value="1">Eb</option>
-                                        <option value="1">E</option>
-                                        <option value="1">F</option>
-                                        <option value="1">F#</option>
-                                        <option value="1">G</option>
-                                        <option value="1">Ab</option>
-                                    </select>
+                                    {{form.tom}}
                                 </div>
                             </div>
                         </div>
@@ -74,15 +60,7 @@
                         <div class="col-lg-12">
                             <div class="single-element-widget mt-30">
                                 <div class="default-select">
-                                    <select id="capotraste" name="capotraste_n">
-                                        <option value="0" selected disabled>Selecionar capotraste</option>
-                                        <option value="1">Sem capotraste</option>
-                                        <option value="1">1º Casa</option>
-                                        <option value="1">2º Casa</option>
-                                        <option value="1">3º Casa</option>
-                                        <option value="1">4º Casa</option>
-                                        <option value="1">5º Casa</option>
-                                    </select>
+                                    {{form.capotraste}}
                                 </div>
                             </div>
                         </div>
@@ -90,14 +68,7 @@
                         <div class="col-lg-12">
                             <div class="single-element-widget mt-30">
                                 <div class="default-select">
-                                    <select id="afinacao" name="afinacao_n">
-                                        <option selected disabled>Afinação</option>
-                                        <option value="1">E A D G B E</option>
-                                        <option value="1">Eb Ab Db Gb Bb Eb</option>
-                                        <option value="1">D G C F A D</option>
-                                        <option value="1">Db Gb Cb Fb Ab Db</option>
-                                        <option value="1">C F Bb Eb G C</option>
-                                    </select>
+                                    {{form.afinacao}}
                                 </div>
                             </div>
                         </div>
@@ -105,14 +76,7 @@
                         <div class="col-lg-12">
                             <div class="single-element-widget mt-30">
                                 <div class="default-select">
-                                    <select id="versao" name="versao_n">
-                                        <option selected disabled>Versão</option>
-                                        <option value="1">Ao vivo</option>
-                                        <option value="1">Completa</option>
-                                        <option value="1">Simplificada</option>
-                                        <option value="1">Acústico</option>
-                                        <option value="1">Padrão</option>
-                                    </select>
+                                    {{form.versao}}
                                 </div>
                             </div>
                         </div>
@@ -140,49 +104,36 @@
                                 </ul>
 
                                 <!-- FORMULARIO DE ENVIO -->
-                                <div class="mt-10">
-                                    <input type="text" id="wc_artista" name="wc_artista_n" placeholder="Artista*"
-                                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Artista*'"
-                                           required
-                                           class="single-input">
-                                </div>
-                                <div class="mt-10">
-                                    <input type="text" id="nome" name="nome_n" placeholder="Nome da música*"
-                                           onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Nome da música*'"
-                                           required
-                                           class="single-input">
-                                </div>
-
                                 <div class="input-group-icon mt-10">
-                                    <div class="icon"><i class="fa fa-music" aria-hidden="true"></i></div>
-                                    <div class="form-select" id="default-select">
-                                        <select id="genero" name="genero_n">
-                                            <option value="0" selected disabled>Gênero principal</option>
-                                            <option value="1">Worship</option>
-                                            <option value="1">Clássicos</option>
-                                            <option value="1">Poprock</option>
-                                            <option value="1">Rock</option>
-                                            <option value="1">Reggae</option>
-                                            <option value="1">Samba / Pagode</option>
-                                            <option value="1">Rap</option>
-                                            <option value="1">Outro</option>
-                                        </select>
+                                    <div class="form-select">
+                                        {{form.wc_artista}}
                                     </div>
                                 </div>
 
                                 <div class="mt-10">
-								<textarea
-                                        style="width: 100%; border: none; outline: none; background: #f9f9ff; height: 500px;"
-                                        id="cifra" name="cifra_n" placeholder="Transcrição da cifra*" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Transcrição da cifra*'" required></textarea>
+                                    <div class="single-input">
+                                        {{form.nome}}
+                                    </div>
+                                    <!--<input type="text" id="nome" name="nome_n" placeholder="Nome da música*"
+                                           onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Nome da música*'"
+                                           required
+                                           class="single-input">-->
+                                </div>
+
+                                <div class="input-group-icon mt-10">
+                                    <div class="icon"><i class="fa fa-music" aria-hidden="true"></i></div>
+                                    <div class="form-select">
+                                        {{form.genero}}
+                                    </div>
                                 </div>
 
                                 <div class="mt-10">
-								<textarea class="single-textarea" style="heigth: 100px"
-                                          id="detalhes" name="detalhes_n" placeholder="Deseja informar algum detalhe adicional para a nossa equipe? (Opcional)"
-                                          onfocus="this.placeholder = ''"
-                                          onblur="this.placeholder = 'Deseja informar algum detalhe adicional para a nossa equipe? (Opcional)'"></textarea>
+                                    {{form.cifra}}
+                                </div>
+
+                                <div class="mt-10">
+								    {{form.detalhes}}
                                 </div>
 
                                 <div class="button-group-area mt-40">
