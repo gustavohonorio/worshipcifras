@@ -133,7 +133,7 @@
                                 </div>
 
                                 <div class="mt-10">
-								    {{form.detalhes}}
+                                    {{form.detalhes}}
                                 </div>
 
                                 <div class="button-group-area mt-40">
@@ -153,26 +153,14 @@
                     <div class="col-lg-4">
                         <div class="col-lg-12">
                             <h5>Cifras adicionadas recentemente</h5><br>
+                            {% for cifra in cifras_recentes %}
                             <a href="#">
                                 <div>
-                                    <h6>Só Tú és Santo</h6>
-                                    <p>Morada</p>
+                                    <h6>{{cifra.nome}}</h6>
+                                    <p>{{cifra.wc_artista}}</p>
                                 </div>
                             </a>
-
-                            <a href="#">
-                                <div>
-                                    <h6>A alegria</h6>
-                                    <p>Comunidade Nilópolis</p>
-                                </div>
-                            </a>
-
-                            <a href="#">
-                                <div>
-                                    <h6>Eu navegarei</h6>
-                                    <p>Batista Zona Sul</p>
-                                </div>
-                            </a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

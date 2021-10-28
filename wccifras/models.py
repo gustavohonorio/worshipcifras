@@ -13,9 +13,9 @@ class CifraVerificada(models.Model):
     bpm = models.TextField(blank=True, null=True)
     descricao = models.TextField(blank=True, null=True)
     patrocinada = models.BooleanField(default=False)
-    op_user = models.TextField(blank=True, null=True)
+    op_user = models.TextField(blank=True, null=True, default='wcadmin')
     op_tipo = models.TextField(blank=True, null=True, default='I')
-    op_data = models.DateTimeField()
+    op_data = models.DateTimeField(blank=True, auto_now_add=True)
 
 
 class Cifra(models.Model):
@@ -33,9 +33,9 @@ class Cifra(models.Model):
     detalhes = models.TextField(blank=True, null=True)
     status = models.TextField(blank=True, null=True)
     wc_cifra_verificada = models.ForeignKey(CifraVerificada, on_delete=models.CASCADE, null=True, default=5)
-    op_user = models.TextField(blank=True, null=True)
+    op_user = models.TextField(blank=True, null=True, default='wcadmin')
     op_tipo = models.TextField(blank=True, null=True, default='I')
-    op_data = models.DateTimeField()
+    op_data = models.DateTimeField(blank=True, auto_now_add=True)
 
     def __str__(self):
         return self.nome
