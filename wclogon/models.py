@@ -1,7 +1,37 @@
-import datetime
 from django.db import models
 # CRIANDO MODELO PERSONALIZADO DE USUARIOS
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+
+
+# Criando o gerenciador do modelo customizado
+class UsuarioManager(BaseUserManager):
+    use_in_migrations = True
+
+    def _create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError('O email é obrigatório.')
+        # normalize vai formatar o email para deixar valido e padronizado (ex. tudo minusculo)
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(email, password, **extra_fields)
+
+    def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
+
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser precisa ter is_superuser = True')
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser precisa ter is_staff = True')
+
+        return self._create_user(email, password, **extra_fields)
 
 
 class Perfil(models.Model):
@@ -19,6 +49,7 @@ class Perfil(models.Model):
 
 
 class Usuario(AbstractUser):
+    email = models.EmailField('E-mail', unique=True)
     nascimento = models.DateTimeField(auto_now_add=True)
     genero = models.TextField(blank=True, null=True)
     celular = models.TextField(blank=True, null=True)
@@ -33,8 +64,13 @@ class Usuario(AbstractUser):
     op_data = models.DateTimeField(auto_now_add=True)
     wc_perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, default=2)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'celular']
+
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.first_name} {self.last_name} {self.email}'
+
+    objects = UsuarioManager()
 
 
 class Vigencia(models.Model):

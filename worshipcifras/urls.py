@@ -19,9 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls'), name='index'),
-    path('logon/', include('wclogon.urls'), name='logon'),
+    path('logon/', include('django.contrib.auth.urls')),
     path('artista/', include('wcartista.urls')),
     path('cifras/', include('wccifras.urls')),
-    # allauth configs
-    # path('accounts/', include('allauth.urls')),
+
 ]
