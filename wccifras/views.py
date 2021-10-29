@@ -18,7 +18,7 @@ def cadastrar(request):
         if form.is_valid():
             nome = form.cleaned_data['nome']
             wc_artista = form.cleaned_data['wc_artista']
-            print(f'{wc_artista.id} - artista')
+            # print(f'{wc_artista.id} - artista')
             genero = form.cleaned_data['genero']
             cifra = form.cleaned_data['cifra']
             detalhes = form.cleaned_data['detalhes']

@@ -160,3 +160,6 @@ AUTH_USER_MODEL = 'wclogon.Usuario'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
+
+# Formatando inputs de datas nos forms
+DATE_INPUT_FORMATS = ['%d-%m-%Y']

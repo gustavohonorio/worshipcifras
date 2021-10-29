@@ -25,6 +25,10 @@
     <link rel="stylesheet" type="text/css" href="{% static '/vendor/select2/select2.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+
+    <!-- Tempus Dominus / Datapicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
+
 </head>
 
 <body>
@@ -32,12 +36,13 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-            <form class="login100-form validate-form" method="post">
+            <form class="login100-form validate-form" method="post" action=".">
                 {% csrf_token %}
                 <span class="login100-form-title p-b-55">Cadastre-se, é grátis</span>
                 <!-- Nome -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu nome.">
-                    <input class="input100" type="text" name="nome_n" id="nome" placeholder="Nome">
+                    {{form.first_name}}
+                    <!--<input class="input100" type="text" name="nome_n" id="nome" placeholder="Nome">-->
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-user"></span>
@@ -45,7 +50,8 @@
                 </div>
                 <!-- Sobrenome -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu sobrenome.">
-                    <input class="input100" type="text" name="sobrenome_n" id="sobrenome" placeholder="Sobrenome">
+                    {{form.last_name}}
+                    <!--<input class="input100" type="text" name="sobrenome_n" id="sobrenome" placeholder="Sobrenome">-->
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-user"></span>
@@ -53,7 +59,9 @@
                 </div>
                 <!-- Nascimento -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Selecione a data do seu nascimento.">
-                    <input class="input100 js-datepicker" type="text" name="nascimento_n" id="nascimento" placeholder="Nascimento">
+                    {{form.nascimento}}
+                    <!--<input class="input100 js-datepicker" type="text" name="nascimento_n" id="nascimento" placeholder="Nascimento">
+                    -->
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-calendar-full"></span>
@@ -61,32 +69,36 @@
                 </div>
                 <!-- Celular -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu celular.">
-                    <input class="input100" type="text" name="celular_n" id="celular" placeholder="Celular">
-                    <span class="focus-input100"></span>
+                    {{form.celular}}
+                    <!--<input class="input100" type="text" name="celular_n" id="celular" placeholder="Celular">
+                    --><span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-smartphone"></span>
 						</span>
                 </div>
                 <!-- Email -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Email inválido. Ex: wc@exemplo.com">
-                    <input class="input100" type="text" name="email_n" id="email" placeholder="Email">
-                    <span class="focus-input100"></span>
+                    {{form.email}}
+                    <!--<input class="input100" type="text" name="email_n" id="email" placeholder="Email">
+                    --><span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-envelope"></span>
 						</span>
                 </div>
                 <!-- Senha -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Digite a sua senha.">
-                    <input class="input100" type="password" name="senha_n" id="senha" placeholder="Senha">
-                    <span class="focus-input100"></span>
+                    {{form.password}}
+                    <!--<input class="input100" type="password" name="senha_n" id="senha" placeholder="Senha">
+                    --><span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
 						</span>
                 </div>
                 <!-- Confirmar Senha -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Digite a sua senha.">
-                    <input class="input100" type="password" name="confirmarsenha_n" id="confirmarsenha" placeholder="Confirme a sua senha">
-                    <span class="focus-input100"></span>
+                    {{form.password_confirm}}
+                    <!--<input class="input100" type="password" name="confirmarsenha_n" id="confirmarsenha" placeholder="Confirme a sua senha">
+                    --><span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
 						</span>
@@ -122,6 +134,16 @@
 
 <script src="{% static '/vendor/select2/select2.min.js' %}"></script>
 <script src="{% static '/js/main.js' %}"></script>
+<!-- Tempus Dominus / Datapicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
+
+<script>
+  $(function () {
+    $("#datetimepicker1").datetimepicker({
+      format: 'DD/MM/YYYY HH:mm',
+    });
+  });
+</script>
 
 </body>
 </html>
