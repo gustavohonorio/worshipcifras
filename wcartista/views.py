@@ -24,4 +24,4 @@ def cadastrar(request):
 
             return redirect('index')
 
-    return render(request, 'cadastrar.html', {'artistas_similares': artistas_similares, 'form': form})
+    return render(request, 'cadastrar_artista.html', {'artistas_similares': artistas_similares, 'form': form})

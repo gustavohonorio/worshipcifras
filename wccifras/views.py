@@ -4,7 +4,14 @@ from .models import Cifra
 from wcartista.models import Artista
 
 
-def cifras(request):
+def cifras(request, cifra_id):
+    if cifra_id:
+        cifra = Cifra.objects.get(id=cifra_id)
+
+        cifra_exibicao = cifra.cifra.splitlines(True)
+
+        return render(request, 'cifras.html', {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, })
+
     return render(request, 'cifras.html')
 
 
@@ -34,4 +41,4 @@ def cadastrar(request):
 
             return redirect('index')
 
-    return render(request, 'cadastrar.html', {'cifras_recentes': cifras_recentes, 'form': form})
+    return render(request, 'cadastrar_cifra.html', {'cifras_recentes': cifras_recentes, 'form': form})

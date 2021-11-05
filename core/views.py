@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from wccifras.models import Cifra
 
 
@@ -11,12 +11,16 @@ class Counter:
 
 
 def index(request):
-    top_cifras = Cifra.objects.all()
+    cifras = Cifra.objects.all()
 
-    # buscando cifras; preciso alterar para ir para a tela da cifra, mas esta funcionando a busca
-    busca = request.GET.get('buscar_n')
-    if busca:
-        busca_cifra = Cifra.objects.filter(nome__icontains=busca)
-        return render(request, 'index.html', {'top_cifras': busca_cifra, 'top_cifras_count': Counter})
+    busca = ['', ]
 
-    return render(request, 'index.html', {'top_cifras': top_cifras, 'top_cifras_count': Counter})
+    if request.GET.get('buscar_n'):
+        busca = request.GET.get('buscar_n').split(' - ')
+
+    if busca[0]:
+        busca_cifra = Cifra.objects.filter(nome__icontains=busca[0])
+
+        return redirect('cifras_busca', cifra_id=busca_cifra[0].id)
+
+    return render(request, 'index.html', {'top_cifras': cifras, 'top_cifras_count': Counter, 'cifras': cifras})
