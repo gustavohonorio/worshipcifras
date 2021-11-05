@@ -17,10 +17,10 @@ class Artista(models.Model):
     estado = models.TextField(blank=True, null=True)
     pais = models.TextField(blank=True, null=True)
     igreja = models.TextField(blank=True, null=True)
-    status = models.TextField(blank=True, null=True)
-    op_user = models.TextField(blank=True, null=True)
+    status = models.TextField(blank=True, null=True, default='A')
+    op_user = models.TextField(blank=True, null=True, default='wcadmin')
     op_tipo = models.TextField(blank=True, null=False, default='I')
-    op_data = models.DateTimeField()
+    op_data = models.DateTimeField(blank=True, auto_now_add=True)
 
     def __str__(self):
         return self.nome

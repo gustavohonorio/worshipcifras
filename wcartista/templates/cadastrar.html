@@ -1,0 +1,130 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+<head>
+    <!-- META, CSS -->
+    {% include 'utils/head.html' %}
+
+    <title>Worship Cifras | Cadastre um novo artista</title>
+
+</head>
+
+<body>
+
+<!-- Preloader Start -->
+{% include 'utils/preloader.html' %}
+<!-- Menu Header Start -->
+{% include 'utils/menu.html' %}
+
+<main>
+    <br><br><br><br><br>
+
+    <!-- Titulo -->
+    <div class="have-project">
+        <div class="container">
+            <div class="haveAproject"
+                 style="background: rgb(173,186,164); background: linear-gradient(0deg, rgba(173,186,164,1) 0%, rgba(164,186,183,1) 100%);">
+                <div class="row d-flex align-items-center">
+                    <div class="col-xl-7 col-lg-9 col-md-12">
+                        <div class="wantToWork-caption">
+                            <h2>Cadastre um novo artista</h2>
+                            <p>Contribua com a comunidade e concorra a super prêmios.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-3 col-md-12">
+                        <div class="wantToWork-btn f-right">
+                            <a href="#" class="btn btn-ans">Tutorial</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="blog_area single-post-area section-padding" style="margin-top: -100px">
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="container">
+                <div class="row">
+                    <!-- Opções -->
+                    <div class="col-lg-3">
+                        <h3 class="mb-30">Opções</h3>
+
+                        <div class="col-lg-12">
+                            <div class="single-element-widget mt-30">
+                                <button class="genric-btn primary radius" style=""><i class="fa fa-info-circle"
+                                                                                      aria-hidden="true"></i>
+                                    Ajuda
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENVIAR ARTISTA -->
+                    <div class="col-lg-5 posts-list">
+                        <div class="single-post">
+                            <div class="blog_details">
+
+                                <!-- REGRAS DE ENVIO -->
+                                <ul class="blog-info-link mt-3 mb-4">
+                                    <li><a href="#"><i class="fa fa-bookmark"></i> Leia as nossas regras para o
+                                        cadastro
+                                        de artistas.</a></li>
+                                </ul>
+
+                                <!-- FORMULARIO DE ENVIO -->
+                                <div class="mt-10">
+                                    <div class="single-input">
+                                        {{form.nome}}
+                                    </div>
+                                </div>
+
+                                <div class="mt-10">
+                                    <div class="single-input">
+                                        {{form.genero}}
+                                    </div>
+                                </div>
+
+                                <div class="button-group-area mt-40">
+                                    <button type="submit" class="genric-btn primary e-large">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <br><br>
+                            <a href="#" style="color: #080F0F">Encontrou algum problema? Nos mande uma
+                                mensagem.</a>
+                        </div>
+                    </div>
+
+
+                    <!-- ULTIMOS ENVIOS / RANKING DE USUÁRIOS -->
+                    <div class="col-lg-4">
+                        <div class="col-lg-12">
+                            <h5>Artistas similares</h5><br>
+                            {% for artista in artistas_similares %}
+                            <a href="#">
+                                <div>
+                                    <h6>{{artista.nome}}</h6>
+                                    <p>{{artista.genero}}</p>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <!--================ Artista Area end =================-->
+</main>
+<footer>
+    <!-- Footer -->
+    {% include 'utils/footer.html' %}
+</footer>
+
+<!-- Javascript -->
+{% include 'utils/js.html' %}
+
+</body>
+</html>
