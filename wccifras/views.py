@@ -1,18 +1,25 @@
+from django.db.models import F
 from django.shortcuts import render, redirect
 from .forms import CifraForm
-from .models import Cifra
+from .models import Cifra, Tom, Capotraste, ModoVisualizacao, CifraKPI
 from wcartista.models import Artista
 
 
 def cifras(request, artista, cifra_id, cifra_nome):
-    if cifra_id:
-        cifra = Cifra.objects.get(id=cifra_id)
+    cifra = Cifra.objects.get(id=cifra_id)
+    tom = Tom.objects.all()
+    capotraste = Capotraste.objects.all()
+    modo = ModoVisualizacao.objects.all()
+    kpi = CifraKPI.objects.filter(wc_cifra=cifra)
+    if kpi:
+        kpi = CifraKPI.objects.get(id=kpi[0].id)
 
-        cifra_exibicao = cifra.cifra.splitlines(True)
+    # atualizando indicadores da cifra
+    CifraKPI.objects.filter(wc_cifra=cifra).update(acessos=F('acessos')+1)
 
-        return render(request, 'cifras.html', {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, })
+    cifra_exibicao = cifra.cifra.splitlines(True)
 
-    return render(request, 'cifras.html')
+    return render(request, 'cifras.html', {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, 'tom': tom, 'capotraste': capotraste, 'modo': modo, 'kpi': kpi})
 
 
 def cadastrar(request):
@@ -41,6 +48,11 @@ def cadastrar(request):
                                versao=versao, )
 
             nova_cifra.save()
+
+            # Criando indice na tabela de KPI's
+            novo_kpi_cifra = CifraKPI(wc_cifra=nova_cifra, curtidas=0, acessos=0)
+
+            novo_kpi_cifra.save()
 
             return redirect('index')
 

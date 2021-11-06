@@ -21,8 +21,8 @@ def index(request):
 
     if busca[0]:
         busca_cifra = Cifra.objects.filter(nome__icontains=busca[0])
-
-        return redirect('cifras_busca', artista=str(busca_cifra[0].wc_artista).replace(' ', '-').lower(),
-                        cifra_id=busca_cifra[0].id, cifra_nome=str(busca_cifra[0].nome).replace(' ', '-').lower())
+        if busca_cifra:
+            return redirect('cifras_busca', artista=str(busca_cifra[0].wc_artista).replace(' ', '-').lower(),
+                            cifra_id=busca_cifra[0].id, cifra_nome=str(busca_cifra[0].nome).replace(' ', '-').lower())
 
     return render(request, 'index.html', {'top_cifras': top_cifras, 'top_cifras_count': Counter, 'cifras': cifras})

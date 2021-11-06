@@ -42,3 +42,27 @@ class Cifra(models.Model):
 
     class Meta:
         db_table = 'wccifras_cifra'
+
+
+class CifraKPI(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    wc_cifra = models.ForeignKey(Cifra, on_delete=models.CASCADE, unique=True)
+    curtidas = models.IntegerField(blank=True, null=True)
+    acessos = models.IntegerField(blank=True, null=True)
+    dt_inicio = models.DateField(blank=True, auto_now_add=True)
+
+
+class Tom(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    sigla = models.TextField(blank=False, null=False)
+    nome = models.TextField(blank=True, null=True)
+
+
+class Capotraste(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    nome = models.TextField(blank=False, null=False)
+
+
+class ModoVisualizacao(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    nome = models.TextField(blank=False, null=False)

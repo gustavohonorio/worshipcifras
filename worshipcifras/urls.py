@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('core.urls'), name='index'),
     path('logon/', include('django.contrib.auth.urls')),
     path('artista/', include('wcartista.urls')),
-    path('cifras/', include('wccifras.urls')),
+    path('cifra/', include('wccifras.urls')),
 
 ]
