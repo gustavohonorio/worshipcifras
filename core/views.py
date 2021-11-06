@@ -12,6 +12,7 @@ class Counter:
 
 def index(request):
     cifras = Cifra.objects.all()
+    top_cifras = Cifra.objects.all()[:5]
 
     busca = ['', ]
 
@@ -23,4 +24,4 @@ def index(request):
 
         return redirect('cifras_busca', cifra_id=busca_cifra[0].id)
 
-    return render(request, 'index.html', {'top_cifras': cifras, 'top_cifras_count': Counter, 'cifras': cifras})
+    return render(request, 'index.html', {'top_cifras': top_cifras, 'top_cifras_count': Counter, 'cifras': cifras})

@@ -13,7 +13,10 @@ class CifraForm(forms.ModelForm):
 
     versao = forms.ChoiceField(choices=VarsCifraForm.versao_choices, initial=0, )
 
-    # wc_artista = forms.ModelChoiceField(queryset=Artista.objects.all())
+    wc_artista = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input', 'placeholder': 'Nome do '
+                                                                                                       'artista / '
+                                                                                                       'banda',
+                                                               'list': 'artista_auto_complete'}))
 
     nome = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input', 'placeholder': 'Nome da música*'}))
 
@@ -30,4 +33,4 @@ class CifraForm(forms.ModelForm):
 
     class Meta:
         model = Cifra
-        fields = ['nome', 'wc_artista', 'genero', 'cifra', 'detalhes', 'tom', 'capotraste', 'afinacao', 'versao', ]
+        fields = ['nome', 'genero', 'cifra', 'detalhes', 'tom', 'capotraste', 'afinacao', 'versao', ]
