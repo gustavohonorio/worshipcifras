@@ -241,6 +241,9 @@
                             </div>
                         </div>
                         <div class="comment-form">
+                            {% if user.is_anonymous %}
+                            <h4><a href="{% url 'login' %}">Entre</a> ou <a href="{% url 'register' %}">registre-se</a> para deixar um comentário.</h4>
+                            {% else %}
                             <h4>Deixe um comentário</h4>
                             <form class="form-contact comment_form" action="#" id="commentForm">
                                 <div class="row">
@@ -253,13 +256,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <input class="form-control" name="name" id="name" type="text"
-                                                   placeholder="Fulano (User Logado)">
+                                                   placeholder="{{user.get_full_name}}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <input class="form-control" name="email" id="email" type="email"
-                                                   placeholder="fula@gmail.com (User Logado)">
+                                                   placeholder="{{user.email}}" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -269,6 +272,7 @@
                                     </button>
                                 </div>
                             </form>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

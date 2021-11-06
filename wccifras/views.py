@@ -4,7 +4,7 @@ from .models import Cifra
 from wcartista.models import Artista
 
 
-def cifras(request, cifra_id):
+def cifras(request, artista, cifra_id, cifra_nome):
     if cifra_id:
         cifra = Cifra.objects.get(id=cifra_id)
 
