@@ -119,8 +119,9 @@
                             <ul class="blog-info-link mt-3 mb-4">
 
                                 <li><a href="#"><i class="fa fa-music"></i> {{kpi.acessos}} acessos</a></li>
-                                <li><a href="#"><i class="fa fa-comments"></i> 47 Comentários</a></li>
-                                <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{kpi.dt_inicio}}</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> {{comentarios.count}} Comentários</a></li>
+                                <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{kpi.dt_inicio}}</a>
+                                </li>
                             </ul>
                             <p class="excert" style="font-size: 18px">
                                 {% for linha in cifra_exibicao%}
@@ -135,125 +136,71 @@
                         <a href="#" style="color: #080F0F">Encontrou algum problema com a cifra? Nos mande uma
                             mensagem.</a>
                     </div>
+                    <!-- comentarios -->
                     <div class="navigation-top">
-
                         <div class="comments-area">
-                            <h4>03 Comentários</h4>
+                            <h4>{{comentarios.count}} Comentário(s)</h4>
+                            {% for c in comentarios %}
                             <div class="comment-list">
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
+
                                         <div class="thumb">
                                             <img src="{% static '/img/comment/comment_1.png' %}" alt="">
                                         </div>
                                         <div class="desc">
                                             <p class="comment">
-                                                Multiply sea night grass fourth day sea lesser rule open subdue female
-                                                fill which them
-                                                Blessed, give fill lesser bearing multiply sea night grass fourth day
-                                                sea lesser
+                                                {{c.comentario}}
                                             </p>
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex align-items-center">
                                                     <h5>
-                                                        <a href="#">Oclinho</a>
+                                                        <a href="#">{{c.nome}}</a>
                                                     </h5>
-                                                    <p class="date">17 Set 2021 14h40</p>
+                                                    <p class="date">{{c.dt_inclusao}}</p>
                                                 </div>
                                                 <div class="reply-btn">
+                                                    <!-- ICONES DE LIKES NO COMENTARIO -->
                                                     <!--<a href="#" class="btn-reply text-uppercase">reply</a>-->
-                                                    <p class="like-info"><span class="align-middle"><i
-                                                            class="fa fa-heart"></i></span>
+                                                    <!--<p class="like-info"><span class="align-middle"><i
+                                                            class="fa fa-heart"></i></span>-->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="comment-list">
-                                <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="{% static '/img/comment/comment_2.png' %}" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <p class="comment">
-                                                Multiply sea night grass fourth day sea lesser rule open subdue female
-                                                fill which them
-                                                Blessed, give fill lesser bearing multiply sea night grass fourth day
-                                                sea lesser
-                                            </p>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <h5>
-                                                        <a href="#">Sorriso</a>
-                                                    </h5>
-                                                    <p class="date">17 Set 2021 14h40</p>
-                                                </div>
-                                                <div class="reply-btn">
-                                                    <!--<a href="#" class="btn-reply text-uppercase">reply</a>-->
-                                                    <p class="like-info"><span class="align-middle"><i
-                                                            class="fa fa-heart"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-list">
-                                <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="{% static '/img/comment/comment_3.png' %}" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <p class="comment">
-                                                Multiply sea night grass fourth day sea lesser rule open subdue female
-                                                fill which them
-                                                Blessed, give fill lesser bearing multiply sea night grass fourth day
-                                                sea lesser
-                                            </p>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <h5>
-                                                        <a href="#">Barba</a>
-                                                    </h5>
-                                                    <p class="date">17 Set 2021 14h40</p>
-                                                </div>
-                                                <div class="reply-btn">
-                                                    <!--<a href="#" class="btn-reply text-uppercase">reply</a>-->
-                                                    <p class="like-info"><span class="align-middle"><i
-                                                            class="fa fa-heart"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
+
+
                         <div class="comment-form">
                             {% if user.is_anonymous %}
                             <h4><a href="{% url 'login' %}">Entre</a> ou <a href="{% url 'register' %}">registre-se</a>
                                 para deixar um comentário.</h4>
                             {% else %}
                             <h4>Deixe um comentário</h4>
-                            <form class="form-contact comment_form" action="#" id="commentForm">
+                            <form class="form-contact comment_form"
+                                  action="{% url 'cifras_busca' artista=cifra.wc_artista cifra_nome=cifra.nome cifra_id=cifra.id %}"
+                                  method="post">
+                                {% csrf_token %}
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                        placeholder="Escreva seu comentário"></textarea>
+                                            {{form.comentario}}
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <input class="form-control" name="name" id="name" type="text"
-                                                   placeholder="{{user.get_full_name}}" disabled>
+                                                   placeholder="{{user.get_full_name}}" value="{{user.get_full_name}}"
+                                                   disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <input class="form-control" name="email" id="email" type="email"
-                                                   placeholder="{{user.email}}" disabled>
+                                                   placeholder="{{user.email}}" value="{{user.email}}" disabled>
                                         </div>
                                     </div>
                                 </div>

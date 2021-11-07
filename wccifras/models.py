@@ -1,5 +1,6 @@
 from django.db import models
 from wcartista.models import Artista
+from wclogon.models import Usuario
 
 
 class CifraVerificada(models.Model):
@@ -46,12 +47,24 @@ class Cifra(models.Model):
 
 class CifraKPI(models.Model):
     id = models.BigAutoField(primary_key=True)
-    wc_cifra = models.ForeignKey(Cifra, on_delete=models.CASCADE, unique=True)
+    wc_cifra = models.ForeignKey(Cifra, on_delete=models.CASCADE)
     curtidas = models.IntegerField(blank=True, null=True)
     acessos = models.IntegerField(blank=True, null=True)
     dt_inicio = models.DateField(blank=True, auto_now_add=True)
 
 
+class Comentario(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    wc_cifra = models.ForeignKey(Cifra, on_delete=models.CASCADE)
+    wc_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    nome = models.TextField(blank=True, null=True)
+    comentario = models.TextField(blank=False, null=False)
+    curtidas = models.IntegerField(blank=True, null=True, default=0)
+    descurtidas = models.IntegerField(blank=True, null=True, default=0)
+    dt_inclusao = models.DateTimeField(blank=True, auto_now_add=True)
+
+
+# TABELAS ESTÁSTICAS
 class Tom(models.Model):
     id = models.BigAutoField(primary_key=True)
     sigla = models.TextField(blank=False, null=False)

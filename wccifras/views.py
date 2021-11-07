@@ -1,25 +1,49 @@
 from django.db.models import F
 from django.shortcuts import render, redirect
-from .forms import CifraForm
-from .models import Cifra, Tom, Capotraste, ModoVisualizacao, CifraKPI
+from .forms import CifraForm, ComentarioForm
+from .models import Cifra, Tom, Capotraste, ModoVisualizacao, CifraKPI, Comentario
 from wcartista.models import Artista
+from wclogon.models import Usuario
 
 
 def cifras(request, artista, cifra_id, cifra_nome):
     cifra = Cifra.objects.get(id=cifra_id)
+
+    # ESTATICOS
     tom = Tom.objects.all()
     capotraste = Capotraste.objects.all()
     modo = ModoVisualizacao.objects.all()
+
+    # KPI
     kpi = CifraKPI.objects.filter(wc_cifra=cifra)
     if kpi:
         kpi = CifraKPI.objects.get(id=kpi[0].id)
 
-    # atualizando indicadores da cifra
     CifraKPI.objects.filter(wc_cifra=cifra).update(acessos=F('acessos')+1)
 
+    # TRATANDO CIFRA PARA SER EXIBIDA EM TELA
     cifra_exibicao = cifra.cifra.splitlines(True)
 
-    return render(request, 'cifras.html', {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, 'tom': tom, 'capotraste': capotraste, 'modo': modo, 'kpi': kpi})
+    # EXIBINDO COMENTARIOS
+    comentarios = Comentario.objects.filter(wc_cifra=cifra.id)
+
+    # FORMULARIO DE COMENTARIO
+    form = ComentarioForm()
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.cleaned_data['comentario']
+            novo_comentario = Comentario(wc_cifra=cifra, wc_usuario=Usuario.objects.get(id=request.user.id),
+                                         nome=request.user.first_name, comentario=comentario)
+            novo_comentario.save()
+            return render(request, 'cifras.html',
+                          {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, 'form': form, 'tom': tom,
+                           'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
+                           'comentarios': comentarios})
+
+    return render(request, 'cifras.html', {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, 'form': form, 'tom': tom,
+                                           'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
+                                           'comentarios': comentarios})
 
 
 def cadastrar(request):
