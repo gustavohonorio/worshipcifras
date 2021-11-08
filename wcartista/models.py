@@ -1,4 +1,5 @@
 from django.db import models
+from wclogon.models import Usuario
 
 
 class Artista(models.Model):
@@ -25,3 +26,22 @@ class Artista(models.Model):
     def __str__(self):
         return self.nome
 
+
+class ArtistaKPI(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    wc_artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
+    curtidas = models.IntegerField(blank=True, null=True)
+    comentarios = models.IntegerField(blank=True, null=True)
+    acessos = models.IntegerField(blank=True, null=True)
+    dt_inicio = models.DateField(blank=True, auto_now_add=True)
+
+
+class Comentario(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    wc_artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
+    wc_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='user_comentario')
+    nome = models.TextField(blank=True, null=True)
+    comentario = models.TextField(blank=False, null=False)
+    curtidas = models.IntegerField(blank=True, null=True, default=0)
+    descurtidas = models.IntegerField(blank=True, null=True, default=0)
+    dt_inclusao = models.DateTimeField(blank=True, auto_now_add=True)
