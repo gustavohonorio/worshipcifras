@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from wccifras.models import Cifra
+from wcartista.models import Artista
 
 
 def index(request):
     cifras = Cifra.objects.all()
     top_cifras = Cifra.objects.all()[:5]
+    top_artistas = Artista.objects.all()[:5]
 
     busca = ['', ]
 
@@ -17,4 +19,4 @@ def index(request):
             return redirect('cifras_busca', artista=str(busca_cifra[0].wc_artista).replace(' ', '-').lower(),
                             cifra_id=busca_cifra[0].id, cifra_nome=str(busca_cifra[0].nome).replace(' ', '-').lower())
 
-    return render(request, 'index.html', {'top_cifras': top_cifras, 'cifras': cifras})
+    return render(request, 'index.html', {'top_cifras': top_cifras, 'top_artistas': top_artistas, 'cifras': cifras})
