@@ -112,64 +112,64 @@
         <div class="container">
             <div class="row">
                 <!-- Top cifras -->
-            <div class="col-lg-5">
-                <div class="section-top-border">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-5  col-md-8 pr-0">
-                            <div class="section-tittle text-center">
-                                <h2>Top Canções</h2>
+                <div class="col-lg-5">
+                    <div class="section-top-border">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-5  col-md-8 pr-0">
+                                <div class="section-tittle text-center">
+                                    <h2>Top Canções</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Retornando top cifras da base de dados -->
+                        {% for cifra in top_cifras %}
+                        <div class="media post_item" style="background-color: #fcfbfd;">
+                            <h1>{{forloop.counter}}º</h1>
+                            <!--<img src="../static/img/post/post_1.png" alt="post" style="margin-left: 5px">-->
+                            <div class="media-body" style="margin-left: 5px;">
+                                <a href="#"><h5> {{cifra.nome}}</h5></a>
+                                <p style="margin-top: -10px"> {{cifra.wc_artista}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <div class="media post_item" style="background-color: #fcfbfd;">
+                            <div class="media-body" style="margin-left: 5px; margin-top: 10px;">
+                                <a href="#"><p> Ver mais <i class="fa fa-arrow-right" aria-hidden="true"></i></p></a>
                             </div>
                         </div>
                     </div>
-                    <!-- Retornando top cifras da base de dados -->
-                    {% for cifra in top_cifras %}
-                    <div class="media post_item" style="background-color: #fcfbfd;">
-                        <h1>{{forloop.counter}}º</h1>
-                        <!--<img src="../static/img/post/post_1.png" alt="post" style="margin-left: 5px">-->
-                        <div class="media-body" style="margin-left: 5px;">
-                            <a href="#"><h5> {{cifra.nome}}</h5></a>
-                            <p style="margin-top: -10px"> {{cifra.wc_artista}}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                    <div class="media post_item" style="background-color: #fcfbfd;">
-                        <div class="media-body" style="margin-left: 5px; margin-top: 10px;">
-                            <a href="#"><p> Ver mais <i class="fa fa-arrow-right" aria-hidden="true"></i></p></a>
-                        </div>
-                    </div>
                 </div>
-            </div>
 
-            <!-- Top Artistas -->
-            <div class="col-lg-6">
-                <div class="section-top-border">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-5  col-md-8 pr-0">
-                            <div class="section-tittle text-center">
-                                <h2>Top Artistas</h2>
+                <!-- Top Artistas -->
+                <div class="col-lg-6">
+                    <div class="section-top-border">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-5  col-md-8 pr-0">
+                                <div class="section-tittle text-center">
+                                    <h2>Top Artistas</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Retornando top cifras da base de dados -->
+                        {% for artista in top_artistas %}
+                        <div class="media post_item" style="background-color: #fcfbfd;">
+                            <h1>{{forloop.counter}}º</h1>
+                            <!--<img src="../static/img/post/post_1.png" alt="post" style="margin-left: 5px">-->
+                            <div class="media-body" style="margin-left: 5px;">
+                                <a href="#"><h5> {{artista.nome}}</h5></a>
+                                <p style="margin-top: -10px"> {{artista.genero}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <div class="media post_item" style="background-color: #fcfbfd;">
+                            <div class="media-body" style="margin-left: 5px; margin-top: 10px;">
+                                <a href="#"><p> Ver mais <i class="fa fa-arrow-right" aria-hidden="true"></i></p></a>
                             </div>
                         </div>
                     </div>
-                    <!-- Retornando top cifras da base de dados -->
-                    {% for artista in top_artistas %}
-                    <div class="media post_item" style="background-color: #fcfbfd;">
-                        <h1>{{forloop.counter}}º</h1>
-                        <!--<img src="../static/img/post/post_1.png" alt="post" style="margin-left: 5px">-->
-                        <div class="media-body" style="margin-left: 5px;">
-                            <a href="#"><h5> {{artista.nome}}</h5></a>
-                            <p style="margin-top: -10px"> {{artista.genero}}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                    <div class="media post_item" style="background-color: #fcfbfd;">
-                        <div class="media-body" style="margin-left: 5px; margin-top: 10px;">
-                            <a href="#"><p> Ver mais <i class="fa fa-arrow-right" aria-hidden="true"></i></p></a>
-                        </div>
-                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </section>
@@ -236,6 +236,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Mensagens de Retorno -->
+
 </main>
 <footer>
     <!-- Footer -->

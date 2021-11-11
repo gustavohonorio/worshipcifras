@@ -22,5 +22,6 @@ urlpatterns = [
     path('logon/', include('django.contrib.auth.urls')),
     path('artista/', include('wcartista.urls')),
     path('cifra/', include('wccifras.urls')),
+    path('staff/', include('wcstaff.urls')),
 
 ]

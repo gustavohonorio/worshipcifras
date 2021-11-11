@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'wclogon',
     'wcartista',
     'wccifras',
+    'wcstaff',
 
     'bootstrap4',
     'stdimage',
