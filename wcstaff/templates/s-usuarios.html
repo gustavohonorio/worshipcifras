@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+
+    <!-- Titulo -->
+    <h1 class="h3 mb-2 text-gray-800">Usuários</h1>
+    <p class="mb-4">Você não tem permissão para alterar os usuários.</p>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>email</th>
+                        <th>Nascimento</th>
+                        <th>Genero</th>
+                        <th>Celular</th>
+                        <th>Estado</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Nascimento</th>
+                        <th>Genero</th>
+                        <th>Celular</th>
+                        <th>Estado</th>
+                    </tr>
+                    </tfoot>
+
+                    <tbody>
+                    {% for u in usuarios %}
+                    <tr>
+                        <td>{{u.first_name}} {{u.last_name}}</td>
+                        <td>{{u.email}}</td>
+                        <td>{{u.nascimento}}</td>
+                        <td>{{u.genero}}</td>
+                        <td>{{u.celular}}</td>
+                        <td>{{u.estado}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+{% endblock %}
