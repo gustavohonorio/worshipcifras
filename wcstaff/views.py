@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from wcartista.models import Artista
 from wclogon.models import Usuario
 from wccifras.models import Cifra
+from .forms import ArtistaForm
 
 
 def staff(request):
@@ -14,16 +15,33 @@ def staff(request):
 
 def artistas(request):
     a = Artista.objects.all()
-    return render(request, 's-artistas.html', {'artistas': a})
+    return render(request, 'read/r-artistas.html', {'artistas': a})
+
+
+def e_artistas(request, id):
+    a = get_object_or_404(Artista, id=id)
+    form = ArtistaForm(instance=a)
+
+    # TODO : EXIBIR MENSAGEM DE AVISO CASO NADA SEJA ALTERADO / ALGO SEJA ALTERADO
+    if request.method == 'POST':
+        form = ArtistaForm(request.POST, instance=a)
+        if form.is_valid():
+            a.save()
+            return redirect('s-artistas')
+        else:
+            # TODO : TRATAR MENSAGEM DE ERRO CASO O FORMULARIO NAO SEJA VALIDO
+            return redirect('s-artistas')
+    else:
+        return render(request, 'edit/e-artistas.html', {'form': form, 'artista': a})
 
 
 def cifras(request):
     c = Cifra.objects.all()
-    return render(request, 's-cifras.html', {'cifras': c})
+    return render(request, 'read/r-cifras.html', {'cifras': c})
 
 
 def usuarios(request):
     u = Usuario.objects.all()
-    return render(request, 's-usuarios.html', {'usuarios': u})
+    return render(request, 'read/r-usuarios.html', {'usuarios': u})
 
 

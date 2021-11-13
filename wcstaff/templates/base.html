@@ -16,7 +16,8 @@
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
-    <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/sb-admin-2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
 </head>
 
@@ -116,25 +117,19 @@
             </div>
         </li>
 
-        <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
-        <!-- Sidebar Toggler (Sidebar) -->
+        <!-- Menu lateral Collapse -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
 
 
     </ul>
-    <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
+    <!-- MENU SUPERIOR -->
     <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Main Content -->
         <div id="content">
-
-            <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
@@ -142,7 +137,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <!-- Topbar Search -->
+                <!-- CAMPO DE BUSCA -->
                 <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
@@ -156,7 +151,7 @@
                     </div>
                 </form>
 
-                <!-- Top Menu -->
+                <!-- TOP MENU -->
                 <ul class="navbar-nav ml-auto">
 
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -165,7 +160,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <!-- Dropdown - Messages -->
+                        <!-- MENSAGENS -->
                         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                              aria-labelledby="searchDropdown">
                             <form class="form-inline mr-auto w-100 navbar-search">
@@ -183,15 +178,15 @@
                         </div>
                     </li>
 
-                    <!-- Nav Item - Alerts -->
+                    <!-- ALERTAS -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
+                            <!-- CONTADOR DE ALERTAS -->
                             <span class="badge badge-danger badge-counter">3+</span>
                         </a>
-                        <!-- Dropdown - Alerts -->
+                        <!-- DROPDOWN ALERTAS -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="alertsDropdown">
                             <h6 class="dropdown-header">
@@ -234,15 +229,15 @@
                         </div>
                     </li>
 
-                    <!-- Nav Item - Messages -->
+                    <!-- MENSAGENS -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
+                            <!-- CONTADOR MENSAGENS -->
                             <span class="badge badge-danger badge-counter">7</span>
                         </a>
-                        <!-- Dropdown - Messages -->
+                        <!-- DROPDOWN MENSAGENS -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="messagesDropdown">
                             <h6 class="dropdown-header">
@@ -306,7 +301,7 @@
 
                     <div class="topbar-divider d-none d-sm-block"></div>
 
-                    <!-- Usuario Menu -->
+                    <!-- MENU USUÁRIO -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -314,7 +309,7 @@
                             <img class="img-profile rounded-circle"
                                  src="{% static 'img/staff/undraw_profile.svg' %}">
                         </a>
-                        <!-- Dropdown - Menu Usuario Logado -->
+                        <!-- DROPDOWN USUARIO LOGADO -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="#">
@@ -336,16 +331,13 @@
                             </a>
                         </div>
                     </li>
-
                 </ul>
-
             </nav>
-            <!-- End of Topbar -->
 
             {% block content %}
             {% endblock %}
 
-            <!-- Footer -->
+            <!-- FOOTER -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -354,18 +346,15 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
-
         </div>
-
     </div>
 
-    <!-- Scroll to Top -->
+    <!-- SCROLL TO TOP -->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+    <!-- MODAL LOGOUT -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5>Dados gerais</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Nome</label>
+                        {{form.nome}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Integrante(s)</label>
+                        {{form.integrantes}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Genero(s)</label>
+                        {{form.genero}}
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Descrição</label>
+                        {{form.descricao}}
+                    </div>
+                </div>
+                <br>
+                <h5>Mídias Sociais</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Site</label>
+                        {{form.site}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Facebook</label>
+                        {{form.facebook}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Twitter</label>
+                        {{form.twitter}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">YouTube</label>
+                        {{form.youtube}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Spotify</label>
+                        {{form.spotify}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Outro(s) Link(s)</label>
+                        {{form.outro_link}}
+                    </div>
+                </div>
+                <br>
+                <h5>Origem</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Cidade</label>
+                        {{form.cidade}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Estado</label>
+                        {{form.estado}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">País</label>
+                        {{form.pais}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Igreja / Ministério</label>
+                        {{form.igreja}}
+                    </div>
+                </div>
+
+                <br>
+                <h5>Sistema</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Status</label>
+                        {{form.status}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Usuário Inclusão</label>
+                        {{form.op_user}}
+                    </div>
+                </div>
+
+                <br>
+                <div class="col mb-3">
+                    <button type="submit" class="btn btn-dark">Atualizar registro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

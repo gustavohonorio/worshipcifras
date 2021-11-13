@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container-fluid">
 
-    <!-- Titulo -->
+    <!-- TITULO -->
     <h1 class="h3 mb-2 text-gray-800">Artistas</h1>
     <p class="mb-4">Você não tem permissão para alterar os artistas.</p>
 
@@ -32,7 +32,7 @@
                     <tbody>
                     {% for art in artistas %}
                     <tr>
-                        <td>{{art.nome}}</td>
+                        <td><a href="{% url 'e-artistas' art.id %}">{{art.nome}}</a></td>
                         <td>{{art.integrantes}}</td>
                         <td>{{art.genero}}</td>
                         <td>{{art.status}}</td>
