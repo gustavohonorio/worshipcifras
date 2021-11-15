@@ -82,3 +82,12 @@ class Vigencia(models.Model):
     op_tipo = models.TextField(default='I', null=True)
     op_data = models.DateTimeField(auto_now_add=True)
 
+
+class CifraKPI(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    wc_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    acessos = models.IntegerField(blank=True, null=True)
+    envio_cifras = models.IntegerField(blank=True, null=True)
+    envio_artistas = models.IntegerField(blank=True, null=True)
+    envio_comentario = models.IntegerField(blank=True, null=True)
+    dt_inicio = models.DateField(blank=True, auto_now_add=True)
