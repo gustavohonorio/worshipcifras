@@ -17,18 +17,23 @@
                                 <ul id="navigation">
                                     <li><a href="{% url 'cadastrar_cifra' %}">Enviar cifra</a></li>
                                     <li><a href="{% url 'cadastrar_artista' %}">Cadastrar artista</a></li>
-                                    <li><a href="blog.html">Planos</a>
+                                    <!--<li><a href="blog.html">Planos</a>
                                         <ul class="submenu">
                                             <li><a href="#">Standard</a></li>
                                             <li><a href="#">Premium</a></li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <li><a href="#">Ranking</a>
                                         <ul class="submenu">
                                             <li><a href="#">Músicas</a></li>
                                             <li><a href="#">Comunidade</a></li>
                                         </ul>
                                     </li>
+                                    {% if user.wc_perfil_id == 1 or user.wc_perfil_id == 3 %}
+                                    <li><a href="{% url 'staff' %}">WC Staff</a></li>
+                                    {% endif %}
+
+
                                     {% if user.is_anonymous %}
                                     <li><a href="{% url 'register' %}">Criar conta</a></li>
                                     {% else %}
