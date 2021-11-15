@@ -1,14 +1,15 @@
 from django.urls import path
-from .views import staff, artistas, e_artistas, usuarios, cifras
+from wcstaff import views
 
 urlpatterns = [
-    path('', staff, name='staff'),
-    path('artistas/', artistas, name='s-artistas'),
-    path('artistas/<int:id>', e_artistas, name='e-artistas'),
+    path('', views.staff, name='staff'),
+    path('artistas/', views.artistas, name='s-artistas'),
+    path('artistas/<int:id>', views.e_artistas, name='e-artistas'),
 
-    path('cifras/', cifras, name='s-cifras'),
+    path('cifras/', views.cifras, name='s-cifras'),
+    path('cifras/<int:id>', views.e_cifras, name='e-cifras'),
 
-    path('usuarios/', usuarios, name='s-usuarios'),
+    path('usuarios/', views.usuarios, name='s-usuarios'),
 
 
 ]

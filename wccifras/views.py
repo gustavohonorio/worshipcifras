@@ -51,7 +51,6 @@ def cadastrar(request):
 
     artistas = Artista.objects.all()
 
-    # PRECISO TRATAR O RETORNO DO DATALIST PARA RECUPERAR O OBJETO ARTISTA E NÃO O NOME / ID
     form = CifraForm()
     if request.method == 'POST':
         form = CifraForm(request.POST)

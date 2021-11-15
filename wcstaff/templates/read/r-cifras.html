@@ -34,7 +34,7 @@
                     <tbody>
                     {% for c in cifras %}
                     <tr>
-                        <td>{{c.nome}}</td>
+                        <td><a href="{% url 'e-cifras' c.id %}">{{c.nome}}</a></td>
                         <td>{{c.wc_artista}}</td>
                         <td>{{c.genero}}</td>
                         <td>{{c.status}}</td>

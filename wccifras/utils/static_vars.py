@@ -51,3 +51,20 @@ class VarsCifraForm:
         ('Reggae', 'Reggae'),
     )
 
+    # status
+    status_choices = (
+        ('P', 'Pendente de aprovação'),
+        ('A', 'Ativa'),
+        ('AV', 'Ativa e Verificada'),
+        ('AP', 'Ativa e Patrocinada'),
+        ('E', 'Excluida'),
+        ('R', 'Reprovada'),
+    )
+    # patrocinada
+    patrocinada_choices = (
+        ('True', 'Sim'),
+        ('False', 'Não'),
+    )
+
+
+

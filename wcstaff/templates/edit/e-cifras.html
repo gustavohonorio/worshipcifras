@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>{{cifra.nome}} - {{cifra.wc_artista}}</h3>
+                <br>
+                <h5>Dados gerais</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Nome</label>
+                        {{form.nome}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Artista</label>
+                        <input class="form-control" value="{{cifra.wc_artista}}" disabled>
+                    </div>
+                    <datalist id="artista_auto_complete">
+                        {% for artista in artistas %}
+                        <option value="{{artista.nome}}"></option>
+                        {% endfor %}
+                    </datalist>
+
+                    <div class="col">
+                        <label class="form-label">Genero(s)</label>
+                        {{form.genero}}
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Cifra</label>
+                        {{form.cifra}}
+                    </div>
+                </div>
+
+                <br>
+                <h5>Dados adicionais</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Tom</label>
+                        {{form.tom}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Capotraste</label>
+                        {{form.capotraste}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Afinação</label>
+                        {{form.afinacao}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Versao</label>
+                        {{form.versao}}
+                    </div>
+                </div>
+
+                <br>
+                <h5>Cifra Premium</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Capa</label>
+                        {{form.capa}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Video</label>
+                        {{form.video}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Video Aula</label>
+                        {{form.video_aula}}
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Compositor(es)</label>
+                        {{form.compositor}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Produtor(es)</label>
+                        {{form.produtor}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Músico(s)</label>
+                        {{form.musicos}}
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Tempo (BPM)</label>
+                        {{form.bpm}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Patrocinada</label>
+                        {{form.patrocinada}}
+                    </div>
+                </div>
+
+                <br>
+                <h5>Mensagem do usuário</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Detalhes</label>
+                        {{form.detalhes}}
+                    </div>
+                </div>
+
+                <br>
+                <h5>Sistema</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Status</label>
+                        {{form.status}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Usuário Inclusão</label>
+                        {{form.op_user}}
+                    </div>
+                </div>
+
+                <br>
+                <div class="col mb-3">
+                    <button type="submit" class="btn btn-dark">Atualizar registro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
