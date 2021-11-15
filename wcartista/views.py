@@ -1,11 +1,32 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import ArtistaForm
-from .models import Artista
+from wccifras.models import Cifra
+from wclogon.models import Usuario
+from .forms import ArtistaForm, ComentarioForm
+from .models import Artista, Comentario
 
 
-def artista(request):
-    return render(request, 'artista.html')
+def artista(request, id):
+    a = Artista.objects.get(id=id)
+    generos = a.genero.split(',')
+    cancoes = Cifra.objects.filter(wc_artista=a)[:3]
+
+    # EXIBINDO COMENTARIOS
+    comentarios = Comentario.objects.filter(wc_artista=a.id)
+
+    # FORMULARIO DE COMENTARIO
+    form = ComentarioForm()
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.cleaned_data['comentario']
+            novo_comentario = Comentario(wc_artista=a, wc_usuario=Usuario.objects.get(id=request.user.id),
+                                         nome=request.user.first_name, comentario=comentario)
+            novo_comentario.save()
+            return render(request, 'artista.html', {'artista': a, 'generos': generos, 'cancoes': cancoes,
+                                                    'comentarios': comentarios})
+
+    return render(request, 'artista.html', {'artista': a, 'generos': generos, 'cancoes': cancoes, 'form': form,
+                                            'comentarios': comentarios})
 
 
 def cadastrar(request):

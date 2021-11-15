@@ -1,5 +1,14 @@
 from django import forms
-from .models import Artista
+from .models import Artista, Comentario
+
+
+class ComentarioForm(forms.ModelForm):
+    comentario = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control w-100', 'cols': '30', 'rows': '9',
+                                                              'placeholder': 'Escreva seu comentário*'}))
+
+    class Meta:
+        model = Comentario
+        fields = ['comentario']
 
 
 class ArtistaForm(forms.ModelForm):
