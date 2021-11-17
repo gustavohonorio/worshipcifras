@@ -52,6 +52,7 @@ def cadastrar(request):
     artistas = Artista.objects.all()
 
     form = CifraForm()
+
     if request.method == 'POST':
         form = CifraForm(request.POST)
 

@@ -83,7 +83,7 @@ class Vigencia(models.Model):
     op_data = models.DateTimeField(auto_now_add=True)
 
 
-class CifraKPI(models.Model):
+class UsuarioKPI(models.Model):
     id = models.BigAutoField(primary_key=True)
     wc_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     acessos = models.IntegerField(blank=True, null=True)
