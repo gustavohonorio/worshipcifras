@@ -86,8 +86,8 @@ class Vigencia(models.Model):
 class UsuarioKPI(models.Model):
     id = models.BigAutoField(primary_key=True)
     wc_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    acessos = models.IntegerField(blank=True, null=True)
-    envio_cifras = models.IntegerField(blank=True, null=True)
-    envio_artistas = models.IntegerField(blank=True, null=True)
-    envio_comentario = models.IntegerField(blank=True, null=True)
+    acessos = models.IntegerField(blank=True, null=True, default=1)
+    envio_cifras = models.IntegerField(blank=True, null=True, default=0)
+    envio_artistas = models.IntegerField(blank=True, null=True, default=0)
+    envio_comentario = models.IntegerField(blank=True, null=True, default=0)
     dt_inicio = models.DateField(blank=True, auto_now_add=True)

@@ -1,5 +1,6 @@
 from django.db.models import F
 from django.shortcuts import render, redirect
+from core.utils.backend import Kpi
 from .forms import CifraForm, ComentarioForm
 from .models import Cifra, Tom, Capotraste, ModoVisualizacao, CifraKPI, Comentario
 from wcartista.models import Artista
@@ -36,6 +37,10 @@ def cifras(request, artista, cifra_id, cifra_nome):
             novo_comentario = Comentario(wc_cifra=cifra, wc_usuario=Usuario.objects.get(id=request.user.id),
                                          nome=request.user.first_name, comentario=comentario)
             novo_comentario.save()
+
+            # ATUALIZANDO KPI USUARIO x ENVIO DE COMENTARIOS
+            Kpi.incrementar_usuarios(request.user.id, 4)
+
             return render(request, 'cifras.html',
                           {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, 'form': form, 'tom': tom,
                            'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
@@ -77,6 +82,9 @@ def cadastrar(request):
             novo_kpi_cifra = CifraKPI(wc_cifra=nova_cifra, curtidas=0, acessos=0)
 
             novo_kpi_cifra.save()
+
+            # ATUALIZANDO KPI USUARIO x ENVIO DE CIFRAS
+            Kpi.incrementar_usuarios(request.user.id, 2)
 
             return redirect('index')
 

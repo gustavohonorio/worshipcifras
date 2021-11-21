@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .models import Usuario
+from .models import Usuario, UsuarioKPI
 from .forms import UsuarioForm
 
 
@@ -23,9 +23,16 @@ def register(request):
             novo_usuario = Usuario(username=email, first_name=first_name, last_name=last_name, nascimento=nascimento,
                                    celular=celular, email=email, password=password)
 
-            if novo_usuario.save():
-                user = authenticate(username=email, password=password)
-                login(request, user)
-                return redirect('index')
+            novo_usuario.save()
+
+            # Criando indice para a tabela KPI dos usuários
+            novo_kpi = UsuarioKPI(wc_usuario=novo_usuario)
+
+            novo_kpi.save()
+
+            # TODO : ESTA CHAMANDO DE LOGIN ESTA DANDO ERRO - 'AnonymousUser' object has no attribute '_meta'
+            # login(request, user)
+
+            return redirect('index')
 
     return render(request, 'register.html', {'form': form})
