@@ -15,8 +15,15 @@
                         <div class="main-menu f-right d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
+                                    {% if user.is_anonymous %}
+                                    <li><a data-toggle="modal" data-target="#acesso-negado" href="#acesso-negado">Enviar
+                                        cifra</a></li>
+                                    <li><a data-toggle="modal" data-target="#acesso-negado" href="#acesso-negado">Cadastrar
+                                        artista</a></li>
+                                    {% else %}
                                     <li><a href="{% url 'cadastrar_cifra' %}">Enviar cifra</a></li>
                                     <li><a href="{% url 'cadastrar_artista' %}">Cadastrar artista</a></li>
+                                    {% endif %}
                                     <!--<li><a href="blog.html">Planos</a>
                                         <ul class="submenu">
                                             <li><a href="#">Standard</a></li>
@@ -56,6 +63,28 @@
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+    <!-- Acesso Negado -->
+    <div class="modal fade" id="acesso-negado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ops, você precisa estar logado para acessar esta
+                        funcionalidade</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'register' %}" class="btn header-btn">Quero me registrar</a>
+                    <a href="{% url 'login' %}" class="btn header-btn">Entrar agora</a>
                 </div>
             </div>
         </div>

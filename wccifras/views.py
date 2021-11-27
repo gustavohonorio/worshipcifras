@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.shortcuts import render, redirect
 from core.utils.backend import Kpi
@@ -51,6 +52,7 @@ def cifras(request, artista, cifra_id, cifra_nome):
                                            'comentarios': comentarios})
 
 
+@login_required
 def cadastrar(request):
     cifras_recentes = Cifra.objects.all()
 

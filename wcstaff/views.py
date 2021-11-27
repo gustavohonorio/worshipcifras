@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from wcartista.models import Artista
 from wclogon.models import Usuario
@@ -6,6 +7,7 @@ from .forms import ArtistaForm, CifraForm
 
 
 # DEFAULT
+@login_required
 def staff(request):
     a = Artista.objects.count()
     c = Cifra.objects.count()
@@ -15,11 +17,13 @@ def staff(request):
 
 
 # ARTISTAS
+@login_required
 def artistas(request):
     a = Artista.objects.all()
     return render(request, 'read/r-artistas.html', {'artistas': a})
 
 
+@login_required
 def e_artistas(request, id):
     a = get_object_or_404(Artista, id=id)
     form = ArtistaForm(instance=a)
@@ -38,6 +42,7 @@ def e_artistas(request, id):
 
 
 # CIFRAS
+@login_required
 def cifras(request):
     c = Cifra.objects.all()
     return render(request, 'read/r-cifras.html', {'cifras': c})
@@ -45,6 +50,7 @@ def cifras(request):
 
 # TODO : CRIAR METODO PARA ATUALIZAR A CIFRA E CASO TENHO ALGO PREENCHICO NA PARTE PREMIUM, CRIAR UM REGISTRO DE
 #        CIFRA VERIFICADA
+@login_required
 def e_cifras(request, id):
     a = Artista.objects.all()
     c = get_object_or_404(Cifra, id=id)
@@ -60,6 +66,7 @@ def e_cifras(request, id):
 
 
 # USUARIOS
+@login_required
 def usuarios(request):
     u = Usuario.objects.all()
     return render(request, 'read/r-usuarios.html', {'usuarios': u})

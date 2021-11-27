@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.shortcuts import render, redirect
 from core.utils.backend import Kpi
@@ -35,6 +36,7 @@ def artista(request, id, nome_artista):
                                             'comentarios': comentarios})
 
 
+@login_required
 def cadastrar(request):
     form = ArtistaForm()
 

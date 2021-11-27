@@ -159,6 +159,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # User Model Customizado
 AUTH_USER_MODEL = 'wclogon.Usuario'
 
+LOGIN_URL = 'index'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 
