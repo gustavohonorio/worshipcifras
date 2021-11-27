@@ -7,7 +7,7 @@ from .forms import ArtistaForm, ComentarioForm
 from .models import Artista, Comentario
 
 
-def artista(request, id):
+def artista(request, id, nome_artista):
     a = Artista.objects.get(id=id)
     generos = a.genero.split(',')
     cancoes = Cifra.objects.filter(wc_artista=a)[:3]

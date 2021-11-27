@@ -34,6 +34,9 @@
                                     {% for cifra in cifras %}
                                     <option value="{{cifra.nome}} - {{cifra.wc_artista}}"></option>
                                     {% endfor %}
+                                    {% for artista in artistas %}
+                                    <option value="Buscar {{artista.nome}}"></option>
+                                    {% endfor %}
                                 </datalist>
                             </div>
                         </div>
