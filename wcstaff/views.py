@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from wcartista.models import Artista
+from wccifras.utils.acordes_regras import tag_cifra
 from wclogon.models import Usuario
 from wccifras.models import Cifra
+from wccifras.utils import acordes_regras
 from .forms import ArtistaForm, CifraForm
 
 
@@ -48,12 +50,12 @@ def cifras(request):
     return render(request, 'read/r-cifras.html', {'cifras': c})
 
 
-# TODO : CRIAR METODO PARA ATUALIZAR A CIFRA E CASO TENHO ALGO PREENCHICO NA PARTE PREMIUM, CRIAR UM REGISTRO DE
-#        CIFRA VERIFICADA
 @login_required
 def e_cifras(request, id):
     a = Artista.objects.all()
     c = get_object_or_404(Cifra, id=id)
+    c.cifra = tag_cifra(c.cifra.split())
+    c.cifra = ' '.join(c.cifra)
     form = CifraForm(instance=c)
 
     if request.method == 'POST':

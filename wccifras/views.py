@@ -1,11 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.shortcuts import render, redirect
+from django.utils.safestring import mark_safe
+
 from core.utils.backend import Kpi
 from .forms import CifraForm, ComentarioForm
 from .models import Cifra, Tom, Capotraste, ModoVisualizacao, CifraKPI, Comentario
 from wcartista.models import Artista
 from wclogon.models import Usuario
+from .utils import acordes_regras
 
 
 def cifras(request, artista, cifra_id, cifra_nome):
@@ -24,7 +27,7 @@ def cifras(request, artista, cifra_id, cifra_nome):
     CifraKPI.objects.filter(wc_cifra=cifra).update(acessos=F('acessos')+1)
 
     # TRATANDO CIFRA PARA SER EXIBIDA EM TELA
-    cifra_exibicao = cifra.cifra.splitlines(True)
+    cifra.cifra = acordes_regras.formatar_cifra(cifra.cifra.split())
 
     # EXIBINDO COMENTARIOS
     comentarios = Comentario.objects.filter(wc_cifra=cifra.id)
@@ -43,11 +46,11 @@ def cifras(request, artista, cifra_id, cifra_nome):
             Kpi.incrementar_usuarios(request.user.id, 4)
 
             return render(request, 'cifras.html',
-                          {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, 'form': form, 'tom': tom,
+                          {'cifra': cifra, 'form': form, 'tom': tom,
                            'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
                            'comentarios': comentarios})
 
-    return render(request, 'cifras.html', {'cifra': cifra, 'cifra_exibicao': cifra_exibicao, 'form': form, 'tom': tom,
+    return render(request, 'cifras.html', {'cifra': cifra, 'form': form, 'tom': tom,
                                            'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
                                            'comentarios': comentarios})
 

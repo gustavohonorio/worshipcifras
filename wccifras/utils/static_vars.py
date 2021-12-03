@@ -66,5 +66,3 @@ class VarsCifraForm:
         ('False', 'Não'),
     )
 
-
-

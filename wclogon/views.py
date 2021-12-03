@@ -31,6 +31,7 @@ def register(request):
             novo_kpi.save()
 
             # TODO : ESTA CHAMANDO DE LOGIN ESTA DANDO ERRO - 'AnonymousUser' object has no attribute '_meta'
+            # user = authenticate(username=novo_usuario.email, password=novo_usuario.password)
             # login(request, user)
 
             return redirect('index')
