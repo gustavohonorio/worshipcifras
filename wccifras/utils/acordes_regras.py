@@ -183,17 +183,27 @@ def formatar_cifra(cifra):
     return cifra
 
 
+# MODO DE VISUALIZAÇÃO SOMENTE DA LETRA
+def formatar_letra(cifra):
+    formatar_cifra(cifra)
+
+    cifra = [valor for valor in cifra if not 'strong' in valor or '[' in valor or ']' in valor]
+
+    return cifra
+
+
+# ESTE METODO É USADO NO STAFF PARA ADICIONAR OS ESCAPES DAS CIFRAS
 def tag_cifra(cifra):
     for i, valor in enumerate(cifra):
-        if '[' in valor and ']' in valor:
+        if '[' in valor and ']' in valor and not '@' in valor:
             cifra[i] = cifra[i] + '@@'
             continue
 
-        if '[' in valor:
+        if '[' in valor and not '@' in valor:
             cifra[i] = '@' + cifra[i]
             continue
 
-        if ']' in valor:
+        if ']' in valor and not '@' in valor:
             cifra[i] = cifra[i] + '@'
             continue
 
@@ -205,6 +215,7 @@ def tag_cifra(cifra):
     return cifra
 
 
+# ESTE METODO INSERE AS TAGS HTML PARA EXIBIÇÃO EM TELA
 def add_tags(tag, valor, pular_linha):
     # print(f'{valor} >>>>>>> {pular_linha}')
     if pular_linha == 0:

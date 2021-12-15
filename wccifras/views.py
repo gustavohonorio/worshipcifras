@@ -11,7 +11,7 @@ from wclogon.models import Usuario
 from .utils import acordes_regras
 
 
-def cifras(request, artista, cifra_id, cifra_nome):
+def cifras(request, artista, cifra_id, cifra_nome, modo_v='Cifra'):
     cifra = Cifra.objects.get(id=cifra_id)
 
     # ESTATICOS
@@ -26,8 +26,13 @@ def cifras(request, artista, cifra_id, cifra_nome):
 
     CifraKPI.objects.filter(wc_cifra=cifra).update(acessos=F('acessos')+1)
 
+    # TODO : ENTENDER PQ O MODO VISUALIZACAO NAO TA PEGANDO DA URL, TALVEZ ALTERAR O NOME DA VARIAVEL MODO
+    print(f'>>>>>>>>>>>> {modo_v}')
     # TRATANDO CIFRA PARA SER EXIBIDA EM TELA
-    cifra.cifra = acordes_regras.formatar_cifra(cifra.cifra.split())
+    if modo_v == 'Cifra':
+        cifra.cifra = acordes_regras.formatar_cifra(cifra.cifra.split())
+    else:
+        cifra.cifra = acordes_regras.formatar_letra(cifra.cifra.split())
 
     # EXIBINDO COMENTARIOS
     comentarios = Comentario.objects.filter(wc_cifra=cifra.id)
@@ -48,11 +53,13 @@ def cifras(request, artista, cifra_id, cifra_nome):
             return render(request, 'cifras.html',
                           {'cifra': cifra, 'form': form, 'tom': tom,
                            'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
-                           'comentarios': comentarios})
+                           'comentarios': comentarios, 'artista': artista, 'cifra-nome': cifra_nome,
+                           'cifra-id': cifra_id})
 
     return render(request, 'cifras.html', {'cifra': cifra, 'form': form, 'tom': tom,
                                            'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
-                                           'comentarios': comentarios})
+                                           'comentarios': comentarios, 'artista': artista, 'cifra_nome': cifra_nome,
+                                           'cifra_id': cifra_id})
 
 
 @login_required

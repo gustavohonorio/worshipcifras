@@ -4,7 +4,7 @@ from wcartista.models import Artista
 
 
 def index(request):
-    cifras = Cifra.objects.all()
+    cifras = Cifra.objects.filter(status__icontains='A')
     top_cifras = Cifra.objects.all()[:5]
     artistas = Artista.objects.all()
     top_artistas = Artista.objects.all()[:5]
@@ -21,8 +21,11 @@ def index(request):
             if buscar[0]:
                 buscar_cifra = Cifra.objects.filter(nome__icontains=buscar[0])
                 if buscar_cifra:
-                    return redirect('cifras_busca', artista=str(buscar_cifra[0].wc_artista).replace(' ', '-').lower(),
-                                    cifra_id=buscar_cifra[0].id, cifra_nome=str(buscar_cifra[0].nome).replace(' ', '-').lower())
+                    return redirect('cifras_busca',
+                                    artista=str(buscar_cifra[0].wc_artista).replace(' ', '-').lower(),
+                                    cifra_id=buscar_cifra[0].id,
+                                    cifra_nome=str(buscar_cifra[0].nome).replace(' ', '-').lower(),
+                                    modo_v='Cifra')
 
     return render(request, 'index.html', {'top_cifras': top_cifras, 'top_artistas': top_artistas, 'cifras': cifras,
                                           'artistas': artistas})

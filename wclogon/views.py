@@ -37,3 +37,7 @@ def register(request):
             return redirect('index')
 
     return render(request, 'register.html', {'form': form})
+
+
+def meu_perfil(request):
+    return render(request, 'meu_perfil.html')

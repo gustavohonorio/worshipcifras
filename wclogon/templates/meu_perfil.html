@@ -1,0 +1,108 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+<head>
+    <!-- META, CSS -->
+    {% include 'utils/head.html' %}
+
+    <title>Worship Cifras | Meu Perfil</title>
+
+</head>
+
+<body>
+
+<!-- Preloader Start -->
+{% include 'utils/preloader.html' %}
+<!-- Menu Header Start -->
+{% include 'utils/menu.html' %}
+
+<main>
+    <br><br><br><br><br>
+
+    <!-- Cabeçalho da Cifra -->
+    <div class="have-project">
+        <div class="container">
+            <div class="haveAproject" data-background="{% static '/img/bg-destaque.png' %}">
+                <div class="row d-flex align-items-center">
+                    <div class="col-xl-7 col-lg-9 col-md-12">
+                        <div class="wantToWork-caption">
+                            <h2>
+                                {{user.get_full_name}}
+                                <!--<i class="fa fa-check-circle"
+                                   style="color: #22A545; font-size: 20px; vertical-align: top; margin-top: 12px"
+                                   aria-hidden="true"></i>-->
+                            </h2>
+                            <p>Plano Standard</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="blog_area single-post-area section-padding" style="margin-top: -100px">
+        <div class="container">
+            <div class="row">
+                <!-- Serviços -->
+                <div class="col-lg-3">
+                    <h3 class="mb-30">Menu</h3>
+                    <div class="col-lg-12">
+                        <div class="single-element-widget mt-30">
+                            <li><a href="#" style="color:#080F0F">Geral</a></li>
+                        </div>
+                        <div class="single-element-widget mt-30">
+                            <li><a href="#" style="color:#080F0F">Planos</a></li>
+                        </div>
+                        <div class="single-element-widget mt-30">
+                            <li><a href="#" style="color:#080F0F">Redefinir Senha</a></li>
+                        </div>
+                        <div class="single-element-widget mt-30">
+                            <li><a href="#" style="color:#080F0F">Quero entrar para a equipe!</a></li>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- cifra -->
+                <div class="col-lg-5 posts-list">
+                    <div class="single-post">
+                        <div class="blog_details">
+
+                            <ul class="blog-info-link mt-3 mb-4">
+
+                                <li><a href="#"><i class="fa fa-music"></i> 1043 acessos</a></li>
+                                <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> Usuário desde {{kpi.dt_inicio}}</a>
+                                </li>
+                            </ul>
+                            <p class="excert" style="font-size: 18px">
+                                Formulario para edição dos dados do usuário aqui
+                            </p>
+
+                        </div>
+                    </div>
+                    <div>
+                        <br><br>
+                        <a href="#" style="color: #080F0F">Encontrou algum problema? Nos mande uma
+                            mensagem.</a>
+                    </div>
+
+                </div>
+
+                <!-- coluna direita -->
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End =================-->
+</main>
+<footer>
+    <!-- Footer -->
+    {% include 'utils/footer.html' %}
+</footer>
+
+<!-- Javascript -->
+{% include 'utils/js.html' %}
+
+</body>
+</html>
