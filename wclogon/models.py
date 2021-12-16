@@ -50,7 +50,7 @@ class Perfil(models.Model):
 
 class Usuario(AbstractUser):
     email = models.EmailField('E-mail', unique=True)
-    nascimento = models.DateField()
+    nascimento = models.TextField(blank=True, null=True)
     genero = models.TextField(blank=True, null=True)
     celular = models.TextField(blank=True, null=True)
     cidade = models.TextField(blank=True, null=True)

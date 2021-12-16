@@ -42,7 +42,6 @@
                 <!-- Nome -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu nome.">
                     {{form.first_name}}
-                    <!--<input class="input100" type="text" name="nome_n" id="nome" placeholder="Nome">-->
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-user"></span>
@@ -51,7 +50,6 @@
                 <!-- Sobrenome -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu sobrenome.">
                     {{form.last_name}}
-                    <!--<input class="input100" type="text" name="sobrenome_n" id="sobrenome" placeholder="Sobrenome">-->
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-user"></span>
@@ -60,8 +58,6 @@
                 <!-- Nascimento -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Selecione a data do seu nascimento.">
                     {{form.nascimento}}
-                    <!--<input class="input100 js-datepicker" type="text" name="nascimento_n" id="nascimento" placeholder="Nascimento">
-                    -->
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-calendar-full"></span>
@@ -70,8 +66,7 @@
                 <!-- Celular -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu celular.">
                     {{form.celular}}
-                    <!--<input class="input100" type="text" name="celular_n" id="celular" placeholder="Celular">
-                    --><span class="focus-input100"></span>
+                    <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-smartphone"></span>
 						</span>
@@ -79,8 +74,7 @@
                 <!-- Email -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Email inválido. Ex: wc@exemplo.com">
                     {{form.email}}
-                    <!--<input class="input100" type="text" name="email_n" id="email" placeholder="Email">
-                    --><span class="focus-input100"></span>
+                    <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-envelope"></span>
 						</span>
@@ -88,8 +82,7 @@
                 <!-- Senha -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Digite a sua senha.">
                     {{form.password}}
-                    <!--<input class="input100" type="password" name="senha_n" id="senha" placeholder="Senha">
-                    --><span class="focus-input100"></span>
+                    <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
 						</span>
@@ -134,16 +127,13 @@
 
 <script src="{% static '/vendor/select2/select2.min.js' %}"></script>
 <script src="{% static '/js/main.js' %}"></script>
-<!-- Tempus Dominus / Datapicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
 
-<script>
-  $(function () {
-    $("#datetimepicker1").datetimepicker({
-      format: 'DD/MM/YYYY HH:mm',
-    });
-  });
-</script>
+<!-- Jquery Mask - Igor Escobar-->
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<!-- Mascaras para os formularios -->
+<script src="{% static 'js/mascaras-usuario.js' %}"></script>
+
 
 </body>
 </html>

@@ -19,7 +19,7 @@
 <main>
     <br><br><br><br><br>
 
-    <!-- Cabeçalho da Cifra -->
+    <!-- Cabeçalho do Usuario -->
     <div class="have-project">
         <div class="container">
             <div class="haveAproject" data-background="{% static '/img/bg-destaque.png' %}">
@@ -32,7 +32,7 @@
                                    style="color: #22A545; font-size: 20px; vertical-align: top; margin-top: 12px"
                                    aria-hidden="true"></i>-->
                             </h2>
-                            <p>Plano Standard</p>
+                            <p>Plano <strong>Free</strong></p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
     <section class="blog_area single-post-area section-padding" style="margin-top: -100px">
         <div class="container">
             <div class="row">
-                <!-- Serviços -->
+                <!-- Menu -->
                 <div class="col-lg-3">
                     <h3 class="mb-30">Menu</h3>
                     <div class="col-lg-12">
@@ -62,23 +62,85 @@
                     </div>
                 </div>
 
-                <!-- cifra -->
+                <!-- Formularios -->
                 <div class="col-lg-5 posts-list">
+                    <form method="post">
+                    {% csrf_token %}
                     <div class="single-post">
                         <div class="blog_details">
 
                             <ul class="blog-info-link mt-3 mb-4">
-
-                                <li><a href="#"><i class="fa fa-music"></i> 1043 acessos</a></li>
-                                <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> Usuário desde {{kpi.dt_inicio}}</a>
+                                <li><a href="#"><i class="fa fa-sun"></i> Mantenha o seu perfil atualizado, e concorra
+                                    a super prêmios.</a></li>
                                 </li>
                             </ul>
-                            <p class="excert" style="font-size: 18px">
-                                Formulario para edição dos dados do usuário aqui
-                            </p>
 
+                            <div class="mt-10">
+                                <label>Nome</label>
+                                {{form.first_name}}
+                            </div>
+                            <div class="mt-10">
+                                <label>Sobrenome</label>
+                                {{form.last_name}}
+                            </div>
+                            <div class="mt-10">
+                                <label>Data de Nascimento</label>
+                                {{form.nascimento}}
+                            </div>
+                            <div class="mt-10">
+                                <div>
+                                    <label>Gênero</label>
+                                </div>
+                                <div>
+                                    {{form.genero}}
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="mt-10">
+                                <label>Celular</label>
+                                {{form.celular}}
+                            </div>
+                            <div class="mt-10">
+                                <label>Cidade</label>
+                                {{form.cidade}}
+                            </div>
+                            <div class="mt-10">
+                                <div>
+                                    <label>Estado</label>
+                                </div>
+                                <div>
+                                    {{form.estado}}
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="mt-10">
+                                <label>País</label>
+                                {{form.pais}}
+                            </div>
+                            <div class="mt-10">
+                                <div>
+                                    <label>Você é cristão?</label>
+                                </div>
+                                <div>
+                                    {{form.cristao}}
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="mt-10">
+                                <label>Qual é a sua igreja?</label>
+                                {{form.igreja}}
+                            </div>
+                            <div class="mt-10">
+                                <label>Qual a sua função na igreja?</label>
+                                {{form.funcao}}
+                            </div>
+
+                            <div class="button-group-area mt-40">
+                                <button type="submit" class="genric-btn primary e-large">Atualizar dados</button>
+                            </div>
                         </div>
                     </div>
+                    </form>
                     <div>
                         <br><br>
                         <a href="#" style="color: #080F0F">Encontrou algum problema? Nos mande uma
