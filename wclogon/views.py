@@ -11,29 +11,33 @@ def register(request):
 
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
+
         if form.is_valid():
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            nascimento = form.cleaned_data['nascimento']
-            celular = form.cleaned_data['celular']
-            email = form.cleaned_data['email']
-            password = make_password(password=form.cleaned_data['password'], salt=None, hasher='pbkdf2_sha256')
-            novo_usuario = Usuario(username=email, first_name=first_name, last_name=last_name, nascimento=nascimento,
-                                   celular=celular, email=email, password=password)
+            if form.cleaned_data['password'] == form.cleaned_data['password_confirm']:
+                first_name = form.cleaned_data['first_name']
+                last_name = form.cleaned_data['last_name']
+                nascimento = form.cleaned_data['nascimento']
+                celular = form.cleaned_data['celular']
+                email = form.cleaned_data['email']
+                password = make_password(password=form.cleaned_data['password'], salt=None, hasher='pbkdf2_sha256')
+                novo_usuario = Usuario(username=email, first_name=first_name, last_name=last_name, nascimento=nascimento,
+                                       celular=celular, email=email, password=password)
 
-            novo_usuario.save()
+                novo_usuario.save()
 
-            # Criando indice para a tabela KPI dos usuários
-            novo_kpi = UsuarioKPI(wc_usuario=novo_usuario)
+                # Criando indice para a tabela KPI dos usuários
+                novo_kpi = UsuarioKPI(wc_usuario=novo_usuario)
 
-            novo_kpi.save()
+                novo_kpi.save()
 
-            login(request, novo_usuario)
+                login(request, novo_usuario)
 
-            messages.success(request, 'Ual, estamos felizes em te-lo conosco, seja bem vindo ao Worship Cifras. '
-                                      'Deus abençoe.')
+                messages.success(request, 'Ual, estamos felizes em te-lo conosco, seja bem vindo ao Worship Cifras. '
+                                          'Deus abençoe.')
 
-            return redirect('index')
+                return redirect('index')
+            else:
+                messages.error(request, 'As senhas não conferem, por favor, valide antes de prosseguir.')
         else:
             for campo in form:
                 if campo.errors:

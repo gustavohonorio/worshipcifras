@@ -34,8 +34,8 @@ class UsuarioForm(forms.ModelForm):
     nascimento = forms.DateField(widget=forms.DateTimeInput(attrs={'class': 'input100 date', 'placeholder': 'Data de nascimento'}))
     celular = forms.CharField(widget=forms.TextInput(attrs={'class': 'input100 phone_with_ddd', 'placeholder': 'Celular'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'E-mail'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Senha'}))
-    password_confirm = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Confirmar Senha'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Senha', }))
+    password_confirm = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Confirmar Senha',}))
 
     class Meta:
         model = Usuario
