@@ -27,7 +27,9 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 
     <!-- Tempus Dominus / Datapicker -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css"
+          crossorigin="anonymous"/>
 
 </head>
 
@@ -38,7 +40,12 @@
         <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
             <form class="login100-form validate-form" method="post" action=".">
                 {% csrf_token %}
+
                 <span class="login100-form-title p-b-55">Cadastre-se, é grátis</span>
+
+                <!-- MENSAGENS DE RETORNO -->
+                {% include 'utils/messages.html' %}
+
                 <!-- Nome -->
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Por favor, digite o seu nome.">
                     {{form.first_name}}

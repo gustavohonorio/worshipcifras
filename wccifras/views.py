@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.shortcuts import render, redirect
@@ -11,7 +12,7 @@ from wclogon.models import Usuario
 from .utils import acordes_regras
 
 
-def cifras(request, artista, cifra_id, cifra_nome, modo_v='Cifra'):
+def cifras(request, artista, cifra_id, cifra_nome,):
     cifra = Cifra.objects.get(id=cifra_id)
 
     # ESTATICOS
@@ -26,14 +27,16 @@ def cifras(request, artista, cifra_id, cifra_nome, modo_v='Cifra'):
 
     CifraKPI.objects.filter(wc_cifra=cifra).update(acessos=F('acessos')+1)
 
-    # TODO : ENTENDER PQ O MODO VISUALIZACAO NAO TA PEGANDO DA URL, TALVEZ ALTERAR O NOME DA VARIAVEL MODO
-    print(f'>>>>>>>>>>>> {modo_v}')
     # TRATANDO CIFRA PARA SER EXIBIDA EM TELA
-    if modo_v == 'Cifra':
+    modo_default = 'Modo'
+    if request.GET.get('modo_n') == '1':
+        modo_default = 'Cifra'
         cifra.cifra = acordes_regras.formatar_cifra(cifra.cifra.split())
-    else:
+    elif request.GET.get('modo_n') == '2':
+        modo_default = 'Letra'
         cifra.cifra = acordes_regras.formatar_letra(cifra.cifra.split())
-
+    else:
+        cifra.cifra = acordes_regras.formatar_cifra(cifra.cifra.split())
     # EXIBINDO COMENTARIOS
     comentarios = Comentario.objects.filter(wc_cifra=cifra.id)
 
@@ -52,14 +55,14 @@ def cifras(request, artista, cifra_id, cifra_nome, modo_v='Cifra'):
 
             return render(request, 'cifras.html',
                           {'cifra': cifra, 'form': form, 'tom': tom,
-                           'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
+                           'capotraste': capotraste, 'modo': modo, 'modo_default': modo_default, 'kpi': kpi,
                            'comentarios': comentarios, 'artista': artista, 'cifra-nome': cifra_nome,
                            'cifra-id': cifra_id})
 
     return render(request, 'cifras.html', {'cifra': cifra, 'form': form, 'tom': tom,
-                                           'capotraste': capotraste, 'modo': modo, 'kpi': kpi,
-                                           'comentarios': comentarios, 'artista': artista, 'cifra_nome': cifra_nome,
-                                           'cifra_id': cifra_id})
+                                           'capotraste': capotraste, 'modo': modo, 'modo_default': modo_default,
+                                           'kpi': kpi, 'comentarios': comentarios, 'artista': artista,
+                                           'cifra_nome': cifra_nome, 'cifra_id': cifra_id})
 
 
 @login_required
@@ -98,6 +101,15 @@ def cadastrar(request):
             # ATUALIZANDO KPI USUARIO x ENVIO DE CIFRAS
             Kpi.incrementar_usuarios(request.user.id, 2)
 
+            messages.success(request, 'Cifra cadastrada com sucesso! Nossa equipe irá analisar e em até 48 horas a sua '
+                                      'cifra estará disponível. Continue contribuindo com a comunidade para '
+                                      'concorrer a super prêmios.')
+
             return redirect('index')
+    else:
+        for campo in form:
+            if campo.errors:
+                messages.error(request, campo.errors)
+                break
 
     return render(request, 'cadastrar_cifra.html', {'cifras_recentes': cifras_recentes, 'form': form, 'artistas': artistas})

@@ -24,8 +24,7 @@ def index(request):
                     return redirect('cifras_busca',
                                     artista=str(buscar_cifra[0].wc_artista).replace(' ', '-').lower(),
                                     cifra_id=buscar_cifra[0].id,
-                                    cifra_nome=str(buscar_cifra[0].nome).replace(' ', '-').lower(),
-                                    modo_v='Cifra')
+                                    cifra_nome=str(buscar_cifra[0].nome).replace(' ', '-').lower(),)
 
     return render(request, 'index.html', {'top_cifras': top_cifras, 'top_artistas': top_artistas, 'cifras': cifras,
                                           'artistas': artistas})

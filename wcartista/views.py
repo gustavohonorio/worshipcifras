@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.shortcuts import render, redirect
@@ -55,6 +56,14 @@ def cadastrar(request):
             # ATUALIZANDO KPI USUARIO x ENVIO DE ARTISTAS
             Kpi.incrementar_usuarios(request.user.id, 3)
 
+            messages.success(request, 'Artista cadastrado com sucesso! Continue contribuindo com a comunidade para '
+                                      'concorrer a super prêmios.')
+
             return redirect('index')
+    else:
+        for campo in form:
+            if campo.errors:
+                messages.error(request, campo.errors)
+                break
 
     return render(request, 'cadastrar_artista.html', {'artistas_similares': artistas_similares, 'form': form})

@@ -22,8 +22,8 @@
     <div class="container-login100">
         <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
             <form class="login100-form validate-form" method="post" autocomplete="on">
-                    {% csrf_token %}
-					<span class="login100-form-title p-b-55">
+                {% csrf_token %}
+                <span class="login100-form-title p-b-55">
 						Login
 					</span>
 
@@ -45,7 +45,7 @@
 
                 <div class="contact100-form-checkbox m-l-4">
                     <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" checked>
-                    <label class="label-checkbox100" for="ckb1" >
+                    <label class="label-checkbox100" for="ckb1">
                         Lembre-me
                     </label>
                 </div>

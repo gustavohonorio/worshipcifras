@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
@@ -11,9 +12,6 @@ def register(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
         if form.is_valid():
-            if form.cleaned_data['password'] != form.cleaned_data['password_confirm']:
-                raise ValueError('Confirme a sua senha, e repita igual para ambos campos.')
-
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             nascimento = form.cleaned_data['nascimento']
@@ -30,11 +28,17 @@ def register(request):
 
             novo_kpi.save()
 
-            # TODO : ESTA CHAMANDO DE LOGIN ESTA DANDO ERRO - 'AnonymousUser' object has no attribute '_meta'
-            # user = authenticate(username=novo_usuario.email, password=novo_usuario.password)
-            # login(request, user)
+            login(request, novo_usuario)
+
+            messages.success(request, 'Ual, estamos felizes em te-lo conosco, seja bem vindo ao Worship Cifras. '
+                                      'Deus abençoe.')
 
             return redirect('index')
+        else:
+            for campo in form:
+                if campo.errors:
+                    messages.error(request, campo.errors)
+                    break
 
     return render(request, 'register.html', {'form': form})
 
