@@ -1,7 +1,21 @@
 from django import forms
+from .models import ReportErro
 from wcartista.models import Artista
 from wccifras.models import Cifra
 from wccifras.utils.static_vars import VarsCifraForm
+
+
+class ReportErroForm(forms.ModelForm):
+    titulo_erro = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input',
+                                                                'placeholder': 'Resuma em uma frase o problema',}),
+                                  required=False)
+    descricao_erro = forms.CharField(widget=forms.Textarea(attrs={'class': 'single-input',
+                                                                  'placeholder': 'Descreva com detalhes o problema',
+                                                                  'rows': '5'}), required=False)
+
+    class Meta:
+        model = ReportErro
+        fields = ['titulo_erro', 'descricao_erro', ]
 
 
 class ArtistaForm(forms.ModelForm):

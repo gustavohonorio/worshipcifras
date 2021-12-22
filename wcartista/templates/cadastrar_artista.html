@@ -72,6 +72,9 @@
                                         de artistas.</a></li>
                                 </ul>
 
+                                <!-- Modal -->
+                                {% include 'utils/messages.html' %}
+
                                 <!-- FORMULARIO DE ENVIO -->
                                 <div class="mt-10">
                                     <div class="single-input">
@@ -92,7 +95,8 @@
                         </div>
                         <div>
                             <br><br>
-                            <a href="#" style="color: #080F0F">Encontrou algum problema? Nos mande uma
+                            <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro"
+                               style="color: #080F0F">Encontrou algum problema? Nos mande uma
                                 mensagem.</a>
                         </div>
                     </div>
@@ -118,7 +122,8 @@
     </section>
     <!--================ Artista Area end =================-->
 
-    <!-- Mensagens de Retorno -->
+    <!-- Modal -->
+    {% include 'utils/modals.html' %}
 
 </main>
 <footer>

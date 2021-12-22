@@ -65,85 +65,90 @@
                 <!-- Formularios -->
                 <div class="col-lg-5 posts-list">
                     <form method="post">
-                    {% csrf_token %}
-                    <div class="single-post">
-                        <div class="blog_details">
+                        {% csrf_token %}
+                        <div class="single-post">
+                            <div class="blog_details">
 
-                            <ul class="blog-info-link mt-3 mb-4">
-                                <li><a href="#"><i class="fa fa-sun"></i> Mantenha o seu perfil atualizado, e concorra
-                                    a super prêmios.</a></li>
-                                </li>
-                            </ul>
+                                <ul class="blog-info-link mt-3 mb-4">
+                                    <li><a href="#"><i class="fa fa-sun"></i> Mantenha o seu perfil atualizado, e
+                                        concorra
+                                        a super prêmios.</a></li>
+                                    </li>
+                                </ul>
 
-                            <div class="mt-10">
-                                <label>Nome</label>
-                                {{form.first_name}}
-                            </div>
-                            <div class="mt-10">
-                                <label>Sobrenome</label>
-                                {{form.last_name}}
-                            </div>
-                            <div class="mt-10">
-                                <label>Data de Nascimento</label>
-                                {{form.nascimento}}
-                            </div>
-                            <div class="mt-10">
-                                <div>
-                                    <label>Gênero</label>
-                                </div>
-                                <div>
-                                    {{form.genero}}
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="mt-10">
-                                <label>Celular</label>
-                                {{form.celular}}
-                            </div>
-                            <div class="mt-10">
-                                <label>Cidade</label>
-                                {{form.cidade}}
-                            </div>
-                            <div class="mt-10">
-                                <div>
-                                    <label>Estado</label>
-                                </div>
-                                <div>
-                                    {{form.estado}}
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="mt-10">
-                                <label>País</label>
-                                {{form.pais}}
-                            </div>
-                            <div class="mt-10">
-                                <div>
-                                    <label>Você é cristão?</label>
-                                </div>
-                                <div>
-                                    {{form.cristao}}
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="mt-10">
-                                <label>Qual é a sua igreja?</label>
-                                {{form.igreja}}
-                            </div>
-                            <div class="mt-10">
-                                <label>Qual a sua função na igreja?</label>
-                                {{form.funcao}}
-                            </div>
+                                <!-- Modal -->
+                                {% include 'utils/messages.html' %}
 
-                            <div class="button-group-area mt-40">
-                                <button type="submit" class="genric-btn primary e-large">Atualizar dados</button>
+                                <div class="mt-10">
+                                    <label>Nome</label>
+                                    {{form.first_name}}
+                                </div>
+                                <div class="mt-10">
+                                    <label>Sobrenome</label>
+                                    {{form.last_name}}
+                                </div>
+                                <div class="mt-10">
+                                    <label>Data de Nascimento</label>
+                                    {{form.nascimento}}
+                                </div>
+                                <div class="mt-10">
+                                    <div>
+                                        <label>Gênero</label>
+                                    </div>
+                                    <div>
+                                        {{form.genero}}
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="mt-10">
+                                    <label>Celular</label>
+                                    {{form.celular}}
+                                </div>
+                                <div class="mt-10">
+                                    <label>Cidade</label>
+                                    {{form.cidade}}
+                                </div>
+                                <div class="mt-10">
+                                    <div>
+                                        <label>Estado</label>
+                                    </div>
+                                    <div>
+                                        {{form.estado}}
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="mt-10">
+                                    <label>País</label>
+                                    {{form.pais}}
+                                </div>
+                                <div class="mt-10">
+                                    <div>
+                                        <label>Você é cristão?</label>
+                                    </div>
+                                    <div>
+                                        {{form.cristao}}
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="mt-10">
+                                    <label>Qual é a sua igreja?</label>
+                                    {{form.igreja}}
+                                </div>
+                                <div class="mt-10">
+                                    <label>Qual a sua função na igreja?</label>
+                                    {{form.funcao}}
+                                </div>
+
+                                <div class="button-group-area mt-40">
+                                    <button type="submit" class="genric-btn primary e-large">Atualizar dados</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </form>
                     <div>
                         <br><br>
-                        <a href="#" style="color: #080F0F">Encontrou algum problema? Nos mande uma
+                        <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro"
+                           style="color: #080F0F">Encontrou algum problema? Nos mande uma
                             mensagem.</a>
                     </div>
 
@@ -157,6 +162,10 @@
         </div>
     </section>
     <!--================ End =================-->
+
+    <!-- Modal -->
+    {% include 'utils/modals.html' %}
+
 </main>
 <footer>
     <!-- Footer -->

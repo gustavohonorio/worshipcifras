@@ -2,9 +2,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.shortcuts import render, redirect
-from django.utils.safestring import mark_safe
+from django.urls import resolve
 
 from core.utils.backend import Kpi
+from wcstaff.forms import ReportErroForm
+from wcstaff.models import ReportErro
 from .forms import CifraForm, ComentarioForm
 from .models import Cifra, Tom, Capotraste, ModoVisualizacao, CifraKPI, Comentario
 from wcartista.models import Artista
@@ -72,44 +74,68 @@ def cadastrar(request):
     artistas = Artista.objects.all()
 
     form = CifraForm()
+    form_report = ReportErroForm()
 
     if request.method == 'POST':
-        form = CifraForm(request.POST)
+        if 'report' in request.POST:
+            form_report = ReportErroForm(request.POST)
+            if form_report.is_valid():
+                nome_usuario = request.user.first_name + ' ' + request.user.last_name
+                email_usuario = request.user.email
+                celular_usuario = request.user.celular
+                origem_erro = 'WCCifras - Cadastro de Cifras'
+                detalhes_erro = 'cadastrar'
+                link_erro = resolve(request.path_info).url_name
+                titulo_erro = form_report.cleaned_data['titulo_erro']
+                descricao_erro = form_report.cleaned_data['descricao_erro']
 
-        if form.is_valid():
-            nome = form.cleaned_data['nome']
-            wc_artista = Artista.objects.filter(nome=form.cleaned_data['wc_artista'])[:1]
-            genero = form.cleaned_data['genero']
-            cifra = form.cleaned_data['cifra']
-            detalhes = form.cleaned_data['detalhes']
-            tom = form.cleaned_data['tom']
-            capotraste = form.cleaned_data['capotraste']
-            afinacao = form.cleaned_data['afinacao']
-            versao = form.cleaned_data['versao']
+                novo_report = ReportErro(nome_usuario=nome_usuario, email_usuario=email_usuario,
+                                         celular_usuario=celular_usuario, origem_erro=origem_erro,
+                                         detalhes_erro=detalhes_erro, link_erro=link_erro, titulo_erro=titulo_erro,
+                                         descricao_erro=descricao_erro)
+                novo_report.save()
+                messages.success(request, 'Problema reportado. Não se preocupe, nosso time irá analisar o mais rápido'
+                                          ' possivél, e daremos um retorno sobre sua notificação. Obrigado'
+                                          ' por ajudar a comunidade a ser ainda melhor.')
 
-            nova_cifra = Cifra(nome=nome, wc_artista=Artista.objects.get(id=wc_artista[0].id), genero=genero,
-                               cifra=cifra, detalhes=detalhes, tom=tom, capotraste=capotraste, afinacao=afinacao,
-                               versao=versao, )
+                return redirect('cadastrar_cifra')
+        else:
+            form = CifraForm(request.POST)
+            if form.is_valid():
+                nome = form.cleaned_data['nome']
+                wc_artista = Artista.objects.filter(nome=form.cleaned_data['wc_artista'])[:1]
+                genero = form.cleaned_data['genero']
+                cifra = form.cleaned_data['cifra']
+                detalhes = form.cleaned_data['detalhes']
+                tom = form.cleaned_data['tom']
+                capotraste = form.cleaned_data['capotraste']
+                afinacao = form.cleaned_data['afinacao']
+                versao = form.cleaned_data['versao']
 
-            nova_cifra.save()
+                nova_cifra = Cifra(nome=nome, wc_artista=Artista.objects.get(id=wc_artista[0].id), genero=genero,
+                                   cifra=cifra, detalhes=detalhes, tom=tom, capotraste=capotraste, afinacao=afinacao,
+                                   versao=versao, )
 
-            # Criando indice na tabela de KPI's
-            novo_kpi_cifra = CifraKPI(wc_cifra=nova_cifra, curtidas=0, acessos=0)
+                nova_cifra.save()
 
-            novo_kpi_cifra.save()
+                # Criando indice na tabela de KPI's
+                novo_kpi_cifra = CifraKPI(wc_cifra=nova_cifra, curtidas=0, acessos=0)
 
-            # ATUALIZANDO KPI USUARIO x ENVIO DE CIFRAS
-            Kpi.incrementar_usuarios(request.user.id, 2)
+                novo_kpi_cifra.save()
 
-            messages.success(request, 'Cifra cadastrada com sucesso! Nossa equipe irá analisar e em até 48 horas a sua '
-                                      'cifra estará disponível. Continue contribuindo com a comunidade para '
-                                      'concorrer a super prêmios.')
+                # ATUALIZANDO KPI USUARIO x ENVIO DE CIFRAS
+                Kpi.incrementar_usuarios(request.user.id, 2)
 
-            return redirect('index')
-    else:
-        for campo in form:
-            if campo.errors:
-                messages.error(request, campo.errors)
-                break
+                messages.success(request, 'Cifra cadastrada com sucesso! Nossa equipe irá analisar e em até 48 horas a '
+                                          'sua cifra estará disponível. Continue contribuindo com a comunidade para '
+                                          'concorrer a super prêmios.')
 
-    return render(request, 'cadastrar_cifra.html', {'cifras_recentes': cifras_recentes, 'form': form, 'artistas': artistas})
+                return redirect('index')
+            else:
+                for campo in form:
+                    if campo.errors:
+                        messages.error(request, campo.errors)
+                        break
+
+    return render(request, 'cadastrar_cifra.html', {'cifras_recentes': cifras_recentes, 'form': form,
+                                                    'artistas': artistas, 'formReport': form_report, })

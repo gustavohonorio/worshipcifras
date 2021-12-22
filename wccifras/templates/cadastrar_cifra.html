@@ -103,6 +103,9 @@
                                         de cifras.</a></li>
                                 </ul>
 
+                                <!-- Modal -->
+                                {% include 'utils/messages.html' %}
+
                                 <!-- FORMULARIO DE ENVIO -->
                                 <div class="input-group-icon mt-10">
                                     <div class="form-select">
@@ -148,7 +151,8 @@
                         </div>
                         <div>
                             <br><br>
-                            <a href="#" style="color: #080F0F">Encontrou algum problema? Nos mande uma
+                            <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro"
+                               style="color: #080F0F">Encontrou algum problema? Nos mande uma
                                 mensagem.</a>
                         </div>
                     </div>
@@ -173,6 +177,9 @@
         </form>
     </section>
     <!--================ Artista Area end =================-->
+
+    <!-- Modal -->
+    {% include 'utils/modals.html' %}
 </main>
 <footer>
     <!-- Footer -->
