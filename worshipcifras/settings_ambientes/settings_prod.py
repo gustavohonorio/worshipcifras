@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',  # DESCOMENTAR QUANDO FOR PRA PROD
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # DESCOMENTAR QUANDO FOR PRA PROD
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,11 +82,13 @@ TEMPLATES = [
         },
     },
 ]
-
+# allauth configs
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
+# allauth configs
+# SITE_ID = 1
 
 WSGI_APPLICATION = 'worshipcifras.wsgi.application'
 
@@ -97,12 +99,20 @@ WSGI_APPLICATION = 'worshipcifras.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'worshipcifras',
-        'USER': 'python',
-        'PASSWORD': 'python',
+        'NAME': 'worshipc_site',
+        'USER': 'worshipc_user',
+        'PASSWORD': 'Wcifras_db1!',
         'HOST': 'localhost',
         'PORT': '3306',
-    }
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'worshipcifras',
+    #     'USER': 'python',
+    #     'PASSWORD': 'python',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    # }
 }
 
 

@@ -82,11 +82,13 @@ TEMPLATES = [
         },
     },
 ]
-
+# allauth configs
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
+# allauth configs
+# SITE_ID = 1
 
 WSGI_APPLICATION = 'worshipcifras.wsgi.application'
 
