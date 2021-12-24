@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-t#p0srcf^3i-w^tz%$-54ca$0%h8&n#ye^s$2s_hp$0s14iyti
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'worshipcifras.com', 'www.worshipcifras.com', 'worshipcifras.com.br',
-                 'www.worshipcifras.com.br', ]
+ALLOWED_HOSTS = ['*', ]
 
 
 # Application definition
@@ -76,22 +75,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Sem isso o allauth não funciona!
-                'django.template.context_processors.request',
             ],
         },
     },
 ]
-# allauth configs
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
-# allauth configs
-# SITE_ID = 1
 
 WSGI_APPLICATION = 'worshipcifras.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -106,7 +99,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -126,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -139,7 +130,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

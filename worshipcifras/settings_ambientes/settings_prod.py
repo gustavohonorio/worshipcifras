@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t#p0srcf^3i-w^tz%$-54ca$0%h8&n#ye^s$2s_hp$0s14iyti'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'worshipcifras.com', 'www.worshipcifras.com', 'worshipcifras.com.br',
+ALLOWED_HOSTS = ['worshipcifras.com', 'www.worshipcifras.com', 'worshipcifras.com.br',
                  'www.worshipcifras.com.br', ]
 
 
@@ -82,13 +82,10 @@ TEMPLATES = [
         },
     },
 ]
-# allauth configs
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
-# allauth configs
-# SITE_ID = 1
 
 WSGI_APPLICATION = 'worshipcifras.wsgi.application'
 
@@ -105,14 +102,6 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
     },
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'worshipcifras',
-    #     'USER': 'python',
-    #     'PASSWORD': 'python',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    # }
 }
 
 
@@ -159,7 +148,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # User Model Customizado
 AUTH_USER_MODEL = 'wclogon.Usuario'
