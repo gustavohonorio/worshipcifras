@@ -4,7 +4,9 @@
 
     <!-- Titulo -->
     <h1 class="h3 mb-2 text-gray-800">Cifras</h1>
-    <p class="mb-4">Você não tem permissão para alterar as cifras.</p>
+    <p class="mb-4">Você tem permissão para alterar as cifras.</p>
+    <!-- Modal -->
+    {% include 'utils/messages.html' %}
 
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -16,7 +18,7 @@
                         <th>Artista</th>
                         <th>Genero(s)</th>
                         <th>Status</th>
-                        <th>Verificada</th>
+                        <th>Patrocinada</th>
                         <th>Data Inclusão</th>
                     </tr>
                     </thead>
@@ -26,7 +28,7 @@
                         <th>Artista</th>
                         <th>Genero(s)</th>
                         <th>Status</th>
-                        <th>Verificada</th>
+                        <th>Patrocinada</th>
                         <th>Data Inclusão</th>
                     </tr>
                     </tfoot>
@@ -38,7 +40,7 @@
                         <td>{{c.wc_artista}}</td>
                         <td>{{c.genero}}</td>
                         <td>{{c.status}}</td>
-                        <td>{{c.wc_cifra_verificada}}</td>
+                        <td>{{c.patrocinada}}</td>
                         <td>{{c.op_data}}</td>
                     </tr>
                     {% endfor %}

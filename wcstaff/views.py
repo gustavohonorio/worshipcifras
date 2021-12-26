@@ -1,11 +1,11 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from wcartista.models import Artista
 from wccifras.utils.acordes_regras import tag_cifra
-from wclogon.models import Usuario
+from wclogon.models import Usuario, Perfil
 from wccifras.models import Cifra
-from wccifras.utils import acordes_regras
-from .forms import ArtistaForm, CifraForm
+from .forms import ArtistaForm, CifraForm, UsuarioForm
 
 
 # DEFAULT
@@ -15,7 +15,10 @@ def staff(request):
     c = Cifra.objects.count()
     u = Usuario.objects.count()
 
-    return render(request, 'staff.html', {'artistas_count': a, 'cifras_count': c, 'usuarios_count': u})
+    c_pendente = len(Cifra.objects.filter(status='P'))
+
+    return render(request, 'staff.html', {'artistas_count': a, 'cifras_count': c, 'usuarios_count': u,
+                                          'cifras_pendentes': c_pendente})
 
 
 # ARTISTAS
@@ -30,23 +33,26 @@ def e_artistas(request, id):
     a = get_object_or_404(Artista, id=id)
     form = ArtistaForm(instance=a)
 
-    # TODO : EXIBIR MENSAGEM DE AVISO CASO NADA SEJA ALTERADO / ALGO SEJA ALTERADO
     if request.method == 'POST':
         form = ArtistaForm(request.POST, instance=a)
         if form.is_valid():
             a.save()
-            return redirect('s-artistas')
+            messages.success(request, 'Artista atualizado com sucesso.')
+            return redirect('r-artistas')
         else:
-            # TODO : TRATAR MENSAGEM DE ERRO CASO O FORMULARIO NAO SEJA VALIDO
-            return redirect('s-artistas')
+            messages.success(request, 'Erro ao atualizar artista.')
+            return redirect('r-artistas')
     else:
         return render(request, 'edit/e-artistas.html', {'form': form, 'artista': a})
 
 
 # CIFRAS
 @login_required
-def cifras(request):
-    c = Cifra.objects.all()
+def cifras(request, filtro):
+    if filtro == 'p':
+        c = Cifra.objects.filter(status='P')
+    else:
+        c = Cifra.objects.all()
     return render(request, 'read/r-cifras.html', {'cifras': c})
 
 
@@ -62,7 +68,8 @@ def e_cifras(request, id):
         form = CifraForm(request.POST, instance=c)
         if form.is_valid():
             c.save()
-            return redirect('s-cifras')
+            messages.success(request, 'Cifra atualizada com sucesso.')
+            return redirect('r-cifras', filtro='TODAS')
 
     return render(request, 'edit/e-cifras.html', {'form': form, 'cifra': c, 'artistas': a})
 
@@ -74,3 +81,17 @@ def usuarios(request):
     return render(request, 'read/r-usuarios.html', {'usuarios': u})
 
 
+@login_required
+def e_usuarios(request, id):
+    u = get_object_or_404(Usuario, id=id)
+
+    form = UsuarioForm(instance=u)
+
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, instance=u)
+        if form.is_valid():
+            u.save()
+            messages.success(request, 'Usuário atualizado com sucesso.')
+            return redirect('r-usuarios',)
+
+    return render(request, 'edit/e-usuarios.html', {'form': form, 'usuario': u, })

@@ -1,10 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Usuário: {{usuario.first_name}} {{usuario.last_name}}</h3>
+                <br>
+                <h5>Dados gerais</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Nome Completo</label>
+                        <input class="form-control" value="{{usuario.first_name}} {{usuario.last_name}}" disabled>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Email</label>
+                        <input class="form-control" value="{{usuario.email}}" disabled>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Último login</label>
+                        <input class="form-control" value="{{usuario.last_login}}" disabled>
+                    </div>
+                </div>
+
+                <br>
+                <h5>Dados adicionais</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Celular</label>
+                        <input class="form-control" value="{{usuario.celular}}" disabled>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Localidade</label>
+                        <input class="form-control" value="{{usuario.cidade}}, {{usuario.estado}} - {{usuario.pais}}" disabled>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Data de nascimento</label>
+                        <input class="form-control" value="{{usuario.nascimento}}" disabled>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Igreja</label>
+                        <input class="form-control" value="{{usuario.igreja}}" disabled>
+                    </div>
+                </div>
+
+                <br>
+                <h5>Sistema</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Usuário desde</label>
+                        <input class="form-control" value="{{usuario.date_joined}}" disabled>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Perfil</label>
+                        {{form.wc_perfil}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Esta ativo</label>
+                        {{form.is_active}}
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">Is_Staff*</label>
+                        {{form.is_staff}}
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Is_Superuser**</label>
+                        {{form.is_superuser}}
+                    </div>
+                </div>
+
+
+                <br>
+                <h5>Observações</h5>
+                <br>
+                <div class="input-group mb-3">
+                    <div class="col">
+                        <label class="form-label">*Is_Staff é um campo que identifica se o usuário terá acesso ao painel de 'admin' do sistema.</label>
+                        <label class="form-label">**Is_Superuser é um campo que identifica se o usuário terá acesso 'total' ao sistema.</label>
+                    </div>
+                </div>
+
+                <br>
+                <div class="col mb-3">
+                    <button type="submit" class="btn btn-dark">Atualizar registro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

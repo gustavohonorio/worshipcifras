@@ -1,4 +1,7 @@
 from django import forms
+
+from wclogon.models import Usuario, Perfil
+from wclogon.utils import static_vars
 from .models import ReportErro
 from wcartista.models import Artista
 from wccifras.models import Cifra
@@ -7,7 +10,7 @@ from wccifras.utils.static_vars import VarsCifraForm
 
 class ReportErroForm(forms.ModelForm):
     titulo_erro = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input',
-                                                                'placeholder': 'Resuma em uma frase o problema',}),
+                                                                'placeholder': 'Resuma em uma frase o problema', }),
                                   required=False)
     descricao_erro = forms.CharField(widget=forms.Textarea(attrs={'class': 'single-input',
                                                                   'placeholder': 'Descreva com detalhes o problema',
@@ -84,3 +87,18 @@ class CifraForm(forms.ModelForm):
         fields = ['nome', 'genero', 'cifra', 'letra', 'acordes', 'tom', 'capotraste', 'afinacao',
                   'versao', 'detalhes', 'capa', 'video', 'video_aula', 'compositor', 'produtor', 'musicos', 'bpm',
                   'patrocinada', 'status', 'op_user']
+
+
+class UsuarioForm(forms.ModelForm):
+    wc_perfil = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''}))
+    wc_perfil = forms.ModelChoiceField(queryset=Perfil.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+    is_active = forms.ChoiceField(choices=(('False', 'Não'), ('True', 'Sim'),),
+                                  widget=forms.Select(attrs={'class': 'form-control'}), required=False)
+    is_staff = forms.ChoiceField(choices=(('False', 'Não'), ('True', 'Sim'),),
+                                 widget=forms.Select(attrs={'class': 'form-control'}), required=False)
+    is_superuser = forms.ChoiceField(choices=(('False', 'Não'), ('True', 'Sim'),),
+                                     widget=forms.Select(attrs={'class': 'form-control'}), required=False)
+
+    class Meta:
+        model = Usuario
+        fields = ['wc_perfil', 'is_active', 'is_staff', 'is_superuser', ]

@@ -4,7 +4,9 @@
 
     <!-- Titulo -->
     <h1 class="h3 mb-2 text-gray-800">Usuários</h1>
-    <p class="mb-4">Você não tem permissão para alterar os usuários.</p>
+    <p class="mb-4">Você tem permissão para alterar os usuários.</p>
+    <!-- Modal -->
+    {% include 'utils/messages.html' %}
 
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -13,11 +15,10 @@
                     <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>email</th>
+                        <th>Email</th>
                         <th>Nascimento</th>
-                        <th>Genero</th>
                         <th>Celular</th>
-                        <th>Estado</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -25,21 +26,19 @@
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Nascimento</th>
-                        <th>Genero</th>
                         <th>Celular</th>
-                        <th>Estado</th>
+                        <th>Status</th>
                     </tr>
                     </tfoot>
 
                     <tbody>
                     {% for u in usuarios %}
                     <tr>
-                        <td>{{u.first_name}} {{u.last_name}}</td>
+                        <td><a href="{% url 'e-usuarios' u.id %}">{{u.first_name}} {{u.last_name}}</a></td>
                         <td>{{u.email}}</td>
                         <td>{{u.nascimento}}</td>
-                        <td>{{u.genero}}</td>
                         <td>{{u.celular}}</td>
-                        <td>{{u.estado}}</td>
+                        <td>{{u.is_active}}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
