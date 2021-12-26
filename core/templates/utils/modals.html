@@ -59,3 +59,44 @@
         </div>
     </form>
 </div>
+
+<!-- Reportar um erro Staff -->
+<div class="modal fade" id="reportar-erro-staff" tabindex="-1" role="dialog" aria-labelledby="reportarErro"
+     aria-hidden="true">
+    <form action="." method="post">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportarErroStaff">Conte-nos o que aconteceu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="container">
+                            <input type="text" class="form-control"
+                                   placeholder="{{user.get_full_name}} - {{user.email}}" disabled>
+                        </div>
+                    </div><br>
+                    <div class="container">
+                        <div class="container">
+                            {{formReport.titulo_erro}}
+                        </div>
+                    </div><br>
+                    <div class="container">
+                        <div class="container">
+                            {{formReport.descricao_erro}}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="report" class="btn btn-dark">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

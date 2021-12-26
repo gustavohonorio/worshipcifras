@@ -21,6 +21,19 @@ class ReportErroForm(forms.ModelForm):
         fields = ['titulo_erro', 'descricao_erro', ]
 
 
+class ReportErroStaffForm(forms.ModelForm):
+    titulo_erro = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                'placeholder': 'Resuma em uma frase o problema', }),
+                                  required=False)
+    descricao_erro = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',
+                                                                  'placeholder': 'Descreva com detalhes o problema',
+                                                                  'rows': '5'}), required=False)
+
+    class Meta:
+        model = ReportErro
+        fields = ['titulo_erro', 'descricao_erro', ]
+
+
 class ArtistaForm(forms.ModelForm):
     nome = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', }), required=False)
     integrantes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', }), required=False)
