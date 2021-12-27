@@ -30,15 +30,23 @@ def cifras(request, artista, cifra_id, cifra_nome,):
     CifraKPI.objects.filter(wc_cifra=cifra).update(acessos=F('acessos')+1)
 
     # TRATANDO CIFRA PARA SER EXIBIDA EM TELA
+    novo_tom = (request.GET.get('tom_n')[-1] if request.GET.get('tom_n') else 0)
+
+    cifra_split = cifra.cifra.split()
+    if novo_tom:
+        if novo_tom != cifra.tom:
+            acordes_regras.transposicao_cifra(cifra_split, cifra.tom, novo_tom)
+
     modo_default = 'Modo'
     if request.GET.get('modo_n') == '1':
         modo_default = 'Cifra'
-        cifra.cifra = acordes_regras.formatar_cifra(cifra.cifra.split())
+        cifra.cifra = acordes_regras.formatar_cifra(cifra_split)
     elif request.GET.get('modo_n') == '2':
         modo_default = 'Letra'
-        cifra.cifra = acordes_regras.formatar_letra(cifra.cifra.split())
+        cifra.cifra = acordes_regras.formatar_letra(cifra_split)
     else:
-        cifra.cifra = acordes_regras.formatar_cifra(cifra.cifra.split())
+        cifra.cifra = acordes_regras.formatar_cifra(cifra_split)
+
     # EXIBINDO COMENTARIOS
     comentarios = Comentario.objects.filter(wc_cifra=cifra.id)
 
@@ -64,7 +72,7 @@ def cifras(request, artista, cifra_id, cifra_nome,):
     return render(request, 'cifras.html', {'cifra': cifra, 'form': form, 'tom': tom,
                                            'capotraste': capotraste, 'modo': modo, 'modo_default': modo_default,
                                            'kpi': kpi, 'comentarios': comentarios, 'artista': artista,
-                                           'cifra_nome': cifra_nome, 'cifra_id': cifra_id})
+                                           'cifra_nome': cifra_nome, 'cifra_id': cifra_id, 'novo_tom': novo_tom})
 
 
 @login_required

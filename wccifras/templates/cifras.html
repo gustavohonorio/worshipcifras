@@ -70,10 +70,15 @@
                         <div class="col-lg-12">
                             <div class="single-element-widget mt-30">
                                 <div class="default-select">
-                                    <select>
+                                    <select name="tom_n">
+                                        {% if novo_tom and novo_tom != cifra.tom %}
+                                        <option selected>Tom selecionado: {{novo_tom}}</option>
+                                        {% else %}
                                         <option selected>Tom original: {{cifra.tom}}</option>
+                                        {% endif %}
+
                                         {% for t in tom %}
-                                        <option value="{{t.id}}">{{t.sigla}}</option>
+                                        <option value="{{t.sigla}}">{{t.sigla}}</option>
                                         {% endfor %}
                                     </select>
                                 </div>

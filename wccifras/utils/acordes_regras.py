@@ -1,5 +1,20 @@
 from django.utils.safestring import mark_safe
 
+escalas = {
+    'C': '1',
+    'C#': '2',
+    'D': '3',
+    'D#': '4',
+    'E': '5',
+    'F': '6',
+    'F#': '7',
+    'G': '8',
+    'G#': '9',
+    'A': '10',
+    'A#': '11',
+    'B': '12',
+}
+
 acordes = [
     'Ab',
     'G#m',
@@ -143,6 +158,62 @@ acordes = [
 ]
 
 
+# TRANSPOSIÇÃO DE TONS
+def transposicao_cifra(cifra, tonalidade_original, tonalidade_escolhida):
+    # print(tonalidade_original + ' >>>> ' + tonalidade_escolhida)
+
+    tonalidade_original = retorna_indice_escala(tonalidade_original)
+    tonalidade_escolhida = retorna_indice_escala(tonalidade_escolhida)
+
+    # print(tonalidade_original + ' >>>> ' + tonalidade_escolhida)
+
+    semitons = retorna_semitons(tonalidade_original, tonalidade_escolhida)
+
+    # print(semitons)
+
+    for i, item in enumerate(cifra):
+        if '$' in item:
+            aux_indice = retorna_indice_escala(item[0:1])
+            novo_acorde = retorna_indice_escala_acordes(int(aux_indice), semitons)
+            novo_acorde = retorna_acorde_escala(novo_acorde)
+            cifra[i] = item.replace(item[0:1], str(novo_acorde))
+
+
+def retorna_indice_escala_acordes(indice, semitons):
+    aux = indice + semitons
+
+    if 0 < aux < 13:
+        return aux
+    elif aux > 12:
+        return aux - 12
+    else:
+        return 12 + aux
+
+
+def retorna_indice_escala(acorde):
+    for chave in escalas.keys():
+        if chave == acorde:
+            acorde = escalas[chave]
+            break
+    return acorde
+
+
+def retorna_acorde_escala(indice):
+    for acorde, i in escalas.items():
+        if i == str(indice):
+            return acorde
+
+
+def retorna_semitons(indice1, indice2):
+    semitom = 0
+    if indice1 > indice2:
+        semitom = int(indice2)-int(indice1)
+    else:
+        semitom = int(indice1)-int(indice2)
+
+    return semitom
+
+
 # ESTE MÉTODO IRÁ PERSISTIR A CIFRA E ATRIBUIR AS TAGS HTML PARA EXIBIÇÃO EM TELA
 # REGRAS #
 # -> @@ = Pular linha no final
@@ -152,17 +223,16 @@ acordes = [
 # -> Outros = Se index-1 conter $ ou @, pular linha no final
 def formatar_cifra(cifra):
     for i, valor in enumerate(cifra):
+        if '@@' in valor:
+            cifra[i] = add_tags('strong', valor.replace('@@', ''), 0)
+            continue
+
         if '@[' in valor:
             cifra[i] = add_tags('strong', valor.replace('@', ''), 1)
             continue
 
         if ']@' in valor:
             cifra[i] = add_tags('strong', valor.replace('@', ''), 2)
-            continue
-
-        if '@@' in valor:
-            print('ENTROUUUUUUUUUUUUUUUUU')
-            cifra[i] = add_tags('strong', valor.replace('@@', ''), 0)
             continue
 
         if '$' in valor:
@@ -217,7 +287,7 @@ def tag_cifra(cifra):
 
 # ESTE METODO INSERE AS TAGS HTML PARA EXIBIÇÃO EM TELA
 def add_tags(tag, valor, pular_linha):
-    # print(f'{valor} >>>>>>> {pular_linha}')
+    print(f'{valor} >>>>>>> {pular_linha}')
     if pular_linha == 0:
         return mark_safe(f'<br><%s>%s</%s><br>' % (tag, valor, tag))
     elif pular_linha == 1:
