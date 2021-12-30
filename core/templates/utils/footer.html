@@ -13,15 +13,16 @@
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
-                                    <p class="info1">CNPJ 00123456/0001-23<br>São Carlos SP - Brasil</p>
-                                    <p class="info2">contato@worshipcifras.com</p>
+                                    <!--<p class="info1">CNPJ 00123456/0001-23<br>São Carlos SP - Brasil</p>-->
+                                    <p class="info1">São Carlos SP - Brasil</p>
+                                    <p class="info2">contato@worshipcifras.com.br</p>
                                 </div>
                             </div>
                             <div class="footer-social">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/worshipcifras" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://www.instagram.com/worshipcifras/" target="_blank"><i
                                         class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://twitter.com/CifrasWorship" target="_blank"><i class="fab fa-twitter"></i></a>
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
@@ -34,8 +35,8 @@
                             <ul>
                                 <li><a href="{% url 'cadastrar_cifra' %}">Enviar cifra</a></li>
                                 <li><a href="{% url 'cadastrar_artista' %}">Enviar artista</a></li>
-                                <li><a href="#">Top musicas</a></li>
-                                <li><a href="#">Top artistas</a></li>
+                                <!--<li><a href="#">Top musicas</a></li>-->
+                                <!--<li><a href="#">Top artistas</a></li>-->
                                 {% if user.is_anonymous %}
                                 <li><a href="{% url 'register' %}">Criar conta</a></li>
                                 {% endif %}
@@ -48,10 +49,10 @@
                         <div class="footer-tittle">
                             <h4>Ajuda</h4>
                             <ul>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Política de Privacidade</a></li>
-                                <li><a href="#">Termos e condições</a></li>
-                                <li><a href="#">Trabalhe conosco</a></li>
+                                <!--<li><a href="#">FAQ</a></li>-->
+                                <li><a href="{% static 'pdf/PoliticadePrivacidade-WorshipCifras.pdf' %}" download="Política de Privacidade WorshipCifras 012022.pdf">Política de Privacidade</a></li>
+                                <li><a href="{% static 'pdf/TermosECondicoes-WorshipCifras.pdf'  %}" download="Termos e Condições WorshipCifras 012022.pdf">Termos e condições</a></li>
+                                <!--<li><a href="#">Trabalhe conosco</a></li>-->
                                 {% if user.is_anonymous %}
                                 <li><a data-toggle="modal" data-target="#acesso-negado" href="#acesso-negado">Reportar um bug</a></li>
                                 {% else %}

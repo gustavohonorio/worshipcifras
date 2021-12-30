@@ -96,8 +96,8 @@ WSGI_APPLICATION = 'worshipcifras.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'worshipc_site',
-        'USER': 'worshipc_user',
+        'NAME': 'worshi_site',
+        'USER': 'worshi_user',
         'PASSWORD': 'Wcifras_db1!',
         'HOST': 'localhost',
         'PORT': '3306',

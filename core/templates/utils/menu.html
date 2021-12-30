@@ -30,12 +30,12 @@
                                             <li><a href="#">Premium</a></li>
                                         </ul>
                                     </li>-->
-                                    <li><a href="#">Ranking</a>
+                                    <!--<li><a href="#">Ranking</a>
                                         <ul class="submenu">
                                             <li><a href="#">Músicas</a></li>
                                             <li><a href="#">Comunidade</a></li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     {% if user.wc_perfil_id == 1 or user.wc_perfil_id == 3 %}
                                     <li><a href="{% url 'staff' %}">WC Staff</a></li>
                                     {% endif %}
@@ -50,6 +50,8 @@
                                             <li><a href="#">Configurações</a></li>
                                         </ul>
                                     </li>
+
+                                    <li><a href="{% url 'logout' %}">Sair</a></li>
                                     {% endif %}
                                 </ul>
                             </nav>
