@@ -287,7 +287,7 @@ def tag_cifra(cifra):
 
 # ESTE METODO INSERE AS TAGS HTML PARA EXIBIÇÃO EM TELA
 def add_tags(tag, valor, pular_linha):
-    print(f'{valor} >>>>>>> {pular_linha}')
+    # print(f'{valor} >>>>>>> {pular_linha}')
     if pular_linha == 0:
         return mark_safe(f'<br><%s>%s</%s><br>' % (tag, valor, tag))
     elif pular_linha == 1:

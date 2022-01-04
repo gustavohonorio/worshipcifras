@@ -9,7 +9,8 @@ from wcstaff.models import ReportErro
 
 
 def index(request):
-    cifras = Cifra.objects.filter(status__icontains='A')
+    cifras = Cifra.objects.filter(status__icontains='A')[:10000]
+    print(Cifra.objects.filter(status__icontains='A')[:10000].explain(analyze=True))
     top_cifras = Cifra.objects.all()[:5]
     artistas = Artista.objects.all()
     top_artistas = Artista.objects.all()[:5]

@@ -10,7 +10,7 @@ from wclogon.models import Usuario, UsuarioKPI
 from wcstaff.forms import ReportErroForm
 from wcstaff.models import ReportErro
 from .forms import ArtistaForm, ComentarioForm
-from .models import Artista, Comentario
+from .models import Artista, Comentario, ArtistaKPI
 
 
 def artista(request, id, nome_artista):
@@ -79,6 +79,10 @@ def cadastrar(request):
 
                 novo_artista = Artista(nome=nome, genero=genero)
                 novo_artista.save()
+
+                # TODO: AJUSTAS OS ARTISTAS KPI
+                novo_artista_kpi = ArtistaKPI(wc_artista=novo_artista, curtidas=0, comentarios=0, acessos=0)
+                print(novo_artista_kpi.save)
 
                 # ATUALIZANDO KPI USUARIO x ENVIO DE ARTISTAS
                 Kpi.incrementar_usuarios(request.user.id, 3)
