@@ -1,8 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.core.mail.message import EmailMessage
 from django import forms
-
-from worshipcifras import settings
-from worshipcifras.settings import DATE_INPUT_FORMATS
 from .models import Usuario
 from .utils import static_vars
 
@@ -36,6 +34,25 @@ class UsuarioForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'E-mail'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Senha', }))
     password_confirm = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Confirmar Senha',}))
+
+    def send_email(self):
+        nome = self.cleaned_data['first_name'] + ' ' + self.cleaned_data['last_name']
+        email = self.cleaned_data['email']
+
+        conteudo = f'Olá {nome}, seja bem vindo ao Worship Cifras.\n\n' \
+                   f'Em nossa comunidade, buscar a excelência para o nosso momento de adoração é um propósito.\n\n' \
+                   f'Conte conosco.\n\n' \
+                   f'Deus abençoe.'
+
+        mail = EmailMessage(
+            subject='Seja bem vindo à comunidade Worship Cifras',
+            body=conteudo,
+            from_email='no-reply@worshipcifras.com.br',
+            to=['no-reply@worshipcifras.com.br', email],
+            headers={'Reply-To': email}
+        )
+
+        mail.send()
 
     class Meta:
         model = Usuario

@@ -39,6 +39,8 @@ def register(request):
                     messages.success(request, 'Ual, estamos felizes em te-lo conosco, seja bem vindo ao Worship Cifras. '
                                               'Deus abençoe.')
 
+                    form.send_email()
+
                     return redirect('index')
                 else:
                     messages.error(request, 'As senhas não conferem, por favor, valide antes de prosseguir.')

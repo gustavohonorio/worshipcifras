@@ -161,3 +161,14 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+# Configurações de email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+"""
+EMAIL_HOST = 'mail.worshipcifras.com.br' # localhost
+EMAIL_HOST_USER = 'no-reply@worshipcifras.com.br'
+EMAIL_PORT = 465 # 587
+EMAIL_USER_TSL = True
+EMAIL_HOST_PASSWORD = 'Wcifras_pass1!'
+"""

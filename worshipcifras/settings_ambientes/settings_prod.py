@@ -167,3 +167,12 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+# Configurações de email
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 'no-reply@worshipcifras.com.br'
+EMAIL_PORT = 587
+EMAIL_USE_TSL = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_PASSWORD = 'Wcifras_pass1!'
+DEFAULT_FROM_EMAIL = 'contato@worshipcifras.com.br'
