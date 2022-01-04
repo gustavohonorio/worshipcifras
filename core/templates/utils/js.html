@@ -1,5 +1,5 @@
 {% load static %}
-<!-- All JS Custom Plugins Link Here here -->
+<!-- All JS Custom Plugins Link Here -->
 <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
 <!-- Jquery, Popper, Bootstrap -->
 <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
@@ -39,3 +39,16 @@
 
 <!-- Mascaras para os formularios -->
 <script src="{% static 'js/mascaras-usuario.js' %}"></script>
+
+<!-- Jquery + AJAX Busca com autocomplete -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+<script>
+  $( function() {
+    $( "#buscar" ).autocomplete({
+      source: '{% url 'index' %}',
+      minLength: 2
+    });
+  } );
+  </script>

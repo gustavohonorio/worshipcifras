@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import resolve
 
@@ -9,10 +10,19 @@ from wcstaff.models import ReportErro
 
 
 def index(request):
-    cifras = Cifra.objects.filter(status__icontains='A')[:10000]
-    print(Cifra.objects.filter(status__icontains='A')[:10000].explain(analyze=True))
+    if 'term' in request.GET:
+        c = Cifra.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:5]
+        a = Artista.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:5]
+        lista = list()
+        for cifra in c:
+            lista.append(cifra.nome + ' - ' + str(cifra.wc_artista))
+        for artista in a:
+            lista.append('Buscar ' + artista.nome)
+        return JsonResponse(lista, safe=False)
+
+    # artistas = Artista.objects.all()
+
     top_cifras = Cifra.objects.all()[:5]
-    artistas = Artista.objects.all()
     top_artistas = Artista.objects.all()[:5]
     form_report = ReportErroForm()
 
@@ -20,13 +30,14 @@ def index(request):
         if "Buscar" in request.GET.get('buscar_n'):
             buscar = request.GET.get('buscar_n').split('Buscar ')
             if buscar[1]:
-                buscar_artista = Artista.objects.filter(nome__icontains=buscar[1])
+                buscar_artista = Artista.objects.filter(nome=buscar[1])
                 if buscar_artista:
                     return redirect('artista', id=buscar_artista[0].id, nome_artista=str(buscar_artista[0].nome))
         else:
             buscar = request.GET.get('buscar_n').split(' - ')
             if buscar[0]:
-                buscar_cifra = Cifra.objects.filter(nome__icontains=buscar[0])
+                artista_aux = Artista.objects.filter(nome=buscar[1])[:1]
+                buscar_cifra = Cifra.objects.filter(nome__icontains=buscar[0], wc_artista=artista_aux)[:1]
                 if buscar_cifra:
                     return redirect('cifras_busca',
                                     artista=str(buscar_cifra[0].wc_artista).replace(' ', '-').lower(),
@@ -58,5 +69,5 @@ def index(request):
 
                 return redirect('index')
 
-    return render(request, 'index.html', {'top_cifras': top_cifras, 'top_artistas': top_artistas, 'cifras': cifras,
-                                          'artistas': artistas, 'formReport': form_report, })
+    return render(request, 'index.html', {'top_cifras': top_cifras, 'top_artistas': top_artistas,
+                                          'formReport': form_report, })

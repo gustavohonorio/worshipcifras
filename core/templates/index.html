@@ -31,19 +31,10 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
                             <div class="mt-10">
-                                <input type="text" list="cifras_auto_complete" id="buscar" name="buscar_n"
+                                <input type="text" id="buscar" name="buscar_n"
                                        placeholder="O que você vai tocar hoje?"
                                        onfocus="this.placeholder = ''"
                                        onblur="this.placeholder = 'O que você vai tocar hoje?'" class="single-input">
-                                <!-- Retornando a lista de cifras, para autocompletar a busca -->
-                                <datalist id="cifras_auto_complete">
-                                    {% for cifra in cifras %}
-                                    <option value="{{cifra.nome}} - {{cifra.wc_artista}}"></option>
-                                    {% endfor %}
-                                    {% for artista in artistas %}
-                                    <option value="Buscar {{artista.nome}}"></option>
-                                    {% endfor %}
-                                </datalist>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
