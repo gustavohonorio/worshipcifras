@@ -3105,6 +3105,8 @@ hr {
 .haveAproject {
     padding: 64px 69px 54px 78px;
     background-repeat: no-repeat;
+    background: rgb(173,186,164);
+    background: linear-gradient(0deg, rgba(173,186,164,1) 0%, rgba(164,186,183,1) 100%);
     border-radius: 10px;
     position: relative;
 }

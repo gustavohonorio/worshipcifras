@@ -5,7 +5,7 @@
     <!-- META, CSS -->
     {% include 'utils/head.html' %}
 
-    <title>Worship Cifras | Morada</title>
+    <title>Worship Cifras | {{artista.nome}}</title>
 
 </head>
 
@@ -22,7 +22,11 @@
     <!-- Banner Capa -->
     <div class="have-project">
         <div class="container">
+            {% if 1 == 1 %}
             <div class="haveAproject" data-background="{% static '/img/banner/newpage.png' %}">
+            {% else %}
+            <div class="haveAproject">
+            {% endif %}
                 <div class="row d-flex align-items-center">
                     <div class="col-xl-7 col-lg-9 col-md-12">
                         <div class="wantToWork-caption">
