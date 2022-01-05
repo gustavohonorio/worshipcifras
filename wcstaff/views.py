@@ -53,7 +53,7 @@ def staff(request):
 # ARTISTAS
 @login_required
 def artistas(request):
-    a = Artista.objects.all()
+    a = Artista.objects.all()[:100]
     return render(request, 'read/r-artistas.html', {'artistas': a})
 
 
@@ -79,9 +79,9 @@ def e_artistas(request, id):
 @login_required
 def cifras(request, filtro):
     if filtro == 'p':
-        c = Cifra.objects.filter(status='P')
+        c = Cifra.objects.filter(status='P')[:100]
     else:
-        c = Cifra.objects.all()
+        c = Cifra.objects.all()[:100]
     return render(request, 'read/r-cifras.html', {'cifras': c})
 
 
@@ -106,7 +106,7 @@ def e_cifras(request, id):
 # USUARIOS
 @login_required
 def usuarios(request):
-    u = Usuario.objects.all()
+    u = Usuario.objects.all()[:100]
     return render(request, 'read/r-usuarios.html', {'usuarios': u})
 
 

@@ -26,9 +26,13 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-xl-7 col-lg-9 col-md-12">
                         <div class="wantToWork-caption">
-                            <h2>{{artista.nome}} <i class="fa fa-check-circle"
+                            <h2>{{artista.nome}}
+                                {% if artista.status == 'AV' %}
+                                <i class="fa fa-check-circle"
                                           style="color: #22A545; font-size: 20px; vertical-align: top; margin-top: 12px"
-                                          aria-hidden="true"></i></h2>
+                                          aria-hidden="true"></i>
+                                {% endif %}
+                            </h2>
                             <div>
                                 <p class="footer-artista">
                                     <a href="{{artista.site}}" target="_blank"><i

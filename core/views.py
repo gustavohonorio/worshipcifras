@@ -12,7 +12,7 @@ from wcstaff.models import ReportErro
 
 def index(request):
     if 'term' in request.GET:
-        c = Cifra.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:5]
+        c = Cifra.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:10]
         a = Artista.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:5]
         lista = list()
         for cifra in c:

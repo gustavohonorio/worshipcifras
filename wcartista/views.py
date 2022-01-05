@@ -16,7 +16,7 @@ from .models import Artista, Comentario, ArtistaKPI
 def artista(request, id, nome_artista):
     a = Artista.objects.get(id=id)
     generos = a.genero.split(',')
-    cancoes = Cifra.objects.filter(wc_artista=a)[:3]
+    cancoes = Cifra.objects.filter(wc_artista=a)[:5]
 
     # EXIBINDO COMENTARIOS
     comentarios = Comentario.objects.filter(wc_artista=a.id)
@@ -46,7 +46,7 @@ def cadastrar(request):
     form = ArtistaForm()
     form_report = ReportErroForm()
 
-    artistas_similares = Artista.objects.all()
+    artistas_similares = Artista.objects.all()[:5]
 
     if request.method == 'POST':
         if 'report' in request.POST:

@@ -30,12 +30,17 @@ def cifras(request, artista, cifra_id, cifra_nome,):
     CifraKPI.objects.filter(wc_cifra=cifra).update(acessos=F('acessos')+1)
 
     # TRATANDO CIFRA PARA SER EXIBIDA EM TELA
-    novo_tom = (request.GET.get('tom_n')[-1] if request.GET.get('tom_n') else 0)
+
+    novo_tom = (request.GET.get('tom_n') if request.GET.get('tom_n') else 0)
 
     cifra_split = cifra.cifra.split()
+
     if novo_tom:
+        # TODO : TRATAR OS TONS MENORES, HOJE ESTOU SUBSTITUINDO PELOS MAIORES
+        novo_tom = novo_tom.replace('Tom original: ', '')
+        novo_tom = (novo_tom[0] if 'm' in novo_tom else novo_tom)
         if novo_tom != cifra.tom:
-            acordes_regras.transposicao_cifra(cifra_split, cifra.tom, novo_tom)
+            acordes_regras.transposicao_cifra(cifra_split, (cifra.tom[0] if 'm' in cifra.tom else cifra.tom), novo_tom)
 
     modo_default = 'Modo'
     if request.GET.get('modo_n') == '1':
@@ -77,7 +82,7 @@ def cifras(request, artista, cifra_id, cifra_nome,):
 
 @login_required
 def cadastrar(request):
-    cifras_recentes = Cifra.objects.all()
+    cifras_recentes = Cifra.objects.all()[:5]
 
     artistas = Artista.objects.all()
 

@@ -176,3 +176,57 @@ EMAIL_USE_TSL = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_PASSWORD = 'Wcifras_pass1!'
 DEFAULT_FROM_EMAIL = 'contato@worshipcifras.com.br'
+
+#LOGGING = {
+#    'version': 1,
+#    'disable_existing_loggers': False,
+#    'formatters': {
+#        'verbose': {
+#            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+#            'style': '{',
+#        },
+#        'simple': {
+#            'format': '{levelname} {message}',
+#            'style': '{',
+#        },
+#    },
+#    'filters': {
+#        'require_debug_true': {
+#            '()': 'django.utils.log.RequireDebugTrue',
+#        },
+#    },
+#    'handlers': {
+#        'console': {
+#            'level': 'INFO',
+#            'filters': ['require_debug_true'],
+#            'class': 'logging.StreamHandler',
+#            'formatter': 'simple'
+#        },
+#        'mail_admins': {
+#            'level': 'ERROR',
+#            'class': 'django.utils.log.AdminEmailHandler',
+#        },
+#        'file': {
+#            'level': "DEBUG",
+#            'class': 'logging.handlers.TimedRotatingFileHandler',
+#            'formatter': 'verbose',
+#            'filename': '/home4/worshi/apps/',
+#            'when': 'midnight',
+#        }
+#    },
+#    'loggers': {
+#        'django': {
+#            'handlers': ['console'],
+#            'propagate': True,
+#        },
+#        'django.request': {
+#            'handlers': ['mail_admins'],
+#            'level': 'ERROR',
+#            'propagate': False,
+#        },
+#        'worshipcifras': {
+#            'handlers': ['console', 'mail_admins', 'file'],
+#            'level': 'DEBUG',
+#        }
+#    }
+#}

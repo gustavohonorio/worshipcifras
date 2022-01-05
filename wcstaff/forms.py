@@ -97,7 +97,7 @@ class CifraForm(forms.ModelForm):
 
     class Meta:
         model = Cifra
-        fields = ['nome', 'genero', 'cifra', 'letra', 'acordes', 'tom', 'capotraste', 'afinacao',
+        fields = ['nome', 'genero', 'cifra', 'tom', 'capotraste', 'afinacao',
                   'versao', 'detalhes', 'capa', 'video', 'video_aula', 'compositor', 'produtor', 'musicos', 'bpm',
                   'patrocinada', 'status', 'op_user']
 

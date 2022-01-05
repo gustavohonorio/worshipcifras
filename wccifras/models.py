@@ -10,8 +10,6 @@ class Cifra(models.Model):
     wc_artista = models.ForeignKey(Artista, on_delete=models.CASCADE, default=None)
     genero = models.TextField(blank=False, null=False)
     cifra = models.TextField(blank=False, null=False)
-    letra = models.TextField(blank=True, null=False)
-    acordes = models.TextField(blank=True, null=False)
     # adiconais
     tom = models.TextField(blank=False, null=False)
     capotraste = models.TextField(blank=False, null=False, default='0')
@@ -19,6 +17,7 @@ class Cifra(models.Model):
     versao = models.TextField(blank=False, null=False)
     detalhes = models.TextField(blank=True, null=True)
     # verificada
+    ouvir_agora = models.TextField(blank=True, null=True)
     capa = models.TextField(blank=True, null=True)
     video = models.TextField(blank=True, null=True)
     video_aula = models.TextField(blank=True, null=True)

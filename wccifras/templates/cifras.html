@@ -40,9 +40,11 @@
                         <div class="wantToWork-caption">
                             <h2>
                                 {{cifra.nome}}
+                                {% if cifra.status == 'AV' %}
                                 <i class="fa fa-check-circle"
                                    style="color: #22A545; font-size: 20px; vertical-align: top; margin-top: 12px"
                                    aria-hidden="true"></i>
+                                {% endif %}
                             </h2>
                             <p>{{cifra.wc_artista}}</p>
                         </div>
@@ -50,9 +52,11 @@
                     <div class="col-xl-5 col-lg-3 col-md-12">
                         <!--<i class="fa fa-heart" style="color: #A52422; font-size: 40px; margin-left:130px; margin-top: 8px"
                                    aria-hidden="true"></i>-->
+                        {% if cifra.ouvir_agora %}
                         <div class="wantToWork-btn f-right">
-                            <a href="#" class="btn btn-ans">Ouvir agora</a>
+                            <a href="{{cifra.ouvir_agora}}" class="btn btn-ans">Ouvir agora</a>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -116,7 +120,6 @@
                             </div>
                         </div>
                         <br>
-                        <!-- não ta rolando atualizar a page com as opções escolhidas -->
                         <div class="col-lg-12">
                             <button class="genric-btn primary radius" style="" type="submit"><i class="fa fa-refresh"
                                                                                                 aria-hidden="true"></i>
@@ -125,7 +128,8 @@
                         </div>
                     </form>
 
-                    <div class="col-lg-12">
+                    <!-- CRIAR A OPÇÃO DE DOWNLOAD -->
+                    <!-- <div class="col-lg-12">
                         <div class="single-element-widget mt-30">
                             <a href="#" class="" style="color: #080F0F"><i class="fa fa-download"
                                                                            aria-hidden="true"></i>
@@ -140,7 +144,7 @@
                                 Adicionar ao culto
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- cifra -->
@@ -250,12 +254,14 @@
 
                 <!-- detalhes da cifra -->
                 <div class="col-lg-4">
+                    {% if cifra.video %}
                     <div class="col-lg-12" align="center">
-                        <iframe width="auto" height="auto" src="https://www.youtube.com/embed/YnrN0o0lubM"
+                        <iframe width="auto" height="auto" src="{{cifra.video}}"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                     </div>
+                    {% endif %}
                     <div class="col-lg-12">
                         <div class="quote-wrapper">
                             <div class="quotes">
