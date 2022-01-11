@@ -72,3 +72,7 @@ def index(request):
 
     return render(request, 'index.html', {'top_cifras': top_cifras, 'top_artistas': top_artistas,
                                           'formReport': form_report, })
+
+
+def pre_alfa(request):
+    return render(request, 'pre_alfa.html')
