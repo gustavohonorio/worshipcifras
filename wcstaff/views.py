@@ -2,13 +2,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import resolve
+from django.views.generic import ListView
 
 from wcartista.models import Artista
 from wccifras.utils.acordes_regras import tag_cifra
 from wclogon.models import Usuario, Perfil
 from wccifras.models import Cifra
 from .forms import ArtistaForm, CifraForm, UsuarioForm, ReportErroStaffForm
-
 
 # DEFAULT
 from .models import ReportErro
@@ -51,10 +51,27 @@ def staff(request):
 
 
 # ARTISTAS
-@login_required
-def artistas(request):
-    a = Artista.objects.all()[:100]
-    return render(request, 'read/r-artistas.html', {'artistas': a})
+class ArtistaListView(ListView):
+    template_name = 'read/r-artistas.html'
+    model = Artista
+    paginate_by = 50
+    ordering = 'nome'
+
+    def get_queryset(self):
+        filter_val = self.request.GET.get('filter', )
+        # order = self.request.GET.get('orderby', 'give-default-value')
+        if filter_val:
+            new_context = Artista.objects.filter(nome__icontains=filter_val)
+            return new_context
+        else:
+            new_context = Artista.objects.all()
+            return new_context
+
+    def get_context_data(self, **kwargs):
+        context = super(ArtistaListView, self).get_context_data(**kwargs)
+        context['filter'] = self.request.GET.get('filter', )
+        # context['orderby'] = self.request.GET.get('orderby', 'give-default-value')
+        return context
 
 
 @login_required
@@ -76,13 +93,27 @@ def e_artistas(request, id):
 
 
 # CIFRAS
-@login_required
-def cifras(request, filtro):
-    if filtro == 'p':
-        c = Cifra.objects.filter(status='P')[:100]
-    else:
-        c = Cifra.objects.all()[:100]
-    return render(request, 'read/r-cifras.html', {'cifras': c})
+class CifrasListView(ListView):
+    template_name = 'read/r-cifras.html'
+    model = Cifra
+    paginate_by = 50
+    ordering = 'wc_artista'
+
+    def get_queryset(self):
+        filter_val = self.request.GET.get('filter', )
+        # order = self.request.GET.get('orderby', 'give-default-value')
+        if filter_val:
+            new_context = Cifra.objects.filter(nome__icontains=filter_val)
+            return new_context
+        else:
+            new_context = Cifra.objects.all()[:1000]
+            return new_context
+
+    def get_context_data(self, **kwargs):
+        context = super(CifrasListView, self).get_context_data(**kwargs)
+        context['filter'] = self.request.GET.get('filter', )
+        # context['orderby'] = self.request.GET.get('orderby', 'give-default-value')
+        return context
 
 
 @login_required
@@ -98,7 +129,7 @@ def e_cifras(request, id):
         if form.is_valid():
             c.save()
             messages.success(request, 'Cifra atualizada com sucesso.')
-            return redirect('r-cifras', filtro='TODAS')
+            return redirect('r-cifras',)
 
     return render(request, 'edit/e-cifras.html', {'form': form, 'cifra': c, 'artistas': a})
 
@@ -108,6 +139,31 @@ def e_cifras(request, id):
 def usuarios(request):
     u = Usuario.objects.all()[:100]
     return render(request, 'read/r-usuarios.html', {'usuarios': u})
+
+
+class UsuariosListView(ListView):
+    template_name = 'read/r-usuarios.html'
+    model = Usuario
+    paginate_by = 50
+    ordering = 'first_name'
+
+    def get_queryset(self):
+        filter_val = self.request.GET.get('filter', )
+        # order = self.request.GET.get('orderby', 'give-default-value')
+        if filter_val:
+            new_context = Usuario.objects.filter(first_name__icontains=filter_val)
+            return new_context
+        else:
+            new_context = Usuario.objects.all()[:100]
+            return new_context
+
+    def get_context_data(self, **kwargs):
+        context = super(UsuariosListView, self).get_context_data(**kwargs)
+        context['filter'] = self.request.GET.get('filter', )
+        # context['orderby'] = self.request.GET.get('orderby', 'give-default-value')
+        return context
+
+
 
 
 @login_required
@@ -121,6 +177,6 @@ def e_usuarios(request, id):
         if form.is_valid():
             u.save()
             messages.success(request, 'Usuário atualizado com sucesso.')
-            return redirect('r-usuarios',)
+            return redirect('r-usuarios', )
 
     return render(request, 'edit/e-usuarios.html', {'form': form, 'usuario': u, })

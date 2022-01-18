@@ -12,6 +12,21 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <div class="mb-3">
+                        <form method="get" action="{% url 'r-usuarios' %}">
+                            <div class="col-6 mb-3">
+                                <h6>Buscar pelo nome</h6>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <input type="text" value={{filter}} name="filter" class="form-control"
+                                       placeholder="Buscar pelo nome">
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" name="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+
                     <thead>
                     <tr>
                         <th>Nome</th>
@@ -32,7 +47,7 @@
                     </tfoot>
 
                     <tbody>
-                    {% for u in usuarios %}
+                    {% for u in page_obj %}
                     <tr>
                         <td><a href="{% url 'e-usuarios' u.id %}">{{u.first_name}} {{u.last_name}}</a></td>
                         <td>{{u.email}}</td>
@@ -43,6 +58,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                {% include 'paginacao.html' %}
             </div>
         </div>
     </div>

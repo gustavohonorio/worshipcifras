@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html class="no-js" lang="zxx">
 <head>
     <!-- META, CSS -->
@@ -56,7 +57,7 @@
     <!-- Banner Destaque Start -->
     <div class="have-project">
         <div class="container">
-            <div class="haveAproject" data-background="../static/img/team/have.jpg">
+            <div class="haveAproject" data-background="{% static 'img/team/have.jpg' %}">
                 <div class="row d-flex align-items-center">
                     <div class="col-xl-7 col-lg-9 col-md-12">
                         <div class="wantToWork-caption">
@@ -81,7 +82,7 @@
     <div class="slider-area">
         <div class="slider-active">
             <div class="single-slider slider-height d-flex align-items-center"
-                 data-background="../static/img/hero/h1_hero.png" style="margin-top: -100px">
+                 data-background="{% static 'img/hero/h1_hero.png' %}" style="margin-top: -100px">
                 <div class="container">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-7 col-md-9 ">
@@ -129,8 +130,8 @@
                             <h1>{{forloop.counter}}º</h1>
                             <!--<img src="../static/img/post/post_1.png" alt="post" style="margin-left: 5px">-->
                             <div class="media-body" style="margin-left: 5px;">
-                                <a href="#"><h5> {{cifra.nome}}</h5></a>
-                                <p style="margin-top: -10px"> {{cifra.wc_artista}}</p>
+                                <a href="#"><h5> {{cifra.wc_cifra.nome}}</h5></a>
+                                <p style="margin-top: -10px"> {{cifra.wc_cifra.wc_artista}}</p>
                             </div>
                         </div>
                         {% endfor %}
@@ -159,8 +160,8 @@
                             <h1>{{forloop.counter}}º</h1>
                             <!--<img src="../static/img/post/post_1.png" alt="post" style="margin-left: 5px">-->
                             <div class="media-body" style="margin-left: 5px;">
-                                <a href="#"><h5> {{artista.nome}}</h5></a>
-                                <p style="margin-top: -10px"> {{artista.genero}}</p>
+                                <a href="#"><h5> {{artista.wc_artista.nome}}</h5></a>
+                                <p style="margin-top: -10px"> {{artista.wc_artista.genero}}</p>
                             </div>
                         </div>
                         {% endfor %}
@@ -202,7 +203,7 @@
                                     <!-- founder -->
                                     <div class="testimonial-founder d-flex align-items-center justify-content-center">
                                         <div class="founder-img">
-                                            <img src="../static/img/testmonial/testimonial1.png" alt="">
+                                            <img src="{% static 'img/testmonial/testimonial1.png' %}" alt="">
                                         </div>
                                         <div class="founder-text">
                                             <span>Janaiana Monsanto</span>
@@ -222,7 +223,7 @@
                                     <!-- founder -->
                                     <div class="testimonial-founder d-flex align-items-center justify-content-center">
                                         <div class="founder-img">
-                                            <img src="../static/img/testmonial/testimonial2.png" alt="">
+                                            <img src="{% static 'img/testmonial/testimonial2.png' %}" alt="">
                                         </div>
                                         <div class="founder-text">
                                             <span>Felipe Rodrigues</span>

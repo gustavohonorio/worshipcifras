@@ -1,17 +1,21 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import path
-from wcstaff import views
+from wcstaff.views import ArtistaListView, CifrasListView, UsuariosListView,e_cifras, e_artistas, e_usuarios, usuarios, staff
+
+
+
 
 urlpatterns = [
-    path('', views.staff, name='staff'),
+    path('', staff, name='staff'),
 
-    path('artistas/', views.artistas, name='r-artistas'),
-    path('artistas/<int:id>', views.e_artistas, name='e-artistas'),
+    path('artistas/', login_required(ArtistaListView.as_view()), name='r-artistas'),
+    path('artistas/<int:id>', e_artistas, name='e-artistas'),
 
-    path('cifras/visualizar/<filtro>', views.cifras, name='r-cifras'),
-    path('cifras/<int:id>', views.e_cifras, name='e-cifras'),
+    path('cifras/', login_required(CifrasListView.as_view()), name='r-cifras'),
+    path('cifras/<int:id>', e_cifras, name='e-cifras'),
 
-    path('usuarios/', views.usuarios, name='r-usuarios'),
-    path('usuarios/<int:id>', views.e_usuarios, name='e-usuarios'),
+    path('usuarios/', login_required(UsuariosListView.as_view()), name='r-usuarios'),
+    path('usuarios/<int:id>', e_usuarios, name='e-usuarios'),
 
 
 ]

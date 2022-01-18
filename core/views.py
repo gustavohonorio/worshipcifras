@@ -4,8 +4,8 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import resolve
 
-from wccifras.models import Cifra
-from wcartista.models import Artista
+from wccifras.models import Cifra, CifraKPI
+from wcartista.models import Artista, ArtistaKPI
 from wcstaff.forms import ReportErroForm
 from wcstaff.models import ReportErro
 
@@ -21,20 +21,19 @@ def index(request):
             lista.append('Buscar ' + artista.nome)
         return JsonResponse(lista, safe=False)
 
-    # artistas = Artista.objects.all()
+    top_cifras = CifraKPI.objects.all().order_by('-acessos')[:5]
+    top_artistas = ArtistaKPI.objects.all().order_by('-acessos')[:5]
 
-    top_cifras = Cifra.objects.all()[:5]
-    top_artistas = Artista.objects.all()[:5]
     form_report = ReportErroForm()
 
-    if request.GET.get('buscar_n'):
+    if request.GET.get('buscar_n'):  # buscando artistas
         if "Buscar" in request.GET.get('buscar_n'):
             buscar = request.GET.get('buscar_n').split('Buscar ')
             if buscar[1]:
                 buscar_artista = Artista.objects.filter(nome=buscar[1])
                 if buscar_artista:
                     return redirect('artista', id=buscar_artista[0].id, nome_artista=str(buscar_artista[0].nome))
-        else:
+        elif " - " in request.GET.get('buscar_n'):  # buscando cifras
             buscar = request.GET.get('buscar_n').split(' - ')
             if buscar[0]:
                 artista_aux = Artista.objects.filter(nome=buscar[1])[:1]
@@ -44,6 +43,20 @@ def index(request):
                                     artista=str(buscar_cifra[0].wc_artista).replace(' ', '-').lower(),
                                     cifra_id=buscar_cifra[0].id,
                                     cifra_nome=str(buscar_cifra[0].nome).replace(' ', '-').lower(),)
+        else:  # caso não encontre a busca recomendada pela sistema
+            buscar_artista = Artista.objects.filter(nome__icontains=request.GET.get('buscar_n'))[:1]
+            if buscar_artista:
+                return redirect('artista', id=buscar_artista[0].id, nome_artista=str(buscar_artista[0].nome))
+            else:
+                buscar_cifra = Cifra.objects.filter(nome__icontains=request.GET.get('buscar_n'))[:1]
+                if buscar_cifra:
+                    return redirect('cifras_busca',
+                                    artista=str(buscar_cifra[0].wc_artista).replace(' ', '-').lower(),
+                                    cifra_id=buscar_cifra[0].id,
+                                    cifra_nome=str(buscar_cifra[0].nome).replace(' ', '-').lower(), )
+            messages.warning(request, 'A cifra ou artista buscado não existe em nosso sistema. Cadastre agora e '
+                                      'contribua com a comunidade')
+            return redirect('index')
 
     # Reportar um bug
     if request.method == 'POST':
