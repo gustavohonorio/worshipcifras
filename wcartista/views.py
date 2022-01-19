@@ -33,9 +33,13 @@ def artista(request, id, nome_artista):
 
             # ATUALIZANDO KPI USUARIO x ENVIO DE COMENTARIOS
             Kpi.incrementar_usuarios(request.user.id, 4)
+            # ATUALIZANDO KPI ARTISTA
+            Kpi.incrementar_artistas(id, 3)
 
             return render(request, 'artista.html', {'artista': a, 'generos': generos, 'cancoes': cancoes,
                                                     'comentarios': comentarios})
+    # ATUALIZANDO KPI ARTISTA
+    Kpi.incrementar_artistas(id, 1)
 
     return render(request, 'artista.html', {'artista': a, 'generos': generos, 'cancoes': cancoes, 'form': form,
                                             'comentarios': comentarios})
@@ -80,9 +84,10 @@ def cadastrar(request):
                 novo_artista = Artista(nome=nome, genero=genero)
                 novo_artista.save()
 
-                # TODO: AJUSTAS OS ARTISTAS KPI
+                # CRIAR KPI DOS ARTISTAS
                 novo_artista_kpi = ArtistaKPI(wc_artista=novo_artista, curtidas=0, comentarios=0, acessos=0)
-                print(novo_artista_kpi.save)
+
+                novo_artista_kpi.save()
 
                 # ATUALIZANDO KPI USUARIO x ENVIO DE ARTISTAS
                 Kpi.incrementar_usuarios(request.user.id, 3)
