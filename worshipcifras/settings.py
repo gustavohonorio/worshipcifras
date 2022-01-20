@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'bootstrap4',
     'stdimage',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [

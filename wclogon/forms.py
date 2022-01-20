@@ -5,6 +5,34 @@ from .models import Usuario
 from .utils import static_vars
 
 
+class RedefinirSenhaForm(forms.ModelForm):
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'single-input', }))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'single-input', }))
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'single-input date', }))
+
+    def send_email(self, nome, email):
+
+        conteudo = f'Olá {nome}, a sua senha foi alterada com sucesso.\n\n' \
+                   f'Caso não tenha sido você que fez esta solicitação, mande um e-email para ' \
+                   f'contato@worshipcifras.com.br, nos informando o acontecido.\n\n' \
+                   f'Atensiosamente, time Worship Cifras\n\n' \
+                   f'Deus abençoe.'
+
+        mail = EmailMessage(
+            subject='Senha alterada com sucesso',
+            body=conteudo,
+            from_email='no-reply@worshipcifras.com.br',
+            to=['no-reply@worshipcifras.com.br', email],
+            headers={'Reply-To': email}
+        )
+
+        mail.send()
+
+    class Meta:
+        model = Usuario
+        fields = []
+
+
 class MeuPerfilForm(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input', 'placeholder': ''}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input', 'placeholder': ''}))

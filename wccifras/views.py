@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import resolve
 
 from core.utils.backend import Kpi
@@ -12,9 +12,17 @@ from .models import Cifra, Tom, Capotraste, ModoVisualizacao, CifraKPI, Comentar
 from wcartista.models import Artista
 from wclogon.models import Usuario
 from .utils import acordes_regras
+from .utils.acordes_regras import tag_cifra
 
 
 def cifras(request, artista, cifra_id, cifra_nome,):
+    # TODO : TEMPORARIO : AQUI ESTOU PASSANDO A CIFRA PELO TAG NOVAMENTE, PARA TRATAR OS NOVOS ACORDES QUE TEM SURGIDO
+    #        QUANDO ESTABILIZAR A QUESTÃO DOS TONS, É NECESSÁRIO TIRAR ESTE PASSO PARA OTIMIZAR A APLICAÇÃO
+    c = get_object_or_404(Cifra, id=cifra_id)
+    c.cifra = tag_cifra(c.cifra.split())
+    c.cifra = ' '.join(c.cifra)
+    c.save()
+
     cifra = Cifra.objects.get(id=cifra_id)
 
     # ESTATICOS
@@ -36,7 +44,7 @@ def cifras(request, artista, cifra_id, cifra_nome,):
     cifra_split = cifra.cifra.split()
 
     if novo_tom:
-        # TODO : TRATAR OS TONS MENORES, HOJE ESTOU SUBSTITUINDO PELOS MAIORES
+        # TODO : TRATAR OS TONS MENORES, HOJE ESTOU SUBSTITUINDO PELAS REGRAS DOS TONS MAIORES
         novo_tom = novo_tom.replace('Tom original: ', '')
         novo_tom = (novo_tom[0] if 'm' in novo_tom else novo_tom)
         if novo_tom != cifra.tom:

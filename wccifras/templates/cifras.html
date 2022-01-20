@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% load social_share %}
 <html class="no-js" lang="zxx">
 <head>
     <!-- META, CSS -->
@@ -24,6 +25,7 @@
         ESTE REDIRECIONAMENTO NÃO ESTA FUNCIONANDO
         // var url = "url 'cifras' artista=artista cifra_id=cifra_id cifra_nome=cifra_nome modo_v='teste' "
     };
+
 
 
 </script>
@@ -125,6 +127,12 @@
                                                                                                 aria-hidden="true"></i>
                                 Atualizar
                             </button>
+                        </div><br>
+                        <div class="col-lg-12">
+                            <p>Compartilhe esta cifra!</p>
+                            {% post_to_facebook object_or_url "<h6 style='color: #080F0F;'><i class='fab fa-facebook-square'></i> Facebook</h6>" %}
+                            {% post_to_twitter "Olha só esta cifra: {{cifra.nome}} - {{cifra.wc_artista}}." object_or_url "<h6 style='color: #080F0F;'><i class='fab fa-twitter-square'></i> Twitter</h6>" %}
+                            {% post_to_whatsapp object_or_url "<h6 style='color: #080F0F;'><i class='fab fa-whatsapp-square'></i> WhatsApp</h6>" %}
                         </div>
                     </form>
 

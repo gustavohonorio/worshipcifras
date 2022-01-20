@@ -43,7 +43,7 @@
     <section class="blog_area single-post-area section-padding" style="margin-top: -100px">
         <div class="container">
             <div class="row">
-                <!-- Menu -->
+                <!-- Menu do usuário-->
                 {% include 'menu_lateral.html' %}
 
                 <!-- Formularios -->
@@ -64,67 +64,20 @@
                                 {% include 'utils/messages.html' %}
 
                                 <div class="mt-10">
-                                    <label>Nome</label>
-                                    {{form.first_name}}
+                                    <label>Digite a sua senha atual</label>
+                                    {{form.old_password}}
                                 </div>
                                 <div class="mt-10">
-                                    <label>Sobrenome</label>
-                                    {{form.last_name}}
+                                    <label>Digite sua nova senha</label>
+                                    {{form.new_password}}
                                 </div>
                                 <div class="mt-10">
-                                    <label>Data de Nascimento</label>
-                                    {{form.nascimento}}
-                                </div>
-                                <div class="mt-10">
-                                    <div>
-                                        <label>Gênero</label>
-                                    </div>
-                                    <div>
-                                        {{form.genero}}
-                                    </div>
-                                </div>
-                                <br><br>
-                                <div class="mt-10">
-                                    <label>Celular</label>
-                                    {{form.celular}}
-                                </div>
-                                <div class="mt-10">
-                                    <label>Cidade</label>
-                                    {{form.cidade}}
-                                </div>
-                                <div class="mt-10">
-                                    <div>
-                                        <label>Estado</label>
-                                    </div>
-                                    <div>
-                                        {{form.estado}}
-                                    </div>
-                                </div>
-                                <br><br>
-                                <div class="mt-10">
-                                    <label>País</label>
-                                    {{form.pais}}
-                                </div>
-                                <div class="mt-10">
-                                    <div>
-                                        <label>Você é cristão?</label>
-                                    </div>
-                                    <div>
-                                        {{form.cristao}}
-                                    </div>
-                                </div>
-                                <br><br>
-                                <div class="mt-10">
-                                    <label>Qual é a sua igreja?</label>
-                                    {{form.igreja}}
-                                </div>
-                                <div class="mt-10">
-                                    <label>Qual a sua função na igreja?</label>
-                                    {{form.funcao}}
+                                    <label>Confirme a sua nova senha</label>
+                                    {{form.confirm_password}}
                                 </div>
 
                                 <div class="button-group-area mt-40">
-                                    <button type="submit" class="genric-btn primary e-large">Atualizar dados</button>
+                                    <button type="submit" class="genric-btn primary e-large">Redefinir senha</button>
                                 </div>
                             </div>
                         </div>
