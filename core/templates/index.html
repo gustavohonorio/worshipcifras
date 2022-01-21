@@ -17,42 +17,11 @@
 
 <!-- Corpo da página -->
 <main>
-    <br><br><br><br><br>
+
     <div class="container">
         <!-- MENSAGENS DE RETORNO -->
         {% include 'utils/messages.html' %}
     </div>
-
-
-    <!-- Buscar Cifra start -->
-    <form action="" id="" method="get">
-        <div class="whole-wrap">
-            <div class="container box_1170">
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8">
-                            <div class="mt-10">
-                                <input type="text" id="buscar" name="buscar_n"
-                                       placeholder="O que você vai tocar hoje?"
-                                       onfocus="this.placeholder = ''"
-                                       onblur="this.placeholder = 'O que você vai tocar hoje?'" class="single-input">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <div class="button-group-area">
-                                <button type="submit" class="genric-btn primary radius" id="btn_buscar"
-                                        name="btn_buscar_n"><i class="fa fa-search"
-                                                               aria-hidden="true"></i>
-                                    Buscar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    <!-- Buscar Cifra End -->
 
     <!-- Banner Destaque Start -->
     <div class="have-project">
@@ -87,6 +56,7 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-7 col-md-9 ">
                             <div class="hero__caption">
+                                {% if user.is_anonymous %}
                                 <h1 data-animation="fadeInLeft" data-delay=".4s">Worship Cifras</h1>
                                 <p data-animation="fadeInLeft" data-delay=".6s">Busque a excelência para o seu momento
                                     de adoração. O
@@ -97,6 +67,14 @@
                                 <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s">
                                     <a href="{% url 'login' %}" class="btn hero-btn">Entrar</a>
                                 </div>
+                                {% else %}
+                                <h1 data-animation="fadeInLeft" data-delay=".4s">Worship Cifras</h1>
+                                <p data-animation="fadeInLeft" data-delay=".6s">Estamos em fase Beta do WCifras, por
+                                    isso temos uma imensidão de novidades que não vemos a hora de apresentar a você.
+                                    Caso encontre algum problema, ou tenha alguma ideia genial,
+                                    <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro" style="color: #A52422;">nos avise</a>,
+                                        isto é o que nos torna a comunidade tão incrível.</p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5">

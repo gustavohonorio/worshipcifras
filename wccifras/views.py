@@ -46,6 +46,7 @@ def cifras(request, artista, cifra_id, cifra_nome,):
     if novo_tom:
         # TODO : TRATAR OS TONS MENORES, HOJE ESTOU SUBSTITUINDO PELAS REGRAS DOS TONS MAIORES
         novo_tom = novo_tom.replace('Tom original: ', '')
+        novo_tom = novo_tom.replace('Tom selecionado: ', '')
         novo_tom = (novo_tom[0] if 'm' in novo_tom else novo_tom)
         if novo_tom != cifra.tom:
             acordes_regras.transposicao_cifra(cifra_split, (cifra.tom[0] if 'm' in cifra.tom else cifra.tom), novo_tom)

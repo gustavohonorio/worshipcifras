@@ -13,17 +13,27 @@
                     <div class="col-xl-8 col-lg-8 col-md-8">
                         <!-- Main-menu -->
                         <div class="main-menu f-right d-none d-lg-block">
+                            <!-- Menu do usuário anonimo -->
+                            {% if user.is_anonymous %}
                             <nav>
                                 <ul id="navigation">
-                                    {% if user.is_anonymous %}
                                     <li><a data-toggle="modal" data-target="#acesso-negado" href="#acesso-negado">Enviar
                                         cifra</a></li>
                                     <li><a data-toggle="modal" data-target="#acesso-negado" href="#acesso-negado">Cadastrar
                                         artista</a></li>
-                                    {% else %}
-                                    <li><a href="{% url 'cadastrar_cifra' %}">Enviar cifra</a></li>
-                                    <li><a href="{% url 'cadastrar_artista' %}">Cadastrar artista</a></li>
-                                    {% endif %}
+                                    <li><a href="{% url 'register' %}">Criar conta</a></li>
+                                </ul>
+                            </nav>
+                            <!-- Menu do usuário logado -->
+                            {% else %}
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="#">Enviar</a>
+                                        <ul class="submenu">
+                                            <li><a href="{% url 'cadastrar_cifra' %}">Cifra</a></li>
+                                            <li><a href="{% url 'cadastrar_artista' %}">Artista</a></li>
+                                        </ul>
+                                    </li>
                                     <!--<li><a href="blog.html">Planos</a>
                                         <ul class="submenu">
                                             <li><a href="#">Standard</a></li>
@@ -39,22 +49,18 @@
                                     {% if user.wc_perfil_id == 1 or user.wc_perfil_id == 3 %}
                                     <li><a href="{% url 'staff' %}">WC Staff</a></li>
                                     {% endif %}
-
-
-                                    {% if user.is_anonymous %}
-                                    <li><a href="{% url 'register' %}">Criar conta</a></li>
-                                    {% else %}
                                     <li><a href="#">Olá {{ user.get_full_name }}</a>
                                         <ul class="submenu">
                                             <li><a href="{% url 'meu-perfil' %}">Meu Perfil</a></li>
-                                            <li><a href="#">Configurações</a></li>
+                                            <!--<li><a href="#">Configurações</a></li>-->
                                         </ul>
                                     </li>
 
                                     <li><a href="{% url 'logout' %}">Sair</a></li>
-                                    {% endif %}
+
                                 </ul>
                             </nav>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-3">
@@ -74,6 +80,37 @@
             </div>
         </div>
     </div>
+
+    <br><br><br><br><br>
+    <!-- Buscar Cifra start -->
+    <form action="{% url 'index' %}" method="get">
+        <div class="whole-wrap">
+            <div class="container box_1170">
+                <div class="section-top-border">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8">
+                            <div class="mt-10">
+                                <input type="text" id="buscar" name="buscar_n"
+                                       placeholder="O que você vai tocar hoje?"
+                                       onfocus="this.placeholder = ''"
+                                       onblur="this.placeholder = 'O que você vai tocar hoje?'" class="single-input">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="button-group-area">
+                                <button type="submit" class="genric-btn primary radius" id="btn_buscar"
+                                        name="btn_buscar_n"><i class="fa fa-search"
+                                                               aria-hidden="true"></i>
+                                    Buscar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Buscar Cifra End -->
 
     <!-- Modal -->
     {% include 'utils/modals.html' %}
