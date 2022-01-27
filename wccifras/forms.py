@@ -22,10 +22,9 @@ class CifraForm(forms.ModelForm):
 
     versao = forms.ChoiceField(choices=VarsCifraForm.versao_choices, initial=0, )
 
-    wc_artista = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input', 'placeholder': 'Nome do '
+    wc_artista = forms.CharField(widget=forms.TextInput(attrs={'id': 'buscar_artista', 'class': 'single-input', 'placeholder': 'Nome do '
                                                                                                        'artista / '
-                                                                                                       'banda',
-                                                               'list': 'artista_auto_complete'}))
+                                                                                                       'banda',}))
 
     nome = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input', 'placeholder': 'Nome da música*'}))
 

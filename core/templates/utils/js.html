@@ -51,4 +51,12 @@
       minLength: 2
     });
   } );
+
+    $( function() {
+    $( "#buscar_artista" ).autocomplete({
+      source: '{% url 'cadastrar_cifra' %}',
+      minLength: 3
+    });
+  } );
+
 </script>

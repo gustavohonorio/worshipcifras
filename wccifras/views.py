@@ -1,8 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import resolve
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 
 from core.utils.backend import Kpi
 from wcstaff.forms import ReportErroForm
@@ -91,6 +94,14 @@ def cifras(request, artista, cifra_id, cifra_nome,):
 
 @login_required
 def cadastrar(request):
+    if 'term' in request.GET:
+        a = Artista.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:10]
+        lista = list()
+
+        for artista in a:
+            lista.append(artista.nome)
+        return JsonResponse(lista, safe=False)
+
     cifras_recentes = Cifra.objects.all()[:5]
 
     artistas = Artista.objects.all()
@@ -124,8 +135,19 @@ def cadastrar(request):
         else:
             form = CifraForm(request.POST)
             if form.is_valid():
+
                 nome = form.cleaned_data['nome']
-                wc_artista = Artista.objects.filter(nome=form.cleaned_data['wc_artista'])[:1]
+                wc_artista = Artista.objects.filter(status__icontains='A', nome__icontains=form.cleaned_data['wc_artista'])[:1]
+
+                if not wc_artista:
+                    msg = 'Este artista não existe. Verifique se você digitou corretamente. Caso seja um novo artista, '
+                    msg2 = 'cadastre-o'
+                    msg3 = ' antes de prosseguir. Ajude a comunidade e ganhe ainda mais pontos.'
+                    messages.warning(request, msg + msg2 + msg3)
+
+                    return render(request, 'cadastrar_cifra.html', {'cifras_recentes': cifras_recentes, 'form': form,
+                                                             'artistas': artistas, 'formReport': form_report, })
+
                 genero = form.cleaned_data['genero']
                 cifra = form.cleaned_data['cifra']
                 detalhes = form.cleaned_data['detalhes']
