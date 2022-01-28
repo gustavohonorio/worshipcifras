@@ -22,7 +22,11 @@
 <!-- Reportar um erro -->
 <div class="modal fade" id="reportar-erro" tabindex="-1" role="dialog" aria-labelledby="reportarErro"
      aria-hidden="true">
+    {% if artista.id and artista.nome %}
+    <form action="{% url 'artista' artista.id artista.nome %}" method="post">
+    {% else %}
     <form action="." method="post">
+    {% endif %}
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -18,7 +18,10 @@
 {% include 'utils/menu.html' %}
 
 <main>
-
+    <div class="container">
+        <!-- MENSAGENS DE RETORNO -->
+        {% include 'utils/messages.html' %}
+    </div>
     <!-- Cabeçalho da Cifra -->
     <div class="have-project">
         <div class="container">
@@ -164,8 +167,15 @@
                     </div>
                     <div>
                         <br><br>
-                        <a href="#" style="color: #080F0F">Encontrou algum problema com a cifra? Nos mande uma
+                        {% if user.is_anonymous %}
+                        <a data-toggle="modal" data-target="#acesso-negado" href="#acesso-negado"
+                           style="color: #080F0F">Encontrou algum problema com a cifra? Nos mande uma
                             mensagem.</a>
+                        {% else %}
+                        <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro"
+                           style="color: #080F0F">Encontrou algum problema com a cifra? Nos mande uma
+                            mensagem.</a>
+                        {% endif %}
                     </div>
                     <!-- comentarios -->
                     <div class="navigation-top">
@@ -212,7 +222,7 @@
                             {% else %}
                             <h4>Deixe um comentário</h4>
                             <form class="form-contact comment_form"
-                                  action="{% url 'cifras_busca' artista=cifra.wc_artista cifra_nome=cifra.nome cifra_id=cifra.id %}"
+                                  action="{% url 'cifras_busca' artista=cifra.wc_artista cifra_nome=cifra_nome cifra_id=cifra.id %}"
                                   method="post">
                                 {% csrf_token %}
                                 <div class="row">

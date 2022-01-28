@@ -18,6 +18,10 @@
 {% include 'utils/menu.html' %}
 
 <main>
+    <div class="container">
+        <!-- MENSAGENS DE RETORNO -->
+        {% include 'utils/messages.html' %}
+    </div>
 
     <!-- Banner Capa -->
     <div class="have-project">
@@ -89,7 +93,18 @@
 
                         </div>
                     </div>
-
+                    <div>
+                        <br><br>
+                        {% if user.is_anonymous %}
+                        <a data-toggle="modal" data-target="#acesso-negado" href="#acesso-negado"
+                           style="color: #080F0F">Encontrou algum problema com o artista? Nos mande uma
+                            mensagem.</a>
+                        {% else %}
+                        <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro"
+                           style="color: #080F0F">Encontrou algum problema com o artista? Nos mande uma
+                            mensagem.</a>
+                        {% endif %}
+                    </div>
                     <div class="navigation-top">
                         <div class="comments-area">
                             <h4>{{comentarios.count}} Comentário(s)</h4>

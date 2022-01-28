@@ -10,9 +10,13 @@ from wcstaff.forms import ReportErroForm
 from wcstaff.models import ReportErro
 
 
+def escape_char_especial(string):
+    return "".join(["" if char in ".!?,/(){}[]" else char.lower() for char in string])
+
+
 def index(request):
     if 'term' in request.GET:
-        c = Cifra.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:10]
+        c = Cifra.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:15]
         a = Artista.objects.filter(status__icontains='A', nome__icontains=request.GET.get('term'))[:5]
         lista = list()
         for cifra in c:
@@ -26,8 +30,8 @@ def index(request):
 
     form_report = ReportErroForm()
 
-    if request.GET.get('buscar_n'):  # buscando artistas
-        if "Buscar" in request.GET.get('buscar_n'):
+    if request.GET.get('buscar_n'):
+        if "Buscar" in request.GET.get('buscar_n'):  # buscando artistas
             buscar = request.GET.get('buscar_n').split('Buscar ')
             if buscar[1]:
                 buscar_artista = Artista.objects.filter(nome=buscar[1])
@@ -42,7 +46,8 @@ def index(request):
                     return redirect('cifras_busca',
                                     artista=str(buscar_cifra[0].wc_artista).replace(' ', '-').lower(),
                                     cifra_id=buscar_cifra[0].id,
-                                    cifra_nome=str(buscar_cifra[0].nome).replace(' ', '-').lower(),)
+                                    cifra_nome=escape_char_especial(str(buscar_cifra[0].nome).replace(' ', '-')))
+
         else:  # caso não encontre a busca recomendada pela sistema
             buscar_artista = Artista.objects.filter(nome__icontains=request.GET.get('buscar_n'))[:1]
             if buscar_artista:
@@ -53,7 +58,7 @@ def index(request):
                     return redirect('cifras_busca',
                                     artista=str(buscar_cifra[0].wc_artista).replace(' ', '-').lower(),
                                     cifra_id=buscar_cifra[0].id,
-                                    cifra_nome=str(buscar_cifra[0].nome).replace(' ', '-').lower(), )
+                                    cifra_nome=escape_char_especial(str(buscar_cifra[0].nome).replace(' ', '-')))
             messages.warning(request, 'A cifra ou artista buscado não existe em nosso sistema. Cadastre agora e '
                                       'contribua com a comunidade')
             return redirect('index')

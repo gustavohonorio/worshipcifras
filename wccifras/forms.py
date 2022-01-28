@@ -1,6 +1,7 @@
 from django import forms
 from .models import Cifra, Comentario
 from wcartista.models import Artista
+from django.core.mail.message import EmailMessage
 from .utils.static_vars import VarsCifraForm
 
 
@@ -38,6 +39,26 @@ class CifraForm(forms.ModelForm):
                                                                      'background: #f9f9ff; height: 200px;',
                                                             'placeholder': 'Deseja enviar algum detalhe adicional '
                                                                            'para nossa equipe? (Opcional)'}))
+
+    def send_email(self, id, nome, artista):
+
+        conteudo = f'Olá time, uma nova cifra foi enviada e esta pendente de aprovação.\n\n' \
+                   f'ID: {id}, NOME: {nome}, ARTISTA: {artista}.\n\n' \
+                   f'Encontre-a no ambiente Staff do sistema, revise e siga com os procedimentos de aprovação.' \
+                   f'Caso encontre algum problema, comunique o time de segundo nível.\n\n' \
+                   f'O SLA para o atendimento desta solicitação é de 48 horas.\n\n' \
+                   f'Atensiosamente, \n\n' \
+                   f'Deus abençoe.'
+
+        mail = EmailMessage(
+            subject='Nova cifra cadastrada',
+            body=conteudo,
+            from_email='no-reply@worshipcifras.com.br',
+            to=['no-reply@worshipcifras.com.br'],
+            headers={'Reply-To': 'no-reply@worshipcifras.com.br'}
+        )
+
+        mail.send()
 
     class Meta:
         model = Cifra
