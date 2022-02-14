@@ -29,7 +29,11 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
     cifra = Cifra.objects.get(id=cifra_id)
 
     # ESTATICOS
-    tom = Tom.objects.all()
+    if 'm' in cifra.tom:
+        tom = acordes_regras.escalas_menores
+    else:
+        tom = acordes_regras.escalas_maiores
+
     capotraste = Capotraste.objects.all()
     modo = ModoVisualizacao.objects.all()
 
@@ -47,12 +51,10 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
     cifra_split = cifra.cifra.split()
 
     if novo_tom:
-        # TODO : TRATAR OS TONS MENORES, HOJE ESTOU SUBSTITUINDO PELAS REGRAS DOS TONS MAIORES
         novo_tom = novo_tom.replace('Tom original: ', '')
         novo_tom = novo_tom.replace('Tom selecionado: ', '')
-        novo_tom = (novo_tom[0] if 'm' in novo_tom else novo_tom)
         if novo_tom != cifra.tom:
-            acordes_regras.transposicao_cifra(cifra_split, (cifra.tom[0] if 'm' in cifra.tom else cifra.tom), novo_tom)
+            acordes_regras.transposicao_cifra(cifra_split, cifra.tom, novo_tom)
 
     modo_default = 'Modo'
     if request.GET.get('modo_n') == '1':

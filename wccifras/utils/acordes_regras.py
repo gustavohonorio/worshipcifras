@@ -1,21 +1,65 @@
 from django.utils.safestring import mark_safe
 
 escalas = {
+    # maiores
     'C': '1',
-    'C#': '2',
+    'Db': '2',
     'D': '3',
-    'D#': '4',
+    'Eb': '4',
     'E': '5',
     'F': '6',
     'F#': '7',
     'G': '8',
-    'G#': '9',
+    'Ab': '9',
     'A': '10',
-    'A#': '11',
+    'Bb': '11',
     'B': '12',
+    # menores
+    'Cm': '1',
+    'C#m': '2',
+    'Dm': '3',
+    'Ebm': '4',
+    'Em': '5',
+    'Fm': '6',
+    'F#m': '7',
+    'Gm': '8',
+    'G#m': '9',
+    'Am': '10',
+    'Bbm': '11',
+    'Bm': '12',
 }
 
-# TODO : LIMPAR AS DUPLICATAS DOS ACORDES PARA OTIMIZAR (UM TICO) A APPS
+escalas_maiores = (
+    'C',
+    'Db',
+    'D',
+    'Eb',
+    'E',
+    'F',
+    'F#',
+    'G',
+    'Ab',
+    'A',
+    'Bb',
+    'B',
+)
+
+escalas_menores = (
+    'Cm',
+    'C#m',
+    'Dm',
+    'Ebm',
+    'Em',
+    'Fm',
+    'F#m',
+    'Gm',
+    'G#m',
+    'Am',
+    'Bbm',
+    'Bm',
+)
+
+# TODO : LIMPAR AS DUPLICATAS DOS ACORDES PARA OTIMIZAR (UM TICO rs) A APPS
 acordes_c = [
     'C',
     'C5',
@@ -654,12 +698,7 @@ def retorna_acorde_escala(indice):
 
 
 def retorna_semitons(indice1, indice2):
-    semitom = 0
-    if indice1 > indice2:
-        semitom = int(indice2) - int(indice1)
-    else:
-        semitom = int(indice1) - int(indice2)
-
+    semitom = int(indice2) - int(indice1)
     return semitom
 
 

@@ -2,17 +2,32 @@ class VarsCifraForm:
     # tom
     tom_choices = (
         ('0', 'Selecionar tom'),
-        ('A', 'A'),
-        ('Bb', 'Bb'),
-        ('B', 'B'),
+        # maiores
         ('C', 'C'),
         ('Db', 'Db'),
         ('D', 'D'),
         ('Eb', 'Eb'),
         ('E', 'E'),
         ('F', 'F'),
+        ('F#', 'F#'),
         ('G', 'G'),
         ('Ab', 'Ab'),
+        ('A', 'A'),
+        ('Bb', 'Bb'),
+        ('B', 'B'),
+        # menores
+        ('Cm', 'Cm'),
+        ('C#m', 'C#m'),
+        ('Dm', 'Dm'),
+        ('Ebm', 'Ebm'),
+        ('Em', 'Em'),
+        ('Fm', 'Fm'),
+        ('F#m', 'F#m'),
+        ('Gm', 'Gm'),
+        ('G#m', 'G#m'),
+        ('Am', 'Am'),
+        ('Bbm', 'Bbm'),
+        ('Bm', 'Bm'),
     )
     # capotraste
     capotraste_choices = (
@@ -65,4 +80,3 @@ class VarsCifraForm:
         ('True', 'Sim'),
         ('False', 'Não'),
     )
-
