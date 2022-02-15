@@ -1,9 +1,7 @@
 from django.urls import path, include
-from .views import index, pre_alfa
+from .views import index
 
 urlpatterns = [
     path('', index, name='index'),
-    #  path('', pre_alfa, ),  # landing page
-    path('acesso/', index, name='index'),
     path('logon/', include('wclogon.urls')),
 ]

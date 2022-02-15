@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'wcartista',
     'wccifras',
     'wcstaff',
+    'wcministerio',
 
     'bootstrap4',
     'stdimage',
