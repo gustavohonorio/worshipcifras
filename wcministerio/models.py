@@ -11,7 +11,6 @@ class Ministerio(models.Model):
     genero = models.TextField(blank=True, null=True)
     status = models.TextField(blank=True, null=True, default='A')
     dt_criacao = models.DateTimeField(blank=True, auto_now_add=True)
-    integrantes = models.ManyToManyField(Usuario)
     owner = models.TextField(blank=True, null=True)
     op_user = models.TextField(blank=True, null=True, default='wcadmin')
     op_tipo = models.TextField(blank=True, null=False, default='I')
@@ -19,6 +18,13 @@ class Ministerio(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class MinisterioIntegrantes(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    co_ministerio = models.TextField(blank=True, null=True)
+    co_integrante = models.TextField(blank=True, null=True)
+    funcao = models.TextField(blank=True, null=True)
 
 
 class MusicasFavoritas(models.Model):

@@ -50,9 +50,7 @@
                                     <li><a href="#">Meu ministério</a>
                                         <ul class="submenu">
                                             <li><a href="{% url 'ministerio' %}">Ministérios</a></li>
-                                            <li><a href="{% url 'cadastrar_artista' %}">Integrantes</a></li>
-                                            <li><a href="{% url 'cadastrar_artista' %}">Escalas</a></li>
-                                            <li><a href="{% url 'cadastrar_artista' %}">Repertório</a></li>
+                                            <li><a href="{% url 'cadastrar_artista' %}">Convites</a></li>
                                         </ul>
                                     </li>
                                     {% if user.wc_perfil_id == 1 or user.wc_perfil_id == 3 %}
