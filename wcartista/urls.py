@@ -1,7 +1,8 @@
-from django.urls import path, include
+from django.urls import path
 from .views import artista, cadastrar
 
 urlpatterns = [
     path('<int:id>/<nome_artista>', artista, name='artista'),
-    path('novo/', cadastrar, name='cadastrar_artista')
+    path('novo/', cadastrar, name='cadastrar_artista'),
+
 ]

@@ -40,6 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # other apps
+    'bootstrap4',
+    'stdimage',
+    'django_social_share',
+
+    # api apps
+    'django_filters',
+    'rest_framework',
+
     # local apps
     'core',
     'wclogon',
@@ -48,9 +57,6 @@ INSTALLED_APPS = [
     'wcstaff',
     'wcministerio',
 
-    'bootstrap4',
-    'stdimage',
-    'django_social_share',
 ]
 
 MIDDLEWARE = [
@@ -95,8 +101,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'worshipcifras',
-        'USER': 'python',
-        'PASSWORD': 'python',
+        'USER': 'root',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '3306',
     }
