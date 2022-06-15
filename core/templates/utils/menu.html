@@ -47,14 +47,9 @@
                                             <li><a href="#">Comunidade</a></li>
                                         </ul>
                                     </li>-->
-                                    <li><a href="#">Meu ministério</a>
-                                        <ul class="submenu">
-                                            <li><a href="{% url 'ministerio' %}">Ministérios</a></li>
-                                            <li><a href="{% url 'cadastrar_artista' %}">Convites</a></li>
-                                        </ul>
-                                    </li>
+                                    <!--<li><a href="{% url 'ministerio' %}">Meu ministério</a></li>-->
                                     {% if user.wc_perfil_id == 1 or user.wc_perfil_id == 3 %}
-                                    <li><a href="{% url 'staff' %}">WC Staff</a></li>
+                                    <li><a href="{% url 'staff' %}">Staff</a></li>
                                     {% endif %}
                                     <li><a href="#">Olá {{ user.get_full_name }}</a>
                                         <ul class="submenu">

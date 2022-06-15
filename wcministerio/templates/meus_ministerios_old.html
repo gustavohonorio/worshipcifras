@@ -1,0 +1,258 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+<head>
+    <!-- META, CSS -->
+    {% include 'utils/head.html' %}
+
+    <title>Worship Cifras | Meus Ministérios</title>
+
+</head>
+
+<body>
+
+<!-- Preloader Start -->
+{% include 'utils/preloader.html' %}
+<!-- Menu Header Start -->
+{% include 'utils/menu.html' %}
+
+<main>
+    <div class="have-project hide-mobile">
+        <div class="container centralizar-itens">
+            <div>
+                <a data-toggle="modal" data-target="#cadastrar-ministerio" href="#cadastrar-ministerio"
+                   class="genric-btn primary-border circle">+ Novo ministerio</a>
+            </div>
+            &nbsp
+            <div>
+                <a href="#" class="genric-btn primary-border circle"><i class="fa fa-plus"
+                                                                        aria-hidden="true"></i>
+                    Adicionar
+                    escala</a>
+            </div>
+            &nbsp
+            <div>
+                <a data-toggle="modal" data-target="#convidar-integrante"
+                   href="#convidar-integrante" class="genric-btn primary-border circle"><i
+                        class="fa fa-share"
+                        aria-hidden="true"></i>
+                    Convidar membro</a>
+            </div>
+            &nbsp
+            <div>
+                <a href="#" class="genric-btn primary-border circle"><i class="fa fa-music"
+                                                                        aria-hidden="true"></i>
+                    Repertório</a>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <section class="blog_area single-post-area">
+        <div class="container">
+            <div class="row">
+                <!-- Área de Opções -->
+                <div class="col-lg-4 centralizar-itens">
+                    <div class="row">
+                        <div class="button-group-area">
+                            <br>
+                            <section>
+                                <div class="centralizar-itens">
+                                    <p>Próximas programações</p>
+                                </div>
+                                <div class="single-do text-center mb-30">
+                                    <div class="do-caption">
+                                        <h4>Culto da Mocidade</h4>
+                                        <p style="font-style: italic;">Data: 25/02 19H30 SEX
+                                            <br>Participante(s): Mauro, Luana e outros 3
+                                            <br>Música(s): Pra onde irei e outras 4</p>
+                                    </div>
+                                    <div class="do-btn">
+                                        <a href="#" style="color: #A52422;">+ Ver mais</a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visão geral -->
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post">
+                        <div class="">
+                            {% for m in m_selecionado %}
+
+                            <!-- Modal -->
+                            {% include 'utils/messages.html' %}
+
+                            <!-- Descrição do ministerio -->
+                            <div>
+                                <div class="blog_right_sidebar">
+                                    <aside class="single_sidebar_widget tag_cloud_widget" style="background: #fff;">
+                                        <ul class="list">
+                                            {% for i in integrantes %}
+                                            <li>
+                                                <div class="thumb">
+                                                    <img src="{% static '/img/comment/comment_1.png' %}" alt="">
+                                                    <p class="centralizar-itens">{{i}}</p>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                            <li>
+                                                <div class="container centralizar-itens2">
+                                                    <div class="container" data-toggle="modal"
+                                                         data-target="#convidar-integrante"
+                                                         href="#convidar-integrante">
+                                                        <div class="row centralizar-itens2">
+                                                            <h2><i class="fa fa-plus" aria-hidden="true"></i></h2>
+                                                        </div>
+                                                        <div class="row centralizar-itens2">
+                                                            <p>
+                                                                Convidar
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </aside>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="single-post row">
+
+                    </div>
+
+                    <div class="single-post">
+                        <br><br>
+                        <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro"
+                           style="color: #080F0F">Encontrou algum problema? Nos mande uma
+                            mensagem.</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End =================-->
+
+    <!-- Modal -->
+    {% include 'utils/modals.html' %}
+
+    <!-- Cadastrar novo ministerio -->
+    <div class="modal fade" id="cadastrar-ministerio" tabindex="-1" role="dialog" aria-labelledby="cadastrar-ministerio"
+         aria-hidden="true">
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cadastrarMinisterio">Novo ministério</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="container">
+                            <div class="container">
+                                <input type="text" class="form-control"
+                                       placeholder="{{user.get_full_name}}" disabled>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="container">
+                            <div class="container">
+                                {{form.nome}}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="container">
+                            <div class="container">
+                                {{form.descricao}}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="container">
+                            <div class="container">
+                                {{form.genero}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="report" class="btn btn-dark">Cadastrar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Convidar novo ministerio -->
+    <div class="modal fade" id="convidar-integrante" tabindex="-1" role="dialog" aria-labelledby="cadastrar-ministerio"
+         aria-hidden="true">
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="convidarIntegrante">Convidar membro</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% for m in m_selecionado %}
+                        <div class="container">
+                            <div class="container">
+                                <p>
+                                    Este é o código do ministério {{m.nome}}, compartilhe com os integrantes para se
+                                    unirem a
+                                    você
+                                </p>
+                            </div>
+                            <div class="container">
+
+                                <input type="text" class="form-control"
+                                       placeholder="{{m.co_invite}}" disabled>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <br>
+                        <div class="container">
+                            <div class="container">
+                                <p>
+                                    Você também pode convidar alguém pelo e-mail, digite abaixo e envie a solicitação
+                                </p>
+                            </div>
+                            <div class="container">
+                                {{form_i.email}}
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="convidar-integrante" class="btn btn-dark">Convidar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Modal Fim-->
+
+</main>
+<footer>
+    <!-- Footer -->
+    {% include 'utils/footer.html' %}
+</footer>
+
+<!-- Javascript -->
+{% include 'utils/js.html' %}
+
+</body>
+</html>

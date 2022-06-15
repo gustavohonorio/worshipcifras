@@ -20,13 +20,13 @@ def ministerios(request):
     if request.GET.get('filter'):
         m_selecionado = ministerio.filter(nome__icontains=request.GET.get('filter'))
 
-    integrantes = []
+        integrantes = []
 
-    for i in MinisterioIntegrantes.objects.filter(co_ministerio=m_selecionado[0].id):
-        user = Usuario.objects.filter(id=i.co_integrante)
-        integrantes.append(user[0].first_name)
+        for i in MinisterioIntegrantes.objects.filter(co_ministerio=m_selecionado[0].id):
+            user = Usuario.objects.filter(id=i.co_integrante)
+            integrantes.append(user[0].first_name)
 
-    print(integrantes)
+        print(integrantes)
 
     if request.method == 'POST':
         if 'convidar-integrante' in request.POST:
@@ -56,9 +56,9 @@ def ministerios(request):
                 messages.success(request, 'Ministério cadastrado com sucesso.')
 
                 return render(request, 'meus_ministerios.html', {'ministerio': ministerio, 'm_selecionado': m_selecionado,
-                                                                 'integrantes': integrantes, 'form': form,
+                                                                 'form': form,
                                                                  'form_i': form_integrante})
 
     return render(request, 'meus_ministerios.html', {'ministerio': ministerio, 'm_selecionado': m_selecionado,
-                                                     'integrantes': integrantes, 'form': form,
+                                                     'form': form,
                                                      'form_i': form_integrante})

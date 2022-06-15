@@ -1,0 +1,109 @@
+<!-- Modals -->
+
+<!-- Convidar membro para ministerio -->
+<div class="modal fade" id="convidar-integrante" tabindex="-1" role="dialog" aria-labelledby="cadastrar-ministerio"
+     aria-hidden="true">
+    <form action="." method="post">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="convidarIntegrante">Convidar membro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% for m in m_selecionado %}
+                    <div class="container">
+                        <div class="container">
+                            <p>
+                                Este é o código do ministério {{m.nome}}, compartilhe com os integrantes para se
+                                unirem a
+                                você
+                            </p>
+                        </div>
+                        <div class="container">
+
+                            <input type="text" class="form-control"
+                                   placeholder="{{m.co_invite}}" disabled>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <br>
+                    <div class="container">
+                        <div class="container">
+                            <p>
+                                Você também pode convidar alguém pelo e-mail, digite abaixo e envie a solicitação
+                            </p>
+                        </div>
+                        <div class="container">
+                            {{form_i.email}}
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="convidar-integrante" class="btn btn-dark">Convidar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- Criar novo ministério -->
+<div class="modal fade" id="novo-ministerio" tabindex="-1" role="dialog" aria-labelledby="cadastrar-ministerio"
+     aria-hidden="true">
+    <form action="." method="post">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="convidarIntegrante">Convidar membro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% for m in m_selecionado %}
+                    <div class="container">
+                        <div class="container">
+                            <p>
+                                Este é o código do ministério {{m.nome}}, compartilhe com os integrantes para se
+                                unirem a
+                                você
+                            </p>
+                        </div>
+                        <div class="container">
+
+                            <input type="text" class="form-control"
+                                   placeholder="{{m.co_invite}}" disabled>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <br>
+                    <div class="container">
+                        <div class="container">
+                            <p>
+                                Você também pode convidar alguém pelo e-mail, digite abaixo e envie a solicitação
+                            </p>
+                        </div>
+                        <div class="container">
+                            {{form_i.email}}
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="convidar-integrante" class="btn btn-dark">Convidar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- Modal Fim-->

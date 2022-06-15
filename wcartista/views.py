@@ -15,8 +15,16 @@ from .models import Artista, Comentario, ArtistaKPI
 
 def artista(request, id, nome_artista):
     a = Artista.objects.get(id=id)
-    generos = a.genero.split(',')
-    cancoes = Cifra.objects.filter(wc_artista=a)[:5]
+
+    if Cifra.objects.filter(wc_artista=a):
+        cancoes = Cifra.objects.filter(wc_artista=a)[:5]
+    else:
+        cancoes = ''
+
+    if a.genero:
+        generos = a.genero.split(',')
+    else:
+        generos = ''
 
     # EXIBINDO COMENTARIOS
     comentarios = Comentario.objects.filter(wc_artista=a.id)

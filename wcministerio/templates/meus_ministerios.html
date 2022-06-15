@@ -1,280 +1,112 @@
-<!doctype html>
-{% load static %}
-<html class="no-js" lang="zxx">
-<head>
-    <!-- META, CSS -->
-    {% include 'utils/head.html' %}
+{% extends 'base-ministerio.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <!--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Gerar Relatório</a>-->
+    </div>
+    <!-- Modal Messages-->
+    {% include 'utils/messages.html' %}
+    <!-- Content Row -->
+    <div class="row">
 
-    <title>Worship Cifras | Meus Ministérios</title>
-
-</head>
-
-<body>
-
-<!-- Preloader Start -->
-{% include 'utils/preloader.html' %}
-<!-- Menu Header Start -->
-{% include 'utils/menu.html' %}
-
-<main>
-
-    <!-- Cabeçalho do Usuario -->
-    <div class="have-project">
-        <div class="container">
-            <div class="haveAproject" data-background="{% static '/img/bg-destaque.png' %}">
-                <div class="row d-flex align-items-center">
-                    <div class="col-xl-7 col-lg-9 col-md-12">
-                        <div class="wantToWork-caption">
-                            {% for m in m_selecionado %}
-                            <h2>{{m.nome}} <span style="font-size: 20px; color: #080F0F; vertical-align: middle;"
-                                                 data-toggle="modal" data-target="#cadastrar-ministerio"
-                                                 href="#cadastrar-ministerio"><i class="fa fa-plus"
-                                                                                 aria-hidden="true"></i></span></h2>
-                            <p>{{m.descricao}}</p>
-                            {% endfor %}
+        <!-- Card Ministerios -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="{% url 'r-usuarios' %}" style="text-decoration: none">
+                <div class="card border-left-dark shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-dark mb-1">
+                                    Ministérios
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="have-project hide-mobile">
-        <div class="container centralizar-itens">
-            <div>
-                <a data-toggle="modal" data-target="#cadastrar-ministerio" href="#cadastrar-ministerio"
-                   class="genric-btn primary-border circle">+ Novo ministerio</a>
-            </div>
-            &nbsp
-            <div>
-                <a href="#" class="genric-btn primary-border circle"><i class="fa fa-plus"
-                                                                        aria-hidden="true"></i>
-                    Adicionar
-                    escala</a>
-            </div>
-            &nbsp
-            <div>
-                <a data-toggle="modal" data-target="#convidar-integrante"
-                   href="#convidar-integrante" class="genric-btn primary-border circle"><i
-                        class="fa fa-share"
-                        aria-hidden="true"></i>
-                    Convidar membro</a>
-            </div>
-            &nbsp
-            <div>
-                <a href="#" class="genric-btn primary-border circle"><i class="fa fa-music"
-                                                                        aria-hidden="true"></i>
-                    Repertório</a>
-            </div>
+            </a>
         </div>
 
-    </div>
-    <br>
-    <section class="blog_area single-post-area">
-        <div class="container">
-            <div class="row">
-                <!-- Área de Opções -->
-                <div class="col-lg-4 centralizar-itens">
-                    <div class="row">
-                        <div class="button-group-area">
-                            <br>
-                            <section>
-                                <div class="centralizar-itens">
-                                    <p>Próximas programações</p>
+        <!-- Card Membros -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="{% url 'r-cifras' %}" style="text-decoration: none">
+                <div class="card border-left-dark shadow h-100 py-2">
+
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-dark mb-1">
+                                    Membros
                                 </div>
-                                <div class="single-do text-center mb-30">
-                                    <div class="do-caption">
-                                        <h4>Culto da Mocidade</h4>
-                                        <p style="font-style: italic;">Data: 25/02 19H30 SEX
-                                            <br>Participante(s): Mauro, Luana e outros 3
-                                            <br>Música(s): Pra onde irei e outras 4</p>
-                                    </div>
-                                    <div class="do-btn">
-                                        <a href="#" style="color: #A52422;">+ Ver mais</a>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-male fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <!-- Card Setlist -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="{% url 'r-artistas' %}" style="text-decoration: none">
+                <div class="card border-left-dark shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-dark mb-1">Setlist
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
                                     </div>
                                 </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Visão geral -->
-                <div class="col-lg-8 posts-list">
-                    <div class="single-post">
-                        <div class="">
-                            {% for m in m_selecionado %}
-
-                            <!-- Modal -->
-                            {% include 'utils/messages.html' %}
-
-                            <!-- Descrição do ministerio -->
-                            <div>
-                                <div class="blog_right_sidebar">
-                                    <aside class="single_sidebar_widget tag_cloud_widget" style="background: #fff;">
-                                        <ul class="list">
-                                            {% for i in integrantes %}
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="{% static '/img/comment/comment_1.png' %}" alt="">
-                                                    <p class="centralizar-itens">{{i}}</p>
-                                                </div>
-                                            </li>
-                                            {% endfor %}
-                                            <li>
-                                                <div class="container centralizar-itens2">
-                                                    <div class="container" data-toggle="modal"
-                                                         data-target="#convidar-integrante"
-                                                         href="#convidar-integrante">
-                                                        <div class="row centralizar-itens2">
-                                                            <h2><i class="fa fa-plus" aria-hidden="true"></i></h2>
-                                                        </div>
-                                                        <div class="row centralizar-itens2">
-                                                            <p>
-                                                                Convidar
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-
-                                            </li>
-                                        </ul>
-                                    </aside>
-                                </div>
                             </div>
-                            {% endfor %}
+                            <div class="col-auto">
+                                <i class="fas fa-music fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="single-post row">
-
-                    </div>
-
-                    <div class="single-post">
-                        <br><br>
-                        <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro"
-                           style="color: #080F0F">Encontrou algum problema? Nos mande uma
-                            mensagem.</a>
-                    </div>
-
                 </div>
-            </div>
+            </a>
         </div>
-    </section>
-    <!--================ End =================-->
 
-    <!-- Modal -->
-    {% include 'utils/modals.html' %}
-
-    <!-- Cadastrar novo ministerio -->
-    <div class="modal fade" id="cadastrar-ministerio" tabindex="-1" role="dialog" aria-labelledby="cadastrar-ministerio"
-         aria-hidden="true">
-        <form action="." method="post">
-            {% csrf_token %}
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="cadastrarMinisterio">Novo ministério</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="container">
-                            <div class="container">
-                                <input type="text" class="form-control"
-                                       placeholder="{{user.get_full_name}}" disabled>
+        <!-- Card Chat -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a data-toggle="modal" data-target="#convidar-integrante"
+               href="#convidar-integrante" style="text-decoration: none">
+                <div class="card border-left-dark shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-dark mb-1">
+                                    Chat
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-gray-300"></i>
                             </div>
                         </div>
-                        <br>
-                        <div class="container">
-                            <div class="container">
-                                {{form.nome}}
-                            </div>
-                        </div>
-                        <br>
-                        <div class="container">
-                            <div class="container">
-                                {{form.descricao}}
-                            </div>
-                        </div>
-                        <br>
-                        <div class="container">
-                            <div class="container">
-                                {{form.genero}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" name="report" class="btn btn-dark">Cadastrar</button>
                     </div>
                 </div>
-            </div>
-        </form>
+            </a>
+        </div>
     </div>
+</div>
+<!-- /.container-fluid -->
 
-    <!-- Convidar novo ministerio -->
-    <div class="modal fade" id="convidar-integrante" tabindex="-1" role="dialog" aria-labelledby="cadastrar-ministerio"
-         aria-hidden="true">
-        <form action="." method="post">
-            {% csrf_token %}
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="convidarIntegrante">Convidar membro</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        {% for m in m_selecionado %}
-                        <div class="container">
-                            <div class="container">
-                                <p>
-                                    Este é o código do ministério {{m.nome}}, compartilhe com os integrantes para se
-                                    unirem a
-                                    você
-                                </p>
-                            </div>
-                            <div class="container">
+</div>
+<!-- End of Main Content -->
 
-                                <input type="text" class="form-control"
-                                       placeholder="{{m.co_invite}}" disabled>
+{% include 'modals-ministerio.html' %}
 
-                            </div>
-                        </div>
-                        {% endfor %}
-                        <br>
-                        <div class="container">
-                            <div class="container">
-                                <p>
-                                    Você também pode convidar alguém pelo e-mail, digite abaixo e envie a solicitação
-                                </p>
-                            </div>
-                            <div class="container">
-                                {{form_i.email}}
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" name="convidar-integrante" class="btn btn-dark">Convidar</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <!-- Modal Fim-->
-
-</main>
-<footer>
-    <!-- Footer -->
-    {% include 'utils/footer.html' %}
-</footer>
-
-<!-- Javascript -->
-{% include 'utils/js.html' %}
-
-</body>
-</html>
+{% endblock %}
