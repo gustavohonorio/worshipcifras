@@ -56,6 +56,7 @@ class VarsCifraForm:
         ('Acústico', 'Acústico'),
         ('Padrão', 'Padrão'),
     )
+
     # genero
     genero_choices = (
         ('0', 'Gênero principal'),
@@ -80,3 +81,8 @@ class VarsCifraForm:
         ('True', 'Sim'),
         ('False', 'Não'),
     )
+
+
+class Vars:
+    # modo visualização
+    modo_choices = ('Cifra', 'Letra')

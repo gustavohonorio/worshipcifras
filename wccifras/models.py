@@ -59,17 +59,6 @@ class Comentario(models.Model):
 
 
 # TABELAS ESTÁSTICAS
-class Tom(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    sigla = models.TextField(blank=False, null=False)
-    nome = models.TextField(blank=True, null=True)
-
-
 class Capotraste(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    nome = models.TextField(blank=False, null=False)
-
-
-class ModoVisualizacao(models.Model):
     id = models.BigAutoField(primary_key=True)
     nome = models.TextField(blank=False, null=False)
