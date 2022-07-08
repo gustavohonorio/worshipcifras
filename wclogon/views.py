@@ -165,3 +165,13 @@ def redefinir_senha(request):
     else:
         return render(request, 'redefinir_senha.html', {'form': form, 'formReport': form_report, })
     return render(request, 'redefinir_senha.html', {'form': form, 'formReport': form_report, })
+
+
+def esqueci_senha(request):
+
+    # TODO : CONTINUAR AS REGRAS PARA A CRIAÇÃO DO CODIGO ALETARIO E ENVIO DO EMAIL PARA O USUARIO
+    if request.method == 'POST':
+        if request.POST.get('email_n') != '':
+            print(request.POST.get('email_n'))
+
+    return render(request, 'esqueci-senha.html', )

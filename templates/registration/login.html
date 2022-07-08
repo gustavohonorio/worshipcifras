@@ -54,6 +54,9 @@
                     <button class="login100-form-btn" type="submit">
                         Entrar
                     </button>
+                    <a class="txt1 bo1 hov1" href="{% url 'esqueci-senha' %}">
+                        Esqueceu sua senha?
+                    </a>
                 </div>
 
                 <!--<div class="text-center w-full p-t-42 p-b-22">
@@ -78,13 +81,14 @@
 						</span>
 
                     <a class="txt1 bo1 hov1" href="{% url 'register' %}">
-                        Cria uma conta, é grátis
+                        Crie uma conta, é grátis
                     </a>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 <!-- JS -->
 <script src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
