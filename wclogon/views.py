@@ -1,14 +1,14 @@
 from django.contrib import messages
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login
 from django.urls import resolve
-from django.views.generic import UpdateView
 
 from wcstaff.forms import ReportErroForm
 from wcstaff.models import ReportErro
-from .models import Usuario, UsuarioKPI
-from .forms import UsuarioForm, MeuPerfilForm, RedefinirSenhaForm
+from .models import Usuario, UsuarioKPI, EsqueciSenha
+from .forms import UsuarioForm, MeuPerfilForm, RedefinirSenhaForm, send_email_esqueci_senha
+from .utils import user_functions
 
 
 def register(request):
@@ -25,7 +25,8 @@ def register(request):
                     celular = form.cleaned_data['celular']
                     email = form.cleaned_data['email']
                     password = make_password(password=form.cleaned_data['password'], salt=None, hasher='pbkdf2_sha256')
-                    novo_usuario = Usuario(username=email, first_name=first_name, last_name=last_name, nascimento=nascimento,
+                    novo_usuario = Usuario(username=email, first_name=first_name, last_name=last_name,
+                                           nascimento=nascimento,
                                            celular=celular, email=email, password=password)
 
                     novo_usuario.save()
@@ -37,8 +38,9 @@ def register(request):
 
                     login(request, novo_usuario)
 
-                    messages.success(request, 'Ual, estamos felizes em te-lo conosco, seja bem vindo ao Worship Cifras. '
-                                              'Deus abençoe.')
+                    messages.success(request,
+                                     'Ual, estamos felizes em te-lo conosco, seja bem vindo ao Worship Cifras. '
+                                     'Deus abençoe.')
 
                     form.send_email()
 
@@ -146,8 +148,6 @@ def redefinir_senha(request):
 
                         form.send_email(nome=nome_aux, email=email_aux)
 
-                        # TODO : DISPARAR EMAIL NA TROCA DA SENHA, PARA ALERTAR A MOVIMENTAÇÃO AO USUÁRIO
-
                         return redirect('index')
                     else:
                         messages.error(request, 'Ops, as novas senhas não conferem. Por gentileza, valide se as senhas '
@@ -165,3 +165,69 @@ def redefinir_senha(request):
     else:
         return render(request, 'redefinir_senha.html', {'form': form, 'formReport': form_report, })
     return render(request, 'redefinir_senha.html', {'form': form, 'formReport': form_report, })
+
+
+def esqueci_senha(request):
+    if request.method == 'POST':
+        email = request.POST.get('email_n')
+        if email != '':
+            if user_functions.usuario_existe(email):
+                key = user_functions.key_generator()
+
+                es = EsqueciSenha(wc_usuario=user_functions.usuario(email), key=key)
+
+                es.save()
+
+                send_email_esqueci_senha(email, key)
+
+                messages.success(request, 'Enviamos um e-mail para a redefinição de sua senha, o seu código terá '
+                                          'validade de 24 horas.')
+                # return redirect('index')
+            else:
+                messages.error(request, 'Ops, este e-mail não existe em nossa comunidade. Verifique se digitou '
+                                        'corretamente.')
+                return redirect('esqueci-senha')
+
+    return render(request, 'esqueci_senha.html', )
+
+
+def nova_senha(request):
+    if request.method == 'POST':
+        email = request.POST.get('email_n')
+        if email != '':
+            if user_functions.usuario_existe(email):
+                v = user_functions.key_validade(email)
+                if v == 0:
+                    messages.info(request, 'Ops, você não solicitou uma redefinição de senha.')
+                    return redirect('nova-senha')
+                elif v == 1:
+                    messages.error(request, 'Ops, o seu código expirou, solicite um novo codigo.')
+                    return redirect('esqueci-senha')
+                else:
+                    key = user_functions.get_key(email)
+                    key_in = request.POST.get('key_n')
+
+                    if str(key) == str(key_in):
+                        pass_in = request.POST.get('pass_n')
+                        passc_in = request.POST.get('passc_n')
+                        if pass_in == passc_in:
+                            u = get_object_or_404(Usuario, id=user_functions.usuario_id(email))
+
+                            u.password = make_password(password=pass_in, salt=None, hasher='pbkdf2_sha256')
+
+                            u.save()
+
+                            messages.success(request, 'Senha atualizada! Entre com a nova senha.')
+
+                            return redirect('index')
+                        else:
+                            messages.error(request, 'Ops, as senhas não são iguais, por favor, valide e tente '
+                                                    'novamente.')
+                    else:
+                        messages.error(request, 'Ops, o código esta errado, por favor, valide e tente novamente.')
+            else:
+                messages.error(request, 'Ops, este e-mail não existe em nossa comunidade. Verifique se digitou '
+                                        'corretamente.')
+                return redirect('nova-senha')
+
+    return render(request, 'nova_senha.html')

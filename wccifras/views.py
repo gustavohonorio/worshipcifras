@@ -4,17 +4,15 @@ from django.db.models import F
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import resolve
-from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 
 from core.utils.backend import Kpi
 from wcstaff.forms import ReportErroForm
 from wcstaff.models import ReportErro
 from .forms import CifraForm, ComentarioForm
-from .models import Cifra, Tom, Capotraste, ModoVisualizacao, CifraKPI, Comentario
+from .models import Cifra, Capotraste, CifraKPI, Comentario
 from wcartista.models import Artista
 from wclogon.models import Usuario
-from .utils import acordes_regras
+from .utils import acordes_regras, static_vars
 from .utils.acordes_regras import tag_cifra
 
 
@@ -35,7 +33,7 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
         tom = acordes_regras.escalas_maiores
 
     capotraste = Capotraste.objects.all()
-    modo = ModoVisualizacao.objects.all()
+    modo = static_vars.Vars.modo_choices
 
     # KPI
     kpi = CifraKPI.objects.filter(wc_cifra=cifra)
@@ -57,10 +55,10 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
             acordes_regras.transposicao_cifra(cifra_split, cifra.tom, novo_tom)
 
     modo_default = 'Modo'
-    if request.GET.get('modo_n') == '1':
+    if request.GET.get('modo_n') == 'Cifra':
         modo_default = 'Cifra'
         cifra.cifra = acordes_regras.formatar_cifra(cifra_split)
-    elif request.GET.get('modo_n') == '2':
+    elif request.GET.get('modo_n') == 'Letra':
         modo_default = 'Letra'
         cifra.cifra = acordes_regras.formatar_letra(cifra_split)
     else:

@@ -11,7 +11,6 @@ class RedefinirSenhaForm(forms.ModelForm):
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'single-input date', }))
 
     def send_email(self, nome, email):
-
         conteudo = f'Olá {nome}, a sua senha foi alterada com sucesso.\n\n' \
                    f'Caso não tenha sido você que fez esta solicitação, mande um e-email para ' \
                    f'contato@worshipcifras.com.br, nos informando o acontecido.\n\n' \
@@ -57,11 +56,14 @@ class MeuPerfilForm(forms.ModelForm):
 class UsuarioForm(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Nome'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Sobrenome'}))
-    nascimento = forms.DateField(widget=forms.DateTimeInput(attrs={'class': 'input100 date', 'placeholder': 'Data de nascimento'}))
-    celular = forms.CharField(widget=forms.TextInput(attrs={'class': 'input100 phone_with_ddd', 'placeholder': 'Celular'}))
+    nascimento = forms.DateField(
+        widget=forms.DateTimeInput(attrs={'class': 'input100 date', 'placeholder': 'Data de nascimento'}))
+    celular = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'input100 phone_with_ddd', 'placeholder': 'Celular'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'E-mail'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Senha', }))
-    password_confirm = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Confirmar Senha',}))
+    password_confirm = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Confirmar Senha', }))
 
     def send_email(self):
         nome = self.cleaned_data['first_name'] + ' ' + self.cleaned_data['last_name']
@@ -103,7 +105,24 @@ class UsuarioCreateForm(UserCreationForm):
 
 
 class UsuarioChangeForm(UserChangeForm):
-
     class Meta:
         model = Usuario
         fields = ('first_name', 'last_name', 'celular')
+
+
+def send_email_esqueci_senha(email, key):
+    conteudo = f'Olá, este é o código para redefinição de sua senha: {key} .\n\n' \
+               f'O código terá duração de 24 horas, após isto ele não será mais válido.\n\n' \
+               f'Acesse este link e siga as instruções para redefinir sua senha: ' \
+               f'https://worshipcifras.com.br/logon/nova-senha .\n\n' \
+               f'Deus abençoe.'
+
+    mail = EmailMessage(
+        subject='Redefinição de Senha Worship Cifras',
+        body=conteudo,
+        from_email='no-reply@worshipcifras.com.br',
+        to=['no-reply@worshipcifras.com.br', email],
+        headers={'Reply-To': email}
+    )
+
+    mail.send()

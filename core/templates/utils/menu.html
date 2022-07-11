@@ -47,7 +47,7 @@
                                             <li><a href="#">Comunidade</a></li>
                                         </ul>
                                     </li>-->
-                                    <!--<li><a href="{% url 'ministerio' %}">Meu ministério</a></li>-->
+                                    <li><a href="{% url 'ministerio' %}">Meu ministério</a></li>
                                     {% if user.wc_perfil_id == 1 or user.wc_perfil_id == 3 %}
                                     <li><a href="{% url 'staff' %}">Staff</a></li>
                                     {% endif %}
