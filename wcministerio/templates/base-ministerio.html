@@ -65,7 +65,13 @@
             <div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Features</h6>
-                    <a class="collapse-item" href="{% url 'r-cifras' %}">Novo Ministerio</a>
+                    {% if ministerio %}
+                    <a class="collapse-item" data-toggle="modal" data-target="#novo-ministerio"
+                       href="#novo-ministerio" style="text-decoration: none">Meu Ministerio</a>
+                    {% else %}
+                    <a class="collapse-item" data-toggle="modal" data-target="#novo-ministerio"
+                       href="#novo-ministerio" style="text-decoration: none">Novo Ministério</a>
+                    {% endif %}
                     <a class="collapse-item" href="{% url 'r-cifras' %}">Todos os Ministerios</a>
                 </div>
             </div>
@@ -308,8 +314,9 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                            Todos os direitos reservados | Worshipcifras.com
+                        <p>Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>
+                            Todos os direitos reservados | Worshipcifras.com.br
                     </div>
                 </div>
             </footer>
