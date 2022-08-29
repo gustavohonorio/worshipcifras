@@ -34,7 +34,7 @@ class IntegranteForm(forms.ModelForm):
                        f'Deus abençoe.'
 
         mail = EmailMessage(
-            subject='Você foi convidado para fazer parte do ministério',
+            subject=f'Você foi convidado para fazer parte do ministério {ministerio}',
             body=conteudo,
             from_email='no-reply@worshipcifras.com.br',
             to=['no-reply@worshipcifras.com.br', email],

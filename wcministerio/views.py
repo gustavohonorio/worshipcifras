@@ -16,7 +16,7 @@ def ministerios(request):
     ministerio = Ministerio.objects.filter(owner=request.user.id)
 
     if ministerio:
-        return render(request, 'meus_ministerios.html', {'form': form, 'ministerio': ministerio[0]})
+        return render(request, 'meu_ministerio.html', {'form': form, 'ministerio': ministerio[0]})
 
     if request.method == 'POST':
         form = MinisterioForm(request.POST)
@@ -32,6 +32,6 @@ def ministerios(request):
 
             messages.success(request, 'Ministério cadastrado com sucesso.')
 
-            return render(request, 'meus_ministerios.html', {'form': form, })
+            return render(request, 'home_ministerios.html', {'form': form, })
 
-    return render(request, 'meus_ministerios.html', {'form': form, })
+    return render(request, 'home_ministerios.html', {'form': form, })

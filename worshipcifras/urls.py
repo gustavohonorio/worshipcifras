@@ -8,6 +8,6 @@ urlpatterns = [
     path('staff/', include('wcstaff.urls')),
     path('cifras/', include('wccifras.urls')),
     path('artistas/', include('wcartista.urls')),
-    path('ministerio/', include('wcministerio.urls')),
+    # path('ministerio/', include('wcministerio.urls')),
 
 ]
