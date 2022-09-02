@@ -1,16 +1,18 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import F
 from django.shortcuts import render, redirect
 from django.urls import resolve
 
 from core.utils.backend import Kpi
 from wccifras.models import Cifra
-from wclogon.models import Usuario, UsuarioKPI
+from wclogon.models import Usuario
 from wcstaff.forms import ReportErroForm
 from wcstaff.models import ReportErro
 from .forms import ArtistaForm, ComentarioForm
 from .models import Artista, Comentario, ArtistaKPI
+
+from rest_framework import viewsets
+from .serializers import ArtistaSerializer
 
 
 def artista(request, id, nome_artista):
@@ -140,3 +142,9 @@ def cadastrar(request):
 
     return render(request, 'cadastrar_artista.html', {'artistas_similares': artistas_similares, 'form': form,
                                                       'formReport': form_report, })
+
+
+# DRF
+class ArtistaAPI(viewsets.ModelViewSet):
+    queryset = Artista.objects.all()
+    serializer_class = ArtistaSerializer

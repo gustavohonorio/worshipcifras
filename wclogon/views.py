@@ -10,6 +10,13 @@ from .models import Usuario, UsuarioKPI, EsqueciSenha
 from .forms import UsuarioForm, MeuPerfilForm, RedefinirSenhaForm, send_email_esqueci_senha
 from .utils import user_functions
 
+# DRF
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework import viewsets
+from .serializers import UsuarioSerializer
+
 
 def register(request):
     form = UsuarioForm()
@@ -231,3 +238,40 @@ def nova_senha(request):
                 return redirect('nova-senha')
 
     return render(request, 'nova_senha.html')
+
+
+"""
+MANEIRA 1 DE FAZER A API
+
+class UsuarioAPI(APIView):
+    def get(self, request):
+        users = Usuario.objects.all()
+        serializer = UsuarioSerializer(users, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = UsuarioSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+"""
+
+"""
+MANEIRA 1 DE FAZER A API
+
+class UsuariosAPI(generics.ListCreateAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+
+
+class UsuarioAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+
+"""
+
+
+# DRF
+class UsuarioAPI(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
