@@ -54,6 +54,7 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
         modo_default = 'Cifra'
     elif request.GET.get('modo_n') == 'Letra':
         modo_default = 'Letra'
+        cifra_transposer = transposer.lyrics_mode(cifra_transposer)
     else:
         pass
 
