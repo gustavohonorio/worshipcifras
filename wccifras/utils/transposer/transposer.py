@@ -45,6 +45,20 @@ def transpose_by(text, semitones):
     return transpose(text, 'A', to_tone)
 
 
+def lyrics_mode(text):
+    """
+    Change view mode of the songs to only lyrics or lyrics and chords
+    """
+    result = ""
+    lines = text.split('\r\n')
+    for line in lines:
+        if is_chord_line(line):
+            result += ""
+        else:
+            result += line + "\n"
+    return result
+
+
 def get_scale(tone):
     """
     Find the scale associated to a tone, to make sure we write harmonically
