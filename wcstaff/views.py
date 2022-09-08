@@ -120,8 +120,6 @@ class CifrasListView(ListView):
 def e_cifras(request, id):
     a = Artista.objects.all()
     c = get_object_or_404(Cifra, id=id)
-    c.cifra = tag_cifra(c.cifra.split())
-    c.cifra = ' '.join(c.cifra)
     form = CifraForm(instance=c)
 
     if request.method == 'POST':
