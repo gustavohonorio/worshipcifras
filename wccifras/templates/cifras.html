@@ -158,9 +158,9 @@
                                 </li>
                             </ul>
                             <p class="excert" style="font-size: 18px">
-                                {% for c in cifra.cifra %}
-                                {{c}}
-                                {% endfor %}
+                                {% autoescape on %}
+                                    {{ cifra_t | linebreaksbr }}
+                                {% endautoescape %}
                             </p>
 
                         </div>
