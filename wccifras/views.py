@@ -176,12 +176,14 @@ def cadastrar(request):
                 detalhes = form.cleaned_data['detalhes']
                 tom = form.cleaned_data['tom']
                 capotraste = form.cleaned_data['capotraste']
-                afinacao = form.cleaned_data['afinacao']
+                afinacao = 'E A D G B E'  # form.cleaned_data['afinacao']
                 versao = form.cleaned_data['versao']
+
+                user_id = str(request.user.id)
 
                 nova_cifra = Cifra(nome=nome, wc_artista=Artista.objects.get(id=wc_artista[0].id), genero=genero,
                                    cifra=cifra, detalhes=detalhes, tom=tom, capotraste=capotraste, afinacao=afinacao,
-                                   versao=versao, )
+                                   versao=versao, op_user=user_id)
 
                 nova_cifra.save()
 

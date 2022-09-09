@@ -18,8 +18,13 @@
                                 <h6>Buscar pelo nome</h6>
                             </div>
                             <div class="col-6 mb-3">
+                                {% if filter %}
                                 <input type="text" value={{filter}} name="filter" class="form-control"
                                        placeholder="Buscar pelo nome">
+                                {% else %}
+                                <input type="text" value="" name="filter" class="form-control"
+                                       placeholder="Buscar pelo nome">
+                                {% endif %}
                             </div>
                             <div class="col-6">
                                 <button type="submit" name="submit" class="btn btn-primary">Buscar</button>
