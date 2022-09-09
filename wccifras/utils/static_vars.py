@@ -82,6 +82,11 @@ class VarsCifraForm:
         ('False', 'Não'),
     )
 
+    # transcricao cifra
+    transcricao_guide = 'Transcrição da cifra*\n\nComo enviar uma boa cifra? Veja o exemplo abaixo:\n\n[Estrofe]\nC#m ' \
+                        '  B    E\nLetra da estrofe da canção\nC#m   B   E\nSegunda parte da estrofe\n\n(E  A  ' \
+                        'D)\n\n[Refrão]\nC#m   B   E\nLetra do refrao da cancao\n\n. . . '
+
 
 class Vars:
     # modo visualização
