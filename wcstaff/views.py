@@ -116,6 +116,29 @@ class CifrasListView(ListView):
         return context
 
 
+class CifrasPendentesListView(ListView):
+    template_name = 'read/r-cifras.html'
+    model = Cifra
+    paginate_by = 50
+    ordering = 'wc_artista'
+
+    def get_queryset(self):
+        filter_val = self.request.GET.get('filter', )
+        # order = self.request.GET.get('orderby', 'give-default-value')
+        if filter_val:
+            new_context = Cifra.objects.filter(nome__icontains=filter_val)
+            return new_context
+        else:
+            new_context = Cifra.objects.filter(status='P')[:1000]
+            return new_context
+
+    def get_context_data(self, **kwargs):
+        context = super(CifrasPendentesListView, self).get_context_data(**kwargs)
+        context['filter'] = self.request.GET.get('filter', )
+        # context['orderby'] = self.request.GET.get('orderby', 'give-default-value')
+        return context
+
+
 @login_required
 def e_cifras(request, id):
     a = Artista.objects.all()
