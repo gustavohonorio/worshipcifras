@@ -19,9 +19,9 @@ def transpose(text, from_tone, to_tone):
     result = ""
     original_scale = get_scale(from_tone)
     dest_scale = get_scale(to_tone)
-    lines = text.split('\r\n')
+    lines = text.split('\n')
     for line in lines:
-        if is_chord_line(line):
+        if is_chord_line(line.lstrip().rstrip()):
             result += transpose_line(line, original_scale, dest_scale) + "\n"
         else:
             result += line + "\n"
@@ -127,6 +127,7 @@ def is_chord_line(line):
         # Proportion of non-chords symbols allowed in the line:
         tolerance = .1
         count = 0
+        # print(line)
         for c in line:
             if c not in CHORDSYMBOLS:
                 count += 1
