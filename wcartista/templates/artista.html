@@ -203,7 +203,7 @@
                                 {% for cancao in cancoes %}
                                 <div class="media post_item">
                                     <div class="media-body">
-                                        <a href="{% url 'cifras_busca' cancao.wc_artista cancao.id cancao.nome %}">
+                                        <a href="{% url 'cifras_busca' cancao.wc_artista cancao.id cancao.nome|cut:'/' %}">
                                             <h3>{{cancao.nome}}</h3>
                                         </a>
                                         <p>{{cancao.wc_artista}}</p>
