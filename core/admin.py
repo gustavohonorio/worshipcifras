@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import CardDestaque
 
-# Register your models here.
+
+@admin.register(CardDestaque)
+class CardDestaqueAdmin(admin.ModelAdmin):
+    pass

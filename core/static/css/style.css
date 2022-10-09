@@ -184,6 +184,7 @@ a,
 button {
     color: #fff;
     outline: medium none;
+    text-decoration: none;
 }
 button:focus,
 input:focus,
@@ -2085,6 +2086,7 @@ hr {
     -o-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
     text-transform: capitalize;
+    text-decoration: none;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .main-header .main-menu ul li a {
@@ -3417,6 +3419,7 @@ hr {
 .footer-area .footer-tittle ul li a {
     color: #868c98;
     font-weight: 300;
+    text-decoration: none;
 }
 .footer-area .footer-tittle ul li a:hover {
     color: #A4BAB7;
@@ -5866,4 +5869,35 @@ del {
     .hide-web {
         display: none;
     }
+}
+
+/* Cards */
+
+@media screen and (min-width: 600px) {
+    .carousel-inner{
+        display: flex;
+    }
+    .carousel-item{
+        display: block;
+        margin-right: 0;
+        flex: 0 0 calc(100%/3)
+    }
+}
+
+.carousel-inner{
+    padding: 1em;
+}
+.card{
+    margin: 0 .5em;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    border: none;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #A52422;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
 }
