@@ -23,6 +23,9 @@ class Artista(models.Model):
     op_tipo = models.TextField(blank=True, null=False, default='I')
     op_data = models.DateTimeField(blank=True, auto_now_add=True)
 
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         return self.nome
 
