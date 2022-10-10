@@ -14,9 +14,9 @@ urlpatterns = [
     path('artistas/', include('wcartista.urls')),
     # path('ministerio/', include('wcministerio.urls')),
     # DRF
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/', include(router_usuarios.urls)),
-    path('api/v1/', include(router_artistas.urls)),
+    # path('api-auth/', include('rest_framework.urls')),
+    # path('api/v1/', include(router_usuarios.urls)),
+    # path('api/v1/', include(router_artistas.urls)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
