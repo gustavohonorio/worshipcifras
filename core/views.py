@@ -2,11 +2,13 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import resolve
-
+# models
+from .models import CardDestaque
 from wccifras.models import Cifra, CifraKPI
 from wcartista.models import Artista, ArtistaKPI
-from wcstaff.forms import ReportErroForm
 from wcstaff.models import ReportErro
+# forms
+from wcstaff.forms import ReportErroForm
 
 
 def escape_char_especial(string):
@@ -26,6 +28,8 @@ def index(request):
 
     top_cifras = CifraKPI.objects.all().order_by('-acessos')[:5]
     top_artistas = ArtistaKPI.objects.all().order_by('-acessos')[:5]
+
+    card_destaque = CardDestaque.objects.filter(status=1)
 
     form_report = ReportErroForm()
 
@@ -88,7 +92,7 @@ def index(request):
                 return redirect('index')
 
     return render(request, 'index.html', {'top_cifras': top_cifras, 'top_artistas': top_artistas,
-                                          'formReport': form_report, })
+                                          'formReport': form_report, 'card_destaque': card_destaque})
 
 
 def pre_alfa(request):

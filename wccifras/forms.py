@@ -33,12 +33,12 @@ class CifraForm(forms.ModelForm):
 
     cifra = forms.CharField(widget=forms.Textarea(attrs={'style': 'width: 100%; border: none; outline: none; '
                                                                   'background: #f9f9ff; height: 500px;',
-                                                         'placeholder': 'Transcrição da cifra*'}))
+                                                         'placeholder': VarsCifraForm.transcricao_guide}))
 
     detalhes = forms.CharField(widget=forms.Textarea(attrs={'style': 'width: 100%; border: none; outline: none; '
                                                                      'background: #f9f9ff; height: 200px;',
                                                             'placeholder': 'Deseja enviar algum detalhe adicional '
-                                                                           'para nossa equipe? (Opcional)'}))
+                                                                           'para nossa equipe?'}))
 
     def send_email(self, id, nome, artista):
 
@@ -62,4 +62,4 @@ class CifraForm(forms.ModelForm):
 
     class Meta:
         model = Cifra
-        fields = ['nome', 'genero', 'cifra', 'detalhes', 'tom', 'capotraste', 'afinacao', 'versao', ]
+        fields = ['nome', 'genero', 'cifra', 'tom', 'capotraste', 'versao', ]

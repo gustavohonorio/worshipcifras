@@ -119,7 +119,9 @@ def cadastrar(request):
                 nome = form.cleaned_data['nome']
                 genero = form.cleaned_data['genero']
 
-                novo_artista = Artista(nome=nome, genero=genero)
+                user_id = str(request.user.id)
+
+                novo_artista = Artista(nome=nome, genero=genero, op_user=user_id)
                 novo_artista.save()
 
                 # CRIAR KPI DOS ARTISTAS

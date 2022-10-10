@@ -15,15 +15,10 @@ from wclogon.models import Usuario
 from .utils import acordes_regras, static_vars
 from .utils.acordes_regras import tag_cifra
 
+from .utils.transposer import transposer
+
 
 def cifras(request, artista, cifra_id, cifra_nome, ):
-    # TODO : TEMPORARIO : AQUI ESTOU PASSANDO A CIFRA PELO TAG NOVAMENTE, PARA TRATAR OS NOVOS ACORDES QUE TEM SURGIDO
-    #        QUANDO ESTABILIZAR A QUESTÃO DOS TONS, É NECESSÁRIO TIRAR ESTE PASSO PARA OTIMIZAR A APLICAÇÃO
-    c = get_object_or_404(Cifra, id=cifra_id)
-    c.cifra = tag_cifra(c.cifra.split())
-    c.cifra = ' '.join(c.cifra)
-    c.save()
-
     cifra = Cifra.objects.get(id=cifra_id)
 
     # ESTATICOS
@@ -33,6 +28,7 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
         tom = acordes_regras.escalas_maiores
 
     capotraste = Capotraste.objects.all()
+
     modo = static_vars.Vars.modo_choices
 
     # KPI
@@ -43,26 +39,24 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
     CifraKPI.objects.filter(wc_cifra=cifra).update(acessos=F('acessos') + 1)
 
     # TRATANDO CIFRA PARA SER EXIBIDA EM TELA
-
     novo_tom = (request.GET.get('tom_n') if request.GET.get('tom_n') else 0)
 
-    cifra_split = cifra.cifra.split()
+    cifra_transposer = cifra.cifra
 
     if novo_tom:
         novo_tom = novo_tom.replace('Tom original: ', '')
         novo_tom = novo_tom.replace('Tom selecionado: ', '')
         if novo_tom != cifra.tom:
-            acordes_regras.transposicao_cifra(cifra_split, cifra.tom, novo_tom)
+            cifra_transposer = transposer.transpose(cifra.cifra, cifra.tom.replace('m', ''), novo_tom.replace('m', ''))
 
     modo_default = 'Modo'
     if request.GET.get('modo_n') == 'Cifra':
         modo_default = 'Cifra'
-        cifra.cifra = acordes_regras.formatar_cifra(cifra_split)
     elif request.GET.get('modo_n') == 'Letra':
         modo_default = 'Letra'
-        cifra.cifra = acordes_regras.formatar_letra(cifra_split)
+        cifra_transposer = transposer.lyrics_mode(cifra_transposer)
     else:
-        cifra.cifra = acordes_regras.formatar_cifra(cifra_split)
+        pass
 
     # EXIBINDO COMENTARIOS
     comentarios = Comentario.objects.filter(wc_cifra=cifra.id)
@@ -116,7 +110,7 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
     return render(request, 'cifras.html', {'cifra': cifra, 'form': form, 'tom': tom, 'formReport': form_report,
                                            'capotraste': capotraste, 'modo': modo, 'modo_default': modo_default,
                                            'kpi': kpi, 'comentarios': comentarios, 'artista': artista,
-                                           'cifra_nome': cifra_nome, 'cifra_id': cifra_id, 'novo_tom': novo_tom})
+                                           'cifra_nome': cifra_nome, 'cifra_id': cifra_id, 'novo_tom': novo_tom, 'cifra_t': cifra_transposer})
 
 
 @login_required
@@ -182,12 +176,14 @@ def cadastrar(request):
                 detalhes = form.cleaned_data['detalhes']
                 tom = form.cleaned_data['tom']
                 capotraste = form.cleaned_data['capotraste']
-                afinacao = form.cleaned_data['afinacao']
+                afinacao = 'E A D G B E'  # form.cleaned_data['afinacao']
                 versao = form.cleaned_data['versao']
+
+                user_id = str(request.user.id)
 
                 nova_cifra = Cifra(nome=nome, wc_artista=Artista.objects.get(id=wc_artista[0].id), genero=genero,
                                    cifra=cifra, detalhes=detalhes, tom=tom, capotraste=capotraste, afinacao=afinacao,
-                                   versao=versao, )
+                                   versao=versao, op_user=user_id)
 
                 nova_cifra.save()
 
