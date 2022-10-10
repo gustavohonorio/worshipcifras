@@ -21,7 +21,6 @@ jobs:
           **/.git*
           **/.git*/**
           **/node_modules/**
-          **/core/static/**
           **/wcartista/static/**
           **/wccifras/static/**
           **/wclogon/static/**

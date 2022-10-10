@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # api apps
     'django_filters',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # local apps
     'core',
@@ -182,3 +183,16 @@ EMAIL_PORT = 465 # 587
 EMAIL_USER_TSL = True
 EMAIL_HOST_PASSWORD = 'Wcifras_pass1!'
 """
+
+# DRF
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
+}
