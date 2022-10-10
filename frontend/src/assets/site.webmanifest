@@ -1,0 +1,8 @@
+{
+  "name": "Worship Cifras",
+  "short_name": "WCifras",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Aplicação de consumo de cifras musicais, voltado para público cristão.",
+}
