@@ -24,4 +24,5 @@ jobs:
           **/wcartista/static/**
           **/wccifras/static/**
           **/wclogon/static/**
+          **/frontend/
           settings.py
