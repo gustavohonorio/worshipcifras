@@ -9,6 +9,9 @@ from wcartista.models import Artista, ArtistaKPI
 from wcstaff.models import ReportErro
 # forms
 from wcstaff.forms import ReportErroForm
+# drf
+from rest_framework import viewsets
+from .serializers import CardSerializer
 
 
 def escape_char_especial(string):
@@ -97,3 +100,9 @@ def index(request):
 
 def pre_alfa(request):
     return render(request, 'pre_alfa.html')
+
+
+# DRF
+class CardAPI(viewsets.ModelViewSet):
+    queryset = CardDestaque.objects.all()
+    serializer_class = CardSerializer

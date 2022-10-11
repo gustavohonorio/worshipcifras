@@ -8,7 +8,7 @@ const InputBuscar = () => {
                     type="text"
                     id="buscar"
                     name="buscar_n"
-                    placeholder="O que você vai tocar hoje?"                    
+                    placeholder="O que você vai tocar hoje?"
                     className="single-input"
                 />
             </div>
