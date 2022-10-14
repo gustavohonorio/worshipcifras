@@ -23,20 +23,18 @@ class CifraForm(forms.ModelForm):
 
     versao = forms.ChoiceField(choices=VarsCifraForm.versao_choices, initial=0, )
 
-    wc_artista = forms.CharField(widget=forms.TextInput(attrs={'id': 'buscar_artista', 'class': 'single-input', 'placeholder': 'Nome do '
+    wc_artista = forms.CharField(widget=forms.TextInput(attrs={'id': 'buscar_artista', 'class': 'form-control', 'placeholder': 'Nome do '
                                                                                                        'artista / '
                                                                                                        'banda',}))
 
-    nome = forms.CharField(widget=forms.TextInput(attrs={'class': 'single-input', 'placeholder': 'Nome da música*'}))
+    nome = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome da música*'}))
 
     genero = forms.ChoiceField(choices=VarsCifraForm.genero_choices, )
 
-    cifra = forms.CharField(widget=forms.Textarea(attrs={'style': 'width: 100%; border: none; outline: none; '
-                                                                  'background: #f9f9ff; height: 500px;',
+    cifra = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '10',
                                                          'placeholder': VarsCifraForm.transcricao_guide}))
 
-    detalhes = forms.CharField(widget=forms.Textarea(attrs={'style': 'width: 100%; border: none; outline: none; '
-                                                                     'background: #f9f9ff; height: 200px;',
+    detalhes = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '5',
                                                             'placeholder': 'Deseja enviar algum detalhe adicional '
                                                                            'para nossa equipe?'}))
 
@@ -54,7 +52,7 @@ class CifraForm(forms.ModelForm):
             subject='Nova cifra cadastrada',
             body=conteudo,
             from_email='no-reply@worshipcifras.com.br',
-            to=['no-reply@worshipcifras.com.br'],
+            to=['no-reply@worshipcifras.com.br', 'gustavo.honorio@yahoo.com.br'],
             headers={'Reply-To': 'no-reply@worshipcifras.com.br'}
         )
 

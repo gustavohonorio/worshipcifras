@@ -19,6 +19,7 @@ def transpose(text, from_tone, to_tone):
     result = ""
     original_scale = get_scale(from_tone)
     dest_scale = get_scale(to_tone)
+    text = text.replace(']', ']\n')
     lines = text.split('\n')
     for line in lines:
         if is_chord_line(line.lstrip().rstrip()):

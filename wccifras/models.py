@@ -13,7 +13,7 @@ class Cifra(models.Model):
     # adiconais
     tom = models.TextField(blank=False, null=False)
     capotraste = models.TextField(blank=False, null=False, default='0')
-    afinacao = models.TextField(blank=False, null=False)
+    afinacao = models.TextField(blank=True, null=True, default='Padrao')
     versao = models.TextField(blank=False, null=False)
     detalhes = models.TextField(blank=True, null=True)
     # verificada
