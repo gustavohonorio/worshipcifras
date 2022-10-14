@@ -5912,7 +5912,7 @@ del {
   transform: translateY(-50%);
 }
 
-/* Playlist Spotify */
+/* Card Playlist */
 .playlist{
     width: 90vw;
     height: 40vh;
@@ -5951,7 +5951,7 @@ del {
 }
 .card-playlist-text h2{
     font-size: 1.2rem;
-    color: #FFF;
+    color: #111;
 }
 .card-playlist-text p{
     font-size: 0.9rem;
