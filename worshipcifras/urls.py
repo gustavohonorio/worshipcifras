@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from wcartista.urls import router_artistas
 from wclogon.urls import router_usuarios
+from core.urls import router_core
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -17,6 +18,7 @@ urlpatterns = [
     # path('api-auth/', include('rest_framework.urls')),
     # path('api/v1/', include(router_usuarios.urls)),
     # path('api/v1/', include(router_artistas.urls)),
+    # path('api/v1/', include(router_core.urls)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

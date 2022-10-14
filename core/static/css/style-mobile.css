@@ -4954,7 +4954,7 @@ del {
     line-height: 25px;
 }
 .genric-btn.radius {
-    border-radius: 3px;
+    border-radius: 15px;
 }
 .genric-btn.circle {
     border-radius: 20px;
@@ -5273,6 +5273,7 @@ del {
     outline: none;
     background: #f9f9ff;
     padding: 0 20px;
+    border-radius: 15px;
 }
 .single-input:focus {
     outline: none;
@@ -5827,6 +5828,10 @@ del {
     border-top: 1px dotted #eee;
     margin-top: 10rem;
 }
+.section-ranking {
+    padding: 50px 0;
+    border-top: 1px dotted #eee;
+}
 .mb-30 {
     margin-bottom: 30px;
 }
@@ -5875,7 +5880,7 @@ del {
 
 /* Cards */
 .carousel-margin-top{
-    margin-top: -10rem;
+    margin-top: 0;
 }
 
 @media screen and (min-width: 600px) {
@@ -5899,18 +5904,18 @@ del {
 }
 .carousel-control-prev,
 .carousel-control-next {
-  background-color: #A52422;
-  width: 6vh;
-  height: 6vh;
+  background-color: #222;
+  width: 4vh;
+  height: 4vh;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
 }
 
-/* Playlist Spotify */
+/* Card Playlist */
 .playlist{
     width: 90vw;
-    height: 90vh;
+    height: 40vh;
     position: relative;
     overflow: hidden;
 }
@@ -5946,7 +5951,7 @@ del {
 }
 .card-playlist-text h2{
     font-size: 1.2rem;
-    color: #FFF;
+    color: #111;
 }
 .card-playlist-text p{
     font-size: 0.9rem;
@@ -5990,4 +5995,23 @@ del {
     border-bottom: 18px solid black;
     margin-left: 0.2rem;
     transform: rotate(90deg);
+}
+
+/* Ranking */
+.ranking-inner{
+
+}
+.ranking-item{
+    display: flex;
+    background-color: #fcfbfd;
+    border-radius: 15px;
+}
+.ranking-item .counter{
+
+}
+.ranking-item .value{
+    margin-left: 1rem;
+}
+.ranking-item p{
+    margin-top: -10px;
 }

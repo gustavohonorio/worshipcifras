@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% load user_agents %}
 <html class="no-js" lang="zxx">
 <head>
     <!-- META, CSS -->
@@ -23,68 +24,11 @@
         {% include 'utils/messages.html' %}
     </div>
 
-    <!-- Banner Destaque Start Mobile -->
-    <!--<div class="have-project">
-        <div class="container">
-            <div class="haveAproject" data-background="{% static 'img/team/have.jpg' %}">
-                <div class="row d-flex align-items-center">
-                    <div class="col-xl-7 col-lg-9 col-md-12">
-                        <div class="wantToWork-caption">
-                            <h2>Lançamento</h2>
-                            <p>Ouça agora o novo single "Sure Thing" do ministério Hillsong.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>--><!-- Banner Destaque End -->
-
-    <br>
-
-    <!-- Banners Cards -->
-    {% if card_destaque %}
-    <div>
-        <div class="container">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    {% for c in card_destaque %}
-                    {% if forloop.counter == 1 %}
-                    <div class="carousel-item active">
-                    {% else %}
-                    <div class="carousel-item">
-                    {% endif %}
-                        <a href="{{c.link}}" target="_blank">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="{{c.imagem.url}}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">{{c.titulo}}</h5>
-                                <p class="card-text">{{c.descricao}}</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-
-    <br>
-    <br>
-    <!-- Slider Area Start-->
+    <!-- Apresentation Area Start -->
     <div class="slider-area">
         <div class="slider-active">
             <div class="single-slider slider-height d-flex align-items-center"
-                 data-background="{% static 'img/hero/h1_hero.png' %}" style="margin-top: -100px">
+                 data-background="{% static 'img/hero/h1_hero.png' %}">
                 <div class="container">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-7 col-md-9 ">
@@ -105,51 +49,88 @@
                                 <p data-animation="fadeInLeft" data-delay=".6s">Estamos em fase Beta do WCifras, por
                                     isso temos uma imensidão de novidades que não vemos a hora de apresentar a você.
                                     Caso encontre algum problema, ou tenha alguma ideia genial,
-                                    <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro" style="color: #A52422;">nos avise</a>,
-                                        isto é o que nos torna a comunidade tão incrível.</p>
+                                    <a data-toggle="modal" data-target="#reportar-erro" href="#reportar-erro"
+                                       style="color: #A52422;">nos avise</a>,
+                                    isto é o que nos torna a comunidade tão incrível.</p>
                                 {% endif %}
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="hero__img d-none d-lg-block" data-animation="fadeInRight" data-delay="1s">
-                                <img src="" alt=""><!--../static/img/hero/hero_right.png -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Slider Area End-->
+    </div><!-- .Apresentation Area End-->
 
-    <section class="blog_area single-post-area section-padding" style="margin-top: -200px">
+    <!-- Banners Cards -->
+    {% if card_destaque %}
+    <div class="testimonial-area">
+        <div class="container">
+            <div class="testimonial-main">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-10 col-md-9">
+                        <div class="h1-testimonial-active">
+                            {% for c in card_destaque %}
+                            <div class="single-testimonial text-center">
+                                <div class="testimonial-caption ">
+                                    <div class="testimonial-top-cap">
+                                        <a href="{{c.link}}"
+                                           target="_blank">
+                                            <div class="card-playlist-image">
+                                                <img src="{{c.imagem.url}}"
+                                                     alt="Card Image">
+                                            </div>
+                                            <div class="card-playlist-text">
+                                                <h2>{{c.titulo}}</h2>
+                                                <p>{{c.descricao}}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}<!-- .Banners Cards -->
+    <br/>
+    <br/>
+
+    <section class="blog_area single-post-area">
         <div class="container">
             <div class="row">
                 <!-- Top cifras -->
                 <div class="col-lg-5">
-                    <div class="section-top-border">
+                    <div class="section-ranking">
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-5  col-md-8 pr-0">
-                                <div class="section-tittle text-center">
+                                <div class="section-tittle">
                                     <h2>Top Canções</h2>
                                 </div>
                             </div>
                         </div>
-                        <!-- Retornando top cifras da base de dados -->
-                        {% for cifra in top_cifras %}
-                        <div class="media post_item" style="background-color: #fcfbfd;">
-                            <h1>{{forloop.counter}}º</h1>
-                            <!--<img src="../static/img/post/post_1.png" alt="post" style="margin-left: 5px">-->
-                            <div class="media-body" style="margin-left: 5px;">
-                                <a href="{% url 'cifras_busca' cifra.wc_cifra.wc_artista cifra.id cifra.wc_cifra.nome %}"><h5> {{cifra.wc_cifra.nome}}</h5></a>
-                                <p style="margin-top: -10px"> {{cifra.wc_cifra.wc_artista}}</p>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-                        <div class="media post_item" style="background-color: #fcfbfd;">
+                        <ul class="ranking-inner">
+                            {% for cifra in top_cifras %}
+                            <li>
+                                <a href="{% url 'cifras_busca' cifra.wc_cifra.wc_artista cifra.id cifra.wc_cifra.nome %}"
+                                   class="ranking-item">
+                                    <div class="counter">
+                                        <h1>{{forloop.counter}}º</h1>
+                                    </div>
+                                    <div class="value">
+                                        <h5> {{cifra.wc_cifra.nome}}</h5>
+                                        <p> {{cifra.wc_cifra.wc_artista}}</p>
+                                    </div>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="post_item">
                             <div class="media-body" style="margin-left: 5px; margin-top: 10px;">
-                                <a href="#"><p> Ver mais <i class="fa fa-arrow-right" aria-hidden="true"></i></p></a>
+                                <a href="#"><p> Ver mais <i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -157,29 +138,34 @@
 
                 <!-- Top Artistas -->
                 <div class="col-lg-6">
-                    <div class="section-top-border">
+                    <div class="section-ranking">
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-5  col-md-8 pr-0">
-                                <div class="section-tittle text-center">
+                                <div class="section-tittle">
                                     <h2>Top Artistas</h2>
                                 </div>
                             </div>
                         </div>
-                        <!-- Retornando top cifras da base de dados -->
-                        {% for artista in top_artistas %}
-                        <div class="media post_item" style="background-color: #fcfbfd;">
-                            <h1>{{forloop.counter}}º</h1>
-                            <!--<img src="../static/img/post/post_1.png" alt="post" style="margin-left: 5px">-->
-                            <div class="media-body" style="margin-left: 5px;">
-                                <a href="{% url 'artista' artista.wc_artista.id artista.wc_artista.nome %}"><h5> {{artista.wc_artista.nome}}</h5></a>
-                                <p style="margin-top: -10px"> {{artista.wc_artista.genero}}</p>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-                        <div class="media post_item" style="background-color: #fcfbfd;">
+                        <ul class="ranking-inner">
+                            {% for artista in top_artistas %}
+                            <li>
+                                <a href="{% url 'artista' artista.wc_artista.id artista.wc_artista.nome %}"
+                                   class="ranking-item">
+                                    <div class="counter">
+                                        <h1>{{forloop.counter}}º</h1>
+                                    </div>
+                                    <div class="value">
+                                        <h5> {{artista.wc_artista.nome}}</h5>
+                                        <p> {{artista.wc_artista.genero}}</p>
+                                    </div>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="post_item">
                             <div class="media-body" style="margin-left: 5px; margin-top: 10px;">
-                                <a href="#"><p> Ver mais <i class="fa fa-arrow-right" aria-hidden="true"></i></p></a>
+                                <a href="#"><p> Ver mais <i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -249,9 +235,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Mensagens de Retorno -->
-
 </main>
 <footer>
     <!-- Footer -->

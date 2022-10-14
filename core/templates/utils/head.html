@@ -1,4 +1,5 @@
 {% load static %}
+{% load user_agents %}
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
@@ -22,7 +23,11 @@
 <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
 <link rel="stylesheet" href="{% static 'css/slick.css' %}">
 <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+{% if request|is_mobile %}
+<link rel="stylesheet" href="{% static 'css/style-mobile.css' %}">
+{% else %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endif %}
 
 <!-- JQUERY + AJAX BUSCA COM AUTOCOMPLETE-->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
