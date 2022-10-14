@@ -34,8 +34,16 @@
                             <a href="#" class="btn btn-ans">Tutorial</a>
                         </div>
                     </div>
+
                 </div>
+
             </div>
+            <!-- REGRAS DE ENVIO -->
+                                <ul class="blog-info-link mt-3 mb-4">
+                                    <li><a href="#"><i class="fa fa-bookmark"></i> Leia as nossas regras para a
+                                        publicação
+                                        de cifras.</a></li>
+                                </ul>
         </div>
     </div>
 
@@ -48,67 +56,50 @@
                     <div class="col-lg-3">
                         <h3 class="mb-30">Opções</h3>
                         <div class="col-lg-12">
-                            <div class="single-element-widget mt-30">
-                                <div class="default-select">
-                                    {{form.tom}}
-                                </div>
+                            <div class="mt-30">
+                                {{form.tom}}
                             </div>
                         </div>
-
+                        <br>
                         <div class="col-lg-12">
-                            <div class="single-element-widget mt-30">
-                                <div class="default-select">
-                                    {{form.capotraste}}
-                                </div>
+                            <div class="mt-30">
+                                {{form.capotraste}}
                             </div>
                         </div>
-<!--
+                        <br>
                         <div class="col-lg-12">
-                            <div class="single-element-widget mt-30">
-                                <div class="default-select">
-                                    {{form.afinacao}}
-                                </div>
+                            <div class="mt-30">
+                                {{form.afinacao}}
                             </div>
                         </div>
--->
+                        <br>
                         <div class="col-lg-12">
-                            <div class="single-element-widget mt-30">
-                                <div class="default-select">
-                                    {{form.versao}}
-                                </div>
+                            <div class="mt-30">
+                                {{form.versao}}
                             </div>
                         </div>
-
-                        <div class="col-lg-12">
-                            <div class="single-element-widget mt-30">
-                                <button class="genric-btn primary radius" style=""><i class="fa fa-info-circle"
-                                                                                      aria-hidden="true"></i>
-                                    Ajuda
-                                </button>
-                            </div>
-                        </div>
+                        <!--
+                                                <div class="col-lg-12">
+                                                    <div class="single-element-widget mt-30">
+                                                        <button class="genric-btn primary radius" style=""><i class="fa fa-info-circle"
+                                                                                                              aria-hidden="true"></i>
+                                                            Ajuda
+                                                        </button>
+                                                    </div>
+                                                </div>
+                        -->
                     </div>
 
                     <!-- CIFRA -->
                     <div class="col-lg-5 posts-list">
                         <div class="single-post">
                             <div class="blog_details">
-
-                                <!-- REGRAS DE ENVIO -->
-                                <ul class="blog-info-link mt-3 mb-4">
-                                    <li><a href="#"><i class="fa fa-bookmark"></i> Leia as nossas regras para a
-                                        publicação
-                                        de cifras.</a></li>
-                                </ul>
-
                                 <!-- Modal -->
                                 {% include 'utils/messages.html' %}
 
                                 <!-- FORMULARIO DE ENVIO -->
-                                <div class="input-group-icon mt-10">
-                                    <div class="form-select">
-                                        {{form.wc_artista}}
-                                    </div>
+                                <div class="mt-10">
+                                    {{form.wc_artista}}
                                 </div>
                                 <datalist id="artista_auto_complete">
                                     {% for artista in artistas %}
@@ -117,23 +108,14 @@
                                 </datalist>
 
                                 <div class="mt-10">
-                                    <div class="single-input">
-                                        {{form.nome}}
-                                    </div>
-                                    <!--<input type="text" id="nome" name="nome_n" placeholder="Nome da música*"
-                                           onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Nome da música*'"
-                                           required
-                                           class="single-input">-->
+                                    {{form.nome}}
                                 </div>
 
-                                <div class="input-group-icon mt-10">
-                                    <div class="icon"><i class="fa fa-music" aria-hidden="true"></i></div>
-                                    <div class="form-select">
-                                        {{form.genero}}
-                                    </div>
+                                <div class="mt-10">
+                                    {{form.genero}}
                                 </div>
-
+                                <br>
+                                <br>
                                 <div class="mt-10">
                                     {{form.cifra}}
                                 </div>
@@ -174,7 +156,7 @@
             </div>
         </form>
     </section>
-    <!--================ Artista Area end =================-->
+    <!-- .Artista Area end -->
 
     <!-- Modal -->
     {% include 'utils/modals.html' %}

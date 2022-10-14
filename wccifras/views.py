@@ -13,7 +13,6 @@ from .models import Cifra, Capotraste, CifraKPI, Comentario
 from wcartista.models import Artista
 from wclogon.models import Usuario
 from .utils import acordes_regras, static_vars
-from .utils.acordes_regras import tag_cifra
 
 from .utils.transposer import transposer
 
