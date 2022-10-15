@@ -51,6 +51,7 @@ def lyrics_mode(text):
     Change view mode of the songs to only lyrics or lyrics and chords
     """
     result = ""
+    text = text.replace(']', ']\n')
     lines = text.split('\r\n')
     for line in lines:
         if is_chord_line(line):
