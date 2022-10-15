@@ -42,20 +42,20 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
 
     cifra_transposer = cifra.cifra
 
-    if novo_tom:
+    modo_default = 'Modo'  # VALIDANDO O MODO DE EXIBIÇÃO DA CIFRA
+
+    if request.GET.get('modo_n') == 'Letra':
+        modo_default = 'Letra'
+        cifra_transposer = transposer.lyrics_mode(cifra_transposer)
+    elif novo_tom:
+        modo_default = 'Cifra'
         novo_tom = novo_tom.replace('Tom original: ', '')
         novo_tom = novo_tom.replace('Tom selecionado: ', '')
         if novo_tom != cifra.tom:
             cifra_transposer = transposer.transpose(cifra.cifra, cifra.tom.replace('m', ''), novo_tom.replace('m', ''))
-
-    modo_default = 'Modo'
-    if request.GET.get('modo_n') == 'Cifra':
-        modo_default = 'Cifra'
-    elif request.GET.get('modo_n') == 'Letra':
-        modo_default = 'Letra'
-        cifra_transposer = transposer.lyrics_mode(cifra_transposer)
     else:
-        pass
+        modo_default = 'Cifra'
+        cifra_transposer = transposer.transpose(cifra.cifra, cifra.tom.replace('m', ''), cifra.tom.replace('m', ''))
 
     # EXIBINDO COMENTARIOS
     comentarios = Comentario.objects.filter(wc_cifra=cifra.id)
@@ -109,7 +109,8 @@ def cifras(request, artista, cifra_id, cifra_nome, ):
     return render(request, 'cifras.html', {'cifra': cifra, 'form': form, 'tom': tom, 'formReport': form_report,
                                            'capotraste': capotraste, 'modo': modo, 'modo_default': modo_default,
                                            'kpi': kpi, 'comentarios': comentarios, 'artista': artista,
-                                           'cifra_nome': cifra_nome, 'cifra_id': cifra_id, 'novo_tom': novo_tom, 'cifra_t': cifra_transposer})
+                                           'cifra_nome': cifra_nome, 'cifra_id': cifra_id, 'novo_tom': novo_tom,
+                                           'cifra_t': cifra_transposer})
 
 
 @login_required
