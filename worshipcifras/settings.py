@@ -101,14 +101,24 @@ WSGI_APPLICATION = 'worshipcifras.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    # apontando para base de producao
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'worshipcifras',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'NAME': 'worshipc_site',
+        'USER': 'worshipc_db',
+        'PASSWORD': 'Wcifras_pass1!',
+        'HOST': '107.161.183.208',
         'PORT': '3306',
     }
+
+    # 'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'worshipcifras',
+    #    'USER': 'root',
+    #    'PASSWORD': 'admin',
+    #    'HOST': 'localhost',
+    #    'PORT': '3306',
+    #}
 }
 
 # Password validation

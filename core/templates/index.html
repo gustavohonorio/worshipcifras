@@ -63,6 +63,7 @@
         </div>
     </div><!-- .Apresentation Area End-->
 
+    {% if request.user_agent.is_mobile %}
     <!-- Banners Cards -->
     {% if card_destaque %}
     <div class="testimonial-area">
@@ -97,6 +98,7 @@
         </div>
     </div>
     {% endif %}<!-- .Banners Cards -->
+    {% endif %}<!-- .Validando dispositivo -->
     <br/>
     <br/>
 
@@ -116,7 +118,7 @@
                         <ul class="ranking-inner">
                             {% for cifra in top_cifras %}
                             <li>
-                                <a href="{% url 'cifras_busca' cifra.wc_cifra.wc_artista cifra.id cifra.wc_cifra.nome %}"
+                                <a href=""
                                    class="ranking-item">
                                     <div class="counter">
                                         <h1>{{forloop.counter}}º</h1>
